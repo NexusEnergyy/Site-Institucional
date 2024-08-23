@@ -97,4 +97,11 @@ header {
   width: 10%;
   font-family: "Montserrat", sans-serif;
   border: none;
+  transition: 0.2s ease-in-out;
+}
+
+.btnLoginNavBar:hover {
+  transition: 0.2s ease-in-out;
+  transform: scale(1.1);
+  opacity: 80%;
 }
