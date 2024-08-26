@@ -1,0 +1,81 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Krona One", sans-serif;
+}
+
+body{
+    background-image: url(../assets/plataforma/backgroundcolor.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.mainContent{
+    width: 99vw;
+    height: 98vh;
+    background-color: rgba(0, 0, 0, 0.39);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.buttonsBox{
+    width: 16%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.336);
+    border-radius: 20px 0 0 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logoBox{
+    width: 100%;
+    height: 12%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.mainButtons{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    width: 100%;
+    height: 30%;
+    gap: 15px;
+}
+
+.btn{
+    width: 95%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    padding-left: 10px;
+    align-items: center;
+    transition: 0.4s;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.btn img{
+    height: 80%;
+}
+
+.btn h2{
+    color: #FFFFFF;
+    margin-left: 25px;
+    font-size: 18px;
+}
+
+.btn:hover{
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 30px;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
