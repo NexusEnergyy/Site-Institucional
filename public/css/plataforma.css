@@ -79,3 +79,41 @@ body{
     cursor: pointer;
 }
 
+.mainButtons2{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    width: 100%;
+    height: 30%;
+    gap: 15px;
+}
+
+.titleConfigs{
+    color: #FFFFFF;
+    font-size: 22px;
+    text-align: center;
+}
+
+.lineTitle{
+    margin-bottom: 40px;
+}
+
+.mainDashboard{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.titleDashboard{
+    width: 98%;
+    height: 5%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.titleDashboard h3{
+   color: #FFFFFF;
+}
