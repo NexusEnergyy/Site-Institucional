@@ -43,7 +43,7 @@ header {
 }
 
 .navBarNexus {
- 
+
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -121,41 +121,44 @@ header {
 ::-webkit-scrollbar {
   width: 1px;
 }
+
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(255, 255, 255);
+  background-color: #280E33;
   height: 116px;
   border-radius: 0px 0px 5px 0px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background-color: #280E33;
 }
+
 ::-webkit-scrollbar-track {
-  background: linear-gradient(180deg, #280E33,  #4C1F3B, #953652);
+  background-color: #280E33;
 }
 
-.homepageNexus{
+.homepageNexus {
   flex: 1;
-  position:absolute;
+  position: absolute;
   z-index: 100;
   top: 80px;
-  
+
   width: 100%;
   height: 110vh;
 }
 
-.containerNexusHome{
+.containerNexusHome {
   width: 100%;
   height: 100%;
 }
 
-.contentHome{
+.contentHome {
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 100%;
 }
 
-.leftHome{
+.leftHome {
   width: 75%;
   height: 100%;
   position: relative;
@@ -169,14 +172,14 @@ header {
   color: #ffff;
 }
 
-.TitleNexusHome{
+.TitleNexusHome {
   font-size: 35px;
   width: 100%;
   text-align: left;
   padding: 70px 35px 10px 35px;
 }
 
-.subtitleNexusHome{
+.subtitleNexusHome {
   font-size: 25px;
   width: 95%;
   font-weight: 100;
@@ -184,7 +187,7 @@ header {
   padding: 40px 15px;
 }
 
-.btnSideNexus{
+.btnSideNexus {
   width: 65%;
   padding: 50px 25px;
   display: flex;
@@ -193,7 +196,7 @@ header {
   align-items: center;
 }
 
-.btnSideNexus button{
+.btnSideNexus button {
   cursor: pointer;
   font-size: 25px;
   border: none;
@@ -217,11 +220,11 @@ header {
   box-shadow: 0 0 15px #00d0ff;
 }
 
-.btnSideNexus img{
-transform: translateX(-25px);
+.btnSideNexus img {
+  transform: translateX(-25px);
 }
 
-.rightHome{
+.rightHome {
   width: 45%;
   height: 100%;
   /* margin-top: 45px; */
@@ -230,39 +233,39 @@ transform: translateX(-25px);
   justify-content: flex-start;
 }
 
-.imageNexusHome img{
+.imageNexusHome img {
   position: absolute;
   z-index: 105;
   right: 0;
   top: 55px;
 }
 
-.serviceNexus{
+.serviceNexus {
   width: 100%;
   position: relative;
   /* left: -400px; */
   z-index: 10;
   top: 970px;
-  height: 90vh;
-  background: linear-gradient(180deg, #FF8C00 65%, #3d1837);
+  height: 150vh;
 }
 
-.containerServiceNexus{
+.containerServiceNexus {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: flex-start;
+  align-items: center;
 
 }
 
-.content-Service{
+.content-Service {
+  background-color: #FF8C00;
   display: flex;
-  width: 85%;
-  height: 100%;
+  width: 100%;
+  height: 90%;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
   padding: 70px 40px;
   font-family: "Montserrat", sans-serif;
@@ -272,16 +275,66 @@ transform: translateX(-25px);
 
 }
 
-.titleService{
+.titleService {
   width: 100%;
-  
+
 }
 
-.textAboutService{
-  font-size: 40px;
+.textAboutService {
+  font-size: 60px;
+  align-items: center;
   font-weight: 300;
-  width: 85%;
-  padding: 20px 0px;
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  padding: 10px 0px;
   font-family: "Montserrat", sans-serif;
-  color: #280E33;
+  color: #530A73;
+}
+
+.boxText {
+  padding: 60px 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-shadow: rgba(106, 30, 105, 0.4) 5px 5px, rgba(122, 41, 92, 0.3) 10px 10px, rgba(196, 65, 148, 0.2) 15px 15px, rgba(234, 21, 156, 0.1) 20px 20px, rgba(255, 26, 171, 0.05) 25px 25px;
+  background-color: #ffffff;
+  border: 2px solid #ffffff8d;
+  border-radius: 40px;
+  height: 30vh;
+}
+
+.boxService {
+  padding: 60px 50px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 150%;
+  background: linear-gradient(180deg, rgba(255, 140, 0, 1) 0%, rgba(63, 25, 56, 1) 41%, rgba(64, 25, 56, 1) 100%);
+}
+
+.childOne,
+.childTwo,
+.childThree {
+  width: 25%;
+  height: 70%;
+  border-radius: 25px;
+  -webkit-box-shadow: 17px 17px 16px 6px rgba(32, 5, 33, 1);
+  -moz-box-shadow: 17px 17px 16px 6px rgba(32, 5, 33, 1);
+  box-shadow: 17px 17px 16px 6px rgba(32, 5, 33, 1);
+  background-color: #ffffff;
+}
+
+.childOne {
+  align-self: flex-start;
+}
+
+.childTwo {
+  align-self: center;
+}
+
+.childThree {
+  align-self: flex-end;
 }
