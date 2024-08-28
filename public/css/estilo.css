@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Covered+By+Your+Grace&family=Dela+Gothic+One&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Krona+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+AU+VIC:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Syncopate:wght@400;700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montagu+Slab:opsz,wght@16..144,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
   margin: 0;
@@ -9,9 +9,9 @@
 body {
   overflow-x: hidden;
   width: 100vw;
+  font-family: "Montserrat", sans-serif;
   display: flex;
   flex-direction: column;
-  font-family: "Poppins", sans-serif;
   height: 700vh;
   background: linear-gradient(180deg, #280E33, #4C1F3B, #953652);
   background-repeat: no-repeat;
@@ -90,7 +90,7 @@ header {
 .btnLoginNavBar {
   cursor: pointer;
   font-size: 25px;
-  font-weight: 500;
+  font-weight: 600;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -136,12 +136,13 @@ header {
 }
 
 .homepageNexus {
+  
   flex: 1;
   position: absolute;
   z-index: 100;
-  top: 80px;
+  top: 140px;
   width: 100%;
-  height: 65vh;
+  height: 80vh;
 }
 
 .containerNexusHome {
@@ -150,6 +151,7 @@ header {
 }
 
 .contentHome {
+  justify-content: flex-start;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -157,12 +159,10 @@ header {
 }
 
 .leftHome {
-  width: 75%;
-  height: 60%;
+  width: 60%;
+  height: 70%;
   position: relative;
   z-index: 1;
-  background-image: url("../assets/image\ 6.png");
-  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -171,23 +171,24 @@ header {
 }
 
 .TitleNexusHome {
-  font-size: 35px;
+  font-size: 55px;
   width: 100%;
+  font-weight: bold;
   text-align: left;
-  padding: 70px 35px 10px 40px;
+  padding: 20px 0px 10px 70px;
 }
 
 .subtitleNexusHome {
   font-size: 30px;
   width: 95%;
-  font-weight: 100;
+  font-weight: 400;
   text-align: left;
-  padding: 40px 15px 0px 15px;
+  padding: 40px 40px 0px 40px;
 }
 
 .btnSideNexus {
   width: 65%;
-  padding: 50px 25px 0px 25px;
+  padding: 50px 40px 0px 25px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -223,27 +224,26 @@ header {
 }
 
 .rightHome {
-  width: 45%;
+  width: 50%;
   height: 60%;
-  /* margin-top: 45px; */
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
 }
 
 .imageNexusHome img {
+  width: 45vw;
+  height: 115vh;
   position: absolute;
   z-index: 105;
   right: 0;
-  top: 55px;
 }
 
 .serviceNexus {
   width: 100%;
   position: relative;
-  /* left: -400px; */
   z-index: 10;
-  top: 970px;
+  top: 880px;
   height: 150vh;
 }
 
@@ -258,14 +258,14 @@ header {
 }
 
 .content-Service {
-  background-color: #FF8C00;
+  background: linear-gradient(180deg, rgba(50, 19, 53, 1) 2%, rgba(57, 17, 63, 1) 10%, rgba(154, 70, 32, 1) 36%, rgba(237, 115, 6, 1) 64%, rgba(255, 140, 0, 1) 100%);
   display: flex;
   width: 100%;
-  height: 90%;
-  justify-content: flex-start;
+  height: 150%;
+  justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
-  padding: 70px 40px;
+  padding: 70px 75px 0px 75px;
   font-family: "Montserrat", sans-serif;
   font-weight: 200;
   color: #ffffff;
