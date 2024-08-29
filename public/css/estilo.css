@@ -8,10 +8,10 @@
 
 body {
   overflow-x: hidden;
-  width: 100vw;
+  width: 100%;
   font-family: "Montserrat", sans-serif;
-  height: 700vh;
-  background: linear-gradient(180deg, #280E33, #4C1F3B, #953652);
+  height: 5500px;
+  background: linear-gradient(180deg, #280E33, #4C1F3B, #592970);
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
@@ -21,7 +21,7 @@ header {
   position: fixed;
   z-index: 200;
   width: 100%;
-  height: 10vh;
+  height: 100px;
   background-color: #ffff;
   border-radius: 0px 0px 25px 25px;
   display: flex;
@@ -37,7 +37,7 @@ header {
 
 .logoNavBar img {
   width: 45%;
-  height: 50%;
+  height: 90px;
 }
 
 .navBarNexus {
@@ -116,7 +116,7 @@ header {
 }
 
 ::-webkit-scrollbar {
-  width: 1px;
+  width: 1%;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -134,13 +134,12 @@ header {
 }
 
 .homepageNexus {
-
   flex: 1;
   position: absolute;
   z-index: 100;
   top: 140px;
   width: 100%;
-  height: 80vh;
+  height: 800px;
 }
 
 .containerNexusHome {
@@ -153,12 +152,12 @@ header {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 100%;
+  height: 16px;
 }
 
 .leftHome {
   width: 60%;
-  height: 70%;
+  height: 11.6px;
   position: relative;
   z-index: 1;
   display: flex;
@@ -223,15 +222,15 @@ header {
 
 .rightHome {
   width: 50%;
-  height: 60%;
+  height: 10px;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
 }
 
 .imageNexusHome img {
-  width: 45vw;
-  height: 115vh;
+  width: 45%;
+  height: 1150px;
   position: absolute;
   z-index: 105;
   right: 0;
@@ -242,7 +241,7 @@ header {
   position: relative;
   z-index: 10;
   top: 880px;
-  height: 150vh;
+  height: 1500px;
 }
 
 .containerServiceNexus {
@@ -281,15 +280,15 @@ header {
   height: 10vh;
 }
 
-.engrenagemTitle{
+.engrenagemTitle {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   height: 100%;
 }
 
-.engrenagemTitle img{
-  width: 75px;
+.engrenagemTitle img {
+  width: 100%;
   height: 78px;
 }
 
@@ -315,7 +314,7 @@ header {
   background-color: #ffffff;
   border: 2px solid #ffffff8d;
   border-radius: 40px;
-  height: 30vh;
+  height: 300px;
 }
 
 .boxService {
@@ -325,14 +324,14 @@ header {
   align-items: center;
   width: 100%;
   height: 170%;
-  background: linear-gradient(180deg, rgba(255, 140, 0, 1) 40%, rgba(63, 25, 56, 1) 100%, rgba(64, 25, 56, 1) 20%);
+  background: linear-gradient(180deg, rgba(255, 140, 0, 1) 75%, #38172F 115%);
 }
 
 .childOne,
 .childTwo,
 .childThree {
   width: 23%;
-  height: 75%;
+  height: 500px;
   border-radius: 25px;
   -webkit-box-shadow: 17px 17px 16px 6px rgba(32, 5, 33, 1);
   -moz-box-shadow: 17px 17px 16px 6px rgba(32, 5, 33, 1);
@@ -381,4 +380,89 @@ header {
   color: #530A73;
   font-size: 20px;
   font-weight: 600;
+}
+
+.whyNexus {
+  position: absolute;
+  top: 2380px;
+  width: 100%;
+  height: 1300px;
+  background: linear-gradient(180deg, rgba(134,69,28,1) 0%, rgba(95,44,29,1) 10%, rgba(63,24,31,1) 20%, rgba(37,8,33,1) 35%, rgba(37,8,33,1) 40%, rgba(40,9,34,1) 50%, rgba(46,13,42,1) 60%, rgba(51,17,48,1) 65%, rgba(62,23,59,1) 80%, rgba(73,30,71,1) 90%, rgba(81,35,80,1) 100%);
+}
+
+
+.containerWhyNexus {
+  padding-top: 400px;
+  width: 100%;
+  height: 1300px;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.content-WhyNexus {
+  width: 100%;
+  height: 1500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.leftWhyNexus {
+  align-self: flex-start;
+  width: 40%;
+  height: 70%;
+}
+
+.imgWhyNexus{
+  width: 100%;
+  height: 100%;
+}
+
+.imgWhyNexus img{
+  width: 100%;
+  height: 100%;
+}
+
+.rightWhyNexus {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 60%;
+  height: 100%;
+}
+
+.tilteWhyNexus {
+  display: flex;
+  font-size: 75px;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 30px;
+}
+
+.boxWhiteWhyNexus{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 50px;
+  box-shadow: rgba(146, 46, 240, 0.4) 5px 5px, rgba(133, 46, 240, 0.3) 10px 10px, rgba(146, 46, 240, 0.2) 15px 15px, rgba(153, 46, 240, 0.1) 20px 20px, rgba(140, 46, 240, 0.05) 25px 25px;
+  width: 85%;
+  height: 230px;
+  background-color: #ffffff;
+  border-radius: 15px;
+}
+
+.textWhyNexus{
+  text-align: justify;
+  height: 800px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  font-size: 42px;
+  color:#530A73;
+  font-weight: 500;
+
 }
