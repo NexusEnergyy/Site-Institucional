@@ -17,15 +17,15 @@
     <div class="logoNavBar"><img src="./assets/LogoNexus.png" alt=""></div>
     <nav class="navBarNexus">
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Serviços</a></li>
-        <li><a href="#">Quem somos</a></li>
-        <li><a href="#">Contato</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#service">Serviços</a></li>
+        <li><a href="#aboutUs">Quem somos</a></li>
+        <li><a href="#contact">Contato</a></li>
       </ul>
     </nav>
     <button onclick="acessarLogin()" class="btnLoginNavBar">Login</button>
   </header>
-  <section class="homepageNexus">
+  <section class="homepageNexus" id="home">
     <div class="containerNexusHome">
       <div class="contentHome">
         <div class="leftHome">
@@ -55,7 +55,7 @@
       </div>
     </div>
   </section>
-  <section class="serviceNexus">
+  <section class="serviceNexus" id="service">
     <div class="containerServiceNexus">
       <div class="content-Service">
         <div class="titleService">
@@ -116,7 +116,7 @@
       </div>
     </div>
   </section>
-  <section class="whyNexus">
+  <section class="whyNexus" id="aboutUs">
     <div class="containerWhyNexus">
       <div class="content-WhyNexus">
         <div class="leftWhyNexus">
@@ -129,76 +129,219 @@
             <div class="imgLampWhyNexus">
               <img src="./assets/🦆 icon _Lightbulb_.png" alt="">
             </div>
-            <p>POR QUE <span style="color: #FF8C00; font-weight: bold;" >NEXUS</span>?</p>
+            <p>POR QUE <span style="color: #FF8C00; font-weight: bold;">NEXUS</span>?</p>
           </div>
           <div class="textWhyNexus">
             <div class="boxWhiteWhyNexus">
-              <p>Somos uma empresa dedicada a <span style="color: #00bfd4; font-weight: bold;">transformar a gestão energética</span> no setor de telecomunicações</p>
+              <p>Somos uma empresa dedicada a <span style="color: #00bfd4; font-weight: bold;">transformar a gestão
+                  energética</span> no setor de telecomunicações</p>
             </div>
             <div class="boxWhiteWhyNexus">
-              <p>O nome "Nexus" vem do latim e significa "conexão", simbolizando nossa missão de <span style="color: #00bfd4; font-weight: bold;">conectar tecnologias a com soluções sustentáveis</span>.</p>
+              <p>O nome "Nexus" vem do latim e significa "conexão", simbolizando nossa missão de <span
+                  style="color: #00bfd4; font-weight: bold;">conectar tecnologias a com soluções sustentáveis</span>.
+              </p>
             </div>
             <div class="boxWhiteWhyNexus">
-              <p>Enfrentamos os desafios do crescente consumo de energia elétrica, oferecendo soluções que promovem a <span style="color: #00bfd4; font-weight: bold;">eficiência</span> e o <span style="color: #00bfd4; font-weight: bold;" >alinhamento com práticas ambientais</span>.</p>
+              <p>Enfrentamos os desafios do crescente consumo de energia elétrica, oferecendo soluções que promovem a
+                <span style="color: #00bfd4; font-weight: bold;">eficiência</span> e o <span
+                  style="color: #00bfd4; font-weight: bold;">alinhamento com práticas ambientais</span>.
+              </p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <section class="contactNexus">
-    
+  <section class="contactNexus" id="contact">
     <div class="boxContact">
-      <div class="leftContact">
-        
-        <span>Contate-nos</span>
-        <div style="display: flex; flex-direction: row; justify-content: space-between;">
-          <input type="text" class="inputContact" placeholder="Nome" required>
-          <input type="email" class="inputContact" placeholder="Email" required>
+      <div class="leftContact" id="leftContactVerificado">
+        <div class="titleBoxNexusContact">
+          <p>Contate-nos</p>
         </div>
-        <input type="message" class="inputAssunto" placeholder="Assunto" required>
-        
+        <div class="inputsContact">
+          <input type="text" placeholder="Nome" required>
+          <input type="email" placeholder="E-mail" required>
+        </div>
+        <div class="mensageContact">
+          <textarea required placeholder="Escreva aqui sua mensagem" maxlength="500"></textarea>
+        </div>
+        <div class="btnEnviarMsg">
+          <button onclick="enviarMensage()">Envie aqui!</button>
+        </div>
       </div>
-      
+
       <div class="rightContact">
-        <textarea class="textMessage" placeholder="Mensagem"></textarea>
-        <img src="assets/Group.png" alt="" class="group" >
+        <div class="mapsNexus">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3695.3840900408504!2d-46.66648491845848!3d-23.55812122414458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59d2b063f663%3A0xc567c0d16d0bc582!2sS%C3%A3o%20Paulo%20Tech%20School!5e1!3m2!1spt-BR!2sbr!4v1725113912210!5m2!1spt-BR!2sbr"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
       </div>
-      
+
     </div>
-    
+    <div class="imgContact">
+      <img src="assets/Group.png" alt="" class="group">
+    </div>
+
   </section>
   <section class="footerNexus">
-    
+
     <footer>
       <div class="conteudosFooter">
-      <img src="assets/logoNexusEnergy.png" class="imglogo" alt="">
-      <div class="linksUteis">
-        <p>Links Uteis</p>
-        <ul>
-          <li><a href="https://www.teleco.com.br/comentario/com1091.asp#:~:text=A%20Vivo%20%C3%A9%20a%20l%C3%ADder,total%20das%20prestadoras%20em%202023.&text=Impulsionada%20pelas%20aquisi%C3%A7%C3%B5es%2C%20a%20Tecpar,Unifique%20(30%2C2%25).">Ranks De Faturamento do Brasil</a></li>
-          <li><a href="https://fia.com.br/blog/energia-limpa/">Impactos da Utilização da Energia Limpa</a></li>
-          <li><a href="https://blog.ambify.com/emissao-de-carbono-o-que-e-qual-e-o-seu-impacto-nas-mudancas-climaticas/#:~:text=Com%20maior%20concentra%C3%A7%C3%A3o%20de%20CO2,esp%C3%A9cies%20cada%20vez%20mais%20dif%C3%ADceis.">O Impacto da Emissão de CO² no Aquecimento Global</a></li>
-          <li><a href="https://www.mapfreglobalrisks.com/pt-br/gerencia-riscos-seguros/estudos/energia-renovavel-o-motor-da-internet/">A Importância da Energia Renovável na Infraestrutura de Telecomunicações</a></li>
-        </ul>
-      </div>
-      <div class="contato">
-        <p>Contato</p>
-        <ul>
-          <li><i class="fa-solid fa-phone"></i>(11) 40 028 922</li>
-          <li><i class="fa-solid fa-envelope"></i>atendimento@nexusenergy.com</li>
-          <li><i class="fa-solid fa-location-dot"></i>Rua Haddock Lobo, 595 São Paulo - SP</li>
-        </ul>
-        <div class="redes">
-          <i class="fa-brands fa-linkedin"></i>
-          <i class="fa-brands fa-github"></i>
+        <img src="assets/logoNexusEnergy.png" class="imglogo" alt="">
+        <div class="linksUteis">
+          <p>Links Uteis</p>
+          <ul>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="30" height="30" x="0" y="0" viewBox="0 0 256 256" style="enable-background:new 0 0 512 512"
+                xml:space="preserve" class="">
+                <g>
+                  <path fill="#76a34f"
+                    d="M195.521 217.802 25.924 190.421a5.88 5.88 0 0 1-4.868-6.742l12.918-80.014a5.88 5.88 0 0 1 6.742-4.868l169.597 27.381a5.88 5.88 0 0 1 4.868 6.742l-12.918 80.014a5.88 5.88 0 0 1-6.742 4.868z"
+                    opacity="1" data-original="#76a34f" class=""></path>
+                  <path fill="#648940"
+                    d="m210.313 126.179-5.515-.89-12.536 77.646a5.88 5.88 0 0 1-6.742 4.868L21.438 181.311l-.382 2.368a5.88 5.88 0 0 0 4.867 6.742l169.597 27.381a5.88 5.88 0 0 0 6.742-4.868l12.918-80.014a5.878 5.878 0 0 0-4.867-6.741z"
+                    opacity="1" data-original="#648940"></path>
+                  <path fill="#5a7a39"
+                    d="m210.313 126.179-.114-.018c.08.57.078 1.162-.019 1.76l-12.918 80.014a5.88 5.88 0 0 1-6.742 4.868L21.038 185.439a5.884 5.884 0 0 0 4.886 4.982l169.597 27.381a5.88 5.88 0 0 0 6.742-4.868l12.918-80.014a5.88 5.88 0 0 0-4.868-6.741z"
+                    opacity="1" data-original="#5a7a39"></path>
+                  <path fill="#5a7a39"
+                    d="M211.642 191.531H39.849a5.88 5.88 0 0 1-5.88-5.88v-81.05a5.88 5.88 0 0 1 5.88-5.88h171.793a5.88 5.88 0 0 1 5.88 5.88v81.05a5.88 5.88 0 0 1-5.88 5.88z"
+                    opacity="1" data-original="#5a7a39"></path>
+                  <path fill="#648940"
+                    d="M225.169 156.753 56.594 189.851a5.88 5.88 0 0 1-6.903-4.637l-15.615-79.531a5.88 5.88 0 0 1 4.637-6.903l168.575-33.098a5.88 5.88 0 0 1 6.903 4.637l15.615 79.531a5.881 5.881 0 0 1-4.637 6.903z"
+                    opacity="1" data-original="#648940"></path>
+                  <path fill="#76a34f"
+                    d="m231.213 125.343-160.746 60.61a5.88 5.88 0 0 1-7.576-3.427l-28.595-75.838a5.88 5.88 0 0 1 3.427-7.576l160.746-60.61a5.88 5.88 0 0 1 7.576 3.427l28.595 75.838a5.88 5.88 0 0 1-3.427 7.576z"
+                    opacity="1" data-original="#76a34f" class=""></path>
+                  <path fill="#91b56b"
+                    d="M90.544 171.699a3.947 3.947 0 0 1-3.571-2.288c-4.112-8.707-13.654-13.182-22.684-10.643a3.942 3.942 0 0 1-4.792-2.403L49.02 128.579c-.729-1.933.136-4.07 2.013-4.97 8.458-4.055 12.668-13.715 10.009-22.969-.577-2.01.454-4.078 2.399-4.811l113.543-42.813c1.947-.732 4.084.139 4.979 2.029 4.112 8.707 13.655 13.181 22.684 10.643a3.946 3.946 0 0 1 4.793 2.405l10.476 27.785c.729 1.934-.136 4.07-2.013 4.97-8.458 4.055-12.668 13.715-10.009 22.969.577 2.01-.454 4.078-2.399 4.811L91.951 171.44c-.465.175-.94.259-1.407.259zm-21.073-17.621c8.797 0 17.11 5.14 21.119 13.624l113.493-42.817c-3.232-11.094 1.86-22.729 12.074-27.637l-10.461-27.745c-10.889 3.106-22.4-2.272-27.351-12.749L64.853 99.571c3.234 11.1-1.865 22.742-12.091 27.644l10.478 27.738a22.678 22.678 0 0 1 6.231-.875z"
+                    opacity="1" data-original="#91b56b"></path>
+                  <circle cx="134.468" cy="112.228" r="30.283" fill="#91b56b" opacity="1" data-original="#91b56b">
+                  </circle>
+                  <path fill="#648940"
+                    d="M134.831 131.195a9.47 9.47 0 0 1-3.908-.849 9.431 9.431 0 0 1-4.969-5.299 2 2 0 1 1 3.742-1.411 5.457 5.457 0 0 0 2.876 3.066 5.459 5.459 0 0 0 4.2.135l5.608-2.115a5.46 5.46 0 0 0 3.067-2.875 5.46 5.46 0 0 0 .135-4.201l-1.057-2.805a5.5 5.5 0 0 0-7.077-3.201l-5.608 2.115a9.43 9.43 0 0 1-7.262-.234c-2.31-1.045-4.074-2.927-4.969-5.299s-.813-4.951.233-7.261a9.433 9.433 0 0 1 5.299-4.97l5.608-2.115a9.43 9.43 0 0 1 7.262.234 9.431 9.431 0 0 1 4.969 5.299 2 2 0 1 1-3.742 1.411 5.457 5.457 0 0 0-2.876-3.066 5.459 5.459 0 0 0-4.2-.135l-5.608 2.115a5.46 5.46 0 0 0-3.067 2.875c-.604 1.336-.652 2.829-.135 4.201s1.539 2.461 2.876 3.066a5.459 5.459 0 0 0 4.2.135l5.608-2.115c4.901-1.845 10.386.636 12.231 5.533l1.057 2.805a9.423 9.423 0 0 1-.233 7.261 9.433 9.433 0 0 1-5.299 4.97l-5.608 2.115a9.505 9.505 0 0 1-3.353.615z"
+                    opacity="1" data-original="#648940"></path>
+                  <path fill="#648940"
+                    d="M141.341 132.455a2 2 0 0 1-1.871-1.295l-13.746-36.454a2 2 0 1 1 3.742-1.411l13.746 36.454a2 2 0 0 1-1.871 2.706zM188.357 103.271c-4.63 0-8.999-2.829-10.727-7.411-2.228-5.908.768-12.526 6.675-14.753 2.86-1.078 5.971-.979 8.758.282s4.916 3.531 5.994 6.393c1.079 2.862.979 5.972-.281 8.759s-3.53 4.916-6.392 5.995a11.407 11.407 0 0 1-4.027.735zm-.009-18.904c-.887 0-1.776.161-2.631.483-3.844 1.449-5.792 5.755-4.344 9.599 1.451 3.844 5.756 5.792 9.601 4.342 1.861-.702 3.338-2.087 4.158-3.9s.886-3.837.184-5.699a7.4 7.4 0 0 0-3.9-4.159 7.442 7.442 0 0 0-3.068-.666zM80.525 143.929c-1.605 0-3.207-.342-4.714-1.024a11.37 11.37 0 0 1-5.994-6.393c-1.079-2.862-.979-5.972.281-8.759s3.53-4.916 6.392-5.995c5.913-2.229 12.526.768 14.754 6.674 2.228 5.908-.767 12.526-6.675 14.753a11.405 11.405 0 0 1-4.044.744zm-.003-18.906c-.872 0-1.758.154-2.621.479-1.861.702-3.338 2.087-4.158 3.9s-.886 3.837-.184 5.699 2.087 3.339 3.9 4.159 3.836.886 5.698.183c3.844-1.449 5.792-5.755 4.344-9.599-1.123-2.98-3.967-4.821-6.979-4.821z"
+                    opacity="1" data-original="#648940"></path>
+                  <circle cx="73.224" cy="185.106" r="32.772" fill="#ef7816" opacity="1" data-original="#ef7816">
+                  </circle>
+                  <circle cx="92.766" cy="185.106" r="32.772" fill="#f79219" opacity="1" data-original="#f79219">
+                  </circle>
+                  <circle cx="112.309" cy="185.106" r="32.772" fill="#ffa91a" opacity="1" data-original="#ffa91a">
+                  </circle>
+                  <path fill="#ffc91d"
+                    d="M112.31 213.88c-1.1 0-2-.9-2-2s.9-2 2-2c1.101 0 2 .9 2 2s-.89 1.99-1.99 2zm-7.88-1.19c-.2 0-.399-.03-.59-.09-5.75-1.77-10.92-5.41-14.56-10.26a28.51 28.51 0 0 1-5.74-17.23c0-15.86 12.91-28.77 28.77-28.78 15.86.01 28.771 12.92 28.771 28.78 0 1.1-.9 2-2 2-1.101 0-2-.9-2-2-.021-13.64-11.141-24.75-24.771-24.78-13.63.03-24.75 11.14-24.77 24.78-.01 10.76 7.18 20.49 17.479 23.68.511.15.931.5 1.181.97s.3 1.01.14 1.52c-.26.85-1.03 1.41-1.91 1.41z"
+                    opacity="1" data-original="#ffc91d"></path>
+                  <path fill="#ef7816"
+                    d="M115.045 201.652h-5.472c-4.598 0-8.339-3.741-8.339-8.339a1.5 1.5 0 1 1 3 0 5.345 5.345 0 0 0 5.339 5.339h5.472a5.345 5.345 0 0 0 5.339-5.339v-2.736a5.345 5.345 0 0 0-5.339-5.339h-5.472c-4.598 0-8.339-3.741-8.339-8.339s3.741-8.339 8.339-8.339h5.472c4.598 0 8.339 3.741 8.339 8.339a1.5 1.5 0 1 1-3 0 5.345 5.345 0 0 0-5.339-5.339h-5.472c-2.944 0-5.339 2.395-5.339 5.339s2.395 5.339 5.339 5.339h5.472c4.598 0 8.339 3.741 8.339 8.339v2.736c0 4.598-3.741 8.339-8.339 8.339z"
+                    opacity="1" data-original="#ef7816"></path>
+                  <path fill="#ef7816"
+                    d="M112.31 204.387a1.5 1.5 0 0 1-1.5-1.5v-35.562a1.5 1.5 0 1 1 3 0v35.562a1.5 1.5 0 0 1-1.5 1.5z"
+                    opacity="1" data-original="#ef7816"></path>
+                </g>
+              </svg><a
+                href="https://www.teleco.com.br/comentario/com1091.asp#:~:text=A%20Vivo%20%C3%A9%20a%20l%C3%ADder,total%20das%20prestadoras%20em%202023.&text=Impulsionada%20pelas%20aquisi%C3%A7%C3%B5es%2C%20a%20Tecpar,Unifique%20(30%2C2%25).">
+                Ranks de Faturamento do Brasil</a>
+            </li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="30" height="30" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512"
+                xml:space="preserve" class="">
+                <g>
+                  <path fill="#6fe100"
+                    d="M256 448v64C114.62 512 0 397.38 0 256c0-70.69 28.65-134.69 74.98-181.02l-31.7-31.7 116.53-7.86-7.86 116.53-31.71-31.71h-.01C85.49 154.98 64 202.98 64 256c0 106.04 85.96 192 192 192z"
+                    opacity="1" data-original="#6fe100"></path>
+                  <path fill="#ffc000"
+                    d="M336.68 212.35H271v-76.83h-25.64l-79.51 148.19 9.47 15.94H241v76.83h25.64l79.51-148.19z"
+                    opacity="1" data-original="#ffc000"></path>
+                  <path fill="#ff884f" d="m346.15 228.29-79.51 148.19H256V135.52h15v76.83h65.68z" opacity="1"
+                    data-original="#ff884f" class=""></path>
+                  <path fill="#00c000"
+                    d="m437.02 437.02 31.72 31.72-116.54 7.85 7.86-116.53 31.7 31.7C426.51 357.02 448 309.02 448 256c0-106.04-85.96-192-192-192V0c141.38 0 256 114.62 256 256 0 70.69-28.65 134.69-74.98 181.02z"
+                    opacity="1" data-original="#00c000"></path>
+                </g>
+              </svg> <a href="https://fia.com.br/blog/energia-limpa/">Impactos da Utilização da Energia Limpa</a></li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="30" height="30" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512"
+                xml:space="preserve" class="">
+                <g>
+                  <path fill="#495560"
+                    d="M482.856 229.936c12.391-15.534 19.801-35.216 19.801-56.63 0-50.198-40.694-90.892-90.892-90.892-5.966 0-11.796.581-17.441 1.679C368.384 34.134 316.181 0 256 0S143.616 34.134 117.676 84.093a91.353 91.353 0 0 0-17.441-1.679c-50.198 0-90.892 40.694-90.892 90.892 0 21.415 7.41 41.096 19.801 56.63C10.819 255.108 0 286.094 0 319.612 0 403.856 68.293 472.15 152.537 472.15c5.374 0 10.683-.282 15.914-.824C189.468 496.199 220.886 512 256 512s66.532-15.801 87.549-40.674c5.231.542 10.539.824 15.914.824C443.707 472.15 512 403.856 512 319.612c0-33.518-10.819-64.504-29.144-89.676z"
+                    opacity="1" data-original="#495560" class=""></path>
+                  <path fill="#3d4751"
+                    d="m206.925 319.612.001-.494c.029-8.987-5.264-17.063-13.493-20.676-54.872-24.095-93.198-78.906-93.198-142.677 0-25.848 6.303-50.222 17.445-71.679l-.004.007a91.305 91.305 0 0 0-17.586-1.678c-50.795.08-91.24 41.007-90.743 91.799.206 21.063 7.581 40.408 19.796 55.722C10.819 255.108 0 286.094 0 319.612 0 403.856 68.293 472.15 152.537 472.15c5.374 0 10.683-.282 15.914-.824C189.468 496.199 220.886 512 256 512s66.531-15.801 87.549-40.674c-76.765-7.959-136.624-72.844-136.624-151.714z"
+                    opacity="1" data-original="#3d4751"></path>
+                  <circle cx="387.972" cy="72.113" r="72.113" fill="#5f7080" opacity="1" data-original="#5f7080"
+                    class=""></circle>
+                  <circle cx="74.302" cy="30.905" r="30.905" fill="#5f7080" opacity="1" data-original="#5f7080"
+                    class=""></circle>
+                  <path fill="#5f7080"
+                    d="M233.38 334.732c-22.108 0-41.619 11.082-53.31 27.985-16.169-17.216-39.122-27.985-64.604-27.985-48.951 0-88.634 39.683-88.634 88.634S66.515 512 115.466 512c38.121 0 70.615-24.07 83.129-57.838a64.458 64.458 0 0 0 34.785 10.143c35.781 0 64.786-29.006 64.786-64.786 0-35.781-29.006-64.787-64.786-64.787z"
+                    opacity="1" data-original="#5f7080" class=""></path>
+                  <path fill="#ffffff"
+                    d="M169.309 287.453c-26.857 0-48.708-21.85-48.708-48.707s21.851-48.707 48.708-48.707c9.758 0 19.177 2.878 27.237 8.322a7.5 7.5 0 1 1-8.396 12.43 33.532 33.532 0 0 0-18.841-5.752c-18.587 0-33.708 15.121-33.708 33.707s15.121 33.707 33.708 33.707c7.016 0 12.946-2.113 17.627-6.282.91-.811 1.78-1.709 2.586-2.67a7.5 7.5 0 0 1 11.494 9.638 40.69 40.69 0 0 1-4.104 4.233c-7.404 6.595-16.95 10.081-27.603 10.081zM358.159 287.468c-15.69 0-16.842-.385-17.824-.712-2.505-.835-4.377-2.728-5.135-5.191-1.311-4.262.557-6.707 5.547-13.241 4.111-5.384 11.766-15.406 24.588-33.727 3.833-5.476 6.304-10.385 7.35-14.6l.281-2.199c-.225-7.073-6.049-12.759-13.177-12.759-6.287 0-11.728 4.466-12.936 10.62a7.494 7.494 0 0 1-8.805 5.914 7.5 7.5 0 0 1-5.914-8.805c2.586-13.17 14.216-22.729 27.654-22.729 15.54 0 28.184 12.644 28.184 28.184 0 .317-.021.635-.061.95l-.399 3.127a7.2 7.2 0 0 1-.134.744c-1.431 6.169-4.713 12.95-9.755 20.154-9.788 13.984-16.615 23.213-21.175 29.255 7.709-.021 17.854-.066 27.355-.186l.097-.001a7.5 7.5 0 0 1 .093 14.999c-11.387.144-19.717.203-25.834.203zM267.381 287.453c-26.857 0-48.707-21.85-48.707-48.707s21.85-48.707 48.707-48.707 48.708 21.85 48.708 48.707-21.851 48.707-48.708 48.707zm0-82.414c-18.586 0-33.707 15.121-33.707 33.707s15.121 33.707 33.707 33.707c18.587 0 33.708-15.121 33.708-33.707s-15.121-33.707-33.708-33.707z"
+                    opacity="1" data-original="#ffffff"></path>
+                </g>
+              </svg><a
+                href="https://blog.ambify.com/emissao-de-carbono-o-que-e-qual-e-o-seu-impacto-nas-mudancas-climaticas/#:~:text=Com%20maior%20concentra%C3%A7%C3%A3o%20de%20CO2,esp%C3%A9cies%20cada%20vez%20mais%20dif%C3%ADceis.">O
+                Impacto da Emissão de CO² no Aquecimento Global</a></li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="30" height="30" x="0" y="0" viewBox="0 0 511.999 511.999"
+                style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
+                <g>
+                  <path
+                    d="M501.449 368.914 320.566 66.207C306.751 43.384 282.728 29.569 256 29.569s-50.752 13.815-64.567 36.638L10.55 368.914c-13.812 23.725-14.113 51.954-.599 75.678 13.513 23.723 37.836 37.838 65.165 37.838h361.766c27.329 0 51.653-14.115 65.165-37.838 13.516-23.724 13.215-51.953-.598-75.678z"
+                    style="" fill="#e50027" data-original="#e50027" class=""></path>
+                  <path
+                    d="M502.049 444.592c-13.513 23.723-37.836 37.838-65.165 37.838H256V29.57c26.727 0 50.752 13.815 64.567 36.638L501.45 368.915c13.812 23.724 14.113 51.953.599 75.677z"
+                    style="" fill="#c1001f" data-original="#c1001f"></path>
+                  <path
+                    d="M75.109 452.4c-16.628 0-30.851-8.27-39.063-22.669-8.211-14.414-8.065-31.087.469-45.72L217.23 81.549c8.27-13.666 22.816-21.951 38.769-21.951s30.5 8.284 38.887 22.157l180.745 302.49c8.388 14.4 8.534 31.072.322 45.485-8.211 14.4-22.435 22.669-39.063 22.669H75.109v.001z"
+                    style="" fill="#fd003a" data-original="#fd003a"></path>
+                  <path
+                    d="M436.891 452.4c16.628 0 30.851-8.27 39.063-22.669 8.211-14.414 8.065-31.087-.322-45.485L294.886 81.754c-8.388-13.871-22.933-22.157-38.887-22.157V452.4h180.892z"
+                    style="" fill="#e50027" data-original="#e50027" class=""></path>
+                  <path
+                    d="M286.03 152.095v120.122c0 16.517-13.514 30.03-30.03 30.03s-30.031-13.514-30.031-30.03V152.095c0-16.517 13.514-30.031 30.031-30.031s30.03 13.514 30.03 30.031z"
+                    style="" fill="#e1e4fb" data-original="#e1e4fb"></path>
+                  <path
+                    d="M286.03 152.095v120.122c0 16.517-13.514 30.03-30.03 30.03V122.064c16.516 0 30.03 13.514 30.03 30.031z"
+                    style="" fill="#c5c9f7" data-original="#c5c9f7"></path>
+                  <path
+                    d="M256 332.278c-24.926 0-45.046 20.119-45.046 45.046 0 24.924 20.119 45.046 45.046 45.046s45.046-20.121 45.046-45.046c0-24.926-20.121-45.046-45.046-45.046z"
+                    style="" fill="#e1e4fb" data-original="#e1e4fb"></path>
+                  <path
+                    d="M301.046 377.323c0 24.924-20.119 45.046-45.046 45.046v-90.091c24.925 0 45.046 20.12 45.046 45.045z"
+                    style="" fill="#c5c9f7" data-original="#c5c9f7"></path>
+                </g>
+              </svg><a
+                href="https://www.mapfreglobalrisks.com/pt-br/gerencia-riscos-seguros/estudos/energia-renovavel-o-motor-da-internet/">A
+                Importância da Energia Renovável na Infraestrutura de Telecomunicações</a>
+            </li>
+          </ul>
+        </div>
+        <div class="contato">
+          <p>Contato</p>
+          <ul>
+            <li><i class="fa-solid fa-phone"></i>(11) 40 028 922</li>
+            <li><i class="fa-solid fa-envelope"></i>atendimento@nexusenergy.com</li>
+            <li><i class="fa-solid fa-location-dot"></i>Rua Haddock Lobo, 595 São Paulo - SP</li>
+          </ul>
+          <div class="redes">
+            <i class="fa-brands fa-linkedin"></i>
+            <i class="fa-brands fa-github"></i>
+          </div>
         </div>
       </div>
-    </div>
       <div class="copy">2024 <span style="color: #4FD1D9">Nexus Energy</span>, all right preserved</div>
-    
+
     </footer>
   </section>
+
 </body>
 
 </html>
@@ -206,6 +349,13 @@
 
   function acessarLogin() {
     window.location.href = "./login.html"
+  }
+
+  function enviarMensage() {
+    leftContactVerificado.innerHTML = `<div class="leftContactVerificado">
+    <h1>Mensagem enviada com sucesso!</h1>
+    <img src="./assets/verificar.png" alt="">
+  </div>`
   }
 
 </script>
