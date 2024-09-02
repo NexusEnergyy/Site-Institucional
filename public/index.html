@@ -24,7 +24,17 @@
       </ul>
     </nav>
     <button onclick="acessarLogin()" class="btnLoginNavBar">Login</button>
+    <i class="fa-solid fa-bars" onclick="menu()" id="iconMenu"></i>
   </header>
+  <div class="mobileMenu">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#service">Serviços</a></li>
+      <li><a href="#aboutUs">Quem somos</a></li>
+      <li><a href="#contact">Contato</a></li>
+    </ul>
+    <button onclick="acessarLogin()" class="btnLoginMobile">Login</button>
+  </div>
   <section class="homepageNexus" id="home">
     <div class="containerNexusHome">
       <div class="contentHome">
@@ -34,13 +44,15 @@
                 energia</Span> em sua empresa e <Span style="color: orange; font-weight: bold;">otimizar</Span> seus
               recursos de forma<span style="color: orange; font-weight: bold;"> eficaz</span>.</p>
           </div>
-          <div class="subtitleNexusHome">
-            <p>Compreendemos que o consumo de energia representa um custo significativo,nossa solução visa <span
-                style="color: orange; font-weight: bold;">melhorar a eficiência energética.</span></p>
-          </div>
-          <div class="subtitleNexusHome">
-            <p>Através da otimização do consumo de energia, alcançando <span
-                style="color: orange; font-weight: bold;">metas sustentáveis.</span></p>
+          <div class="subtitles">
+            <div class="subtitleNexusHome">
+              <p>Compreendemos que o consumo de energia representa um custo significativo,nossa solução visa <span
+                  style="color: orange; font-weight: bold;">melhorar a eficiência energética.</span></p>
+            </div>
+            <div class="subtitleNexusHome">
+              <p>Através da otimização do consumo de energia, alcançando <span
+                  style="color: orange; font-weight: bold;">metas sustentáveis.</span></p>
+            </div>
           </div>
           <div class="btnSideNexus">
             <button onclick="acessarLogin()" class="btnHomeNexus">SINTA A ENERGIA</button>
@@ -357,5 +369,27 @@
     <img src="./assets/verificar.png" alt="">
   </div>`
   }
+
+  function menu() {
+    const mobileMenu = document.querySelector('.mobileMenu');
+    const menuIcon = document.querySelector('.fa-bars') || document.querySelector('.fa-times');
+
+    if (mobileMenu.style.display === 'flex') {
+      mobileMenu.style.display = 'none';
+      menuIcon.classList.remove('fa-times');
+      menuIcon.classList.add('fa-bars');
+    } else {
+      mobileMenu.style.display = 'flex';
+      menuIcon.classList.remove('fa-bars');
+      menuIcon.classList.add('fa-times');
+    }
+  }
+
+  document.querySelectorAll('.mobileMenu a').forEach(item => {
+    item.addEventListener('click', () => {
+      menu();
+    });
+  });
+
 
 </script>
