@@ -444,6 +444,7 @@ header {
   color: #ffffff;
   font-weight: 700;
   padding: 30px;
+
 }
 
 .imgLampWhyNexus img {
@@ -982,7 +983,7 @@ header i {
   footer {
     height: 200%;
     border-radius: 100% 100% 0 0 / 40% 40% 0 0;
-    top: 2675px;
+    top: 2725px;
   }
 
   .footerNexus {
@@ -993,7 +994,7 @@ header i {
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 2780px;
+    top: 2820px;
     width: 100%;
     height: 6%;
   }
@@ -1182,10 +1183,8 @@ header i {
   padding: 0px;
   margin-left: 5%;
   margin-top: 7%;
+  margin-bottom: 14vh;
 }
 
-.boxwhy1{
-  margin-top: 25%;
-}
 
 }
