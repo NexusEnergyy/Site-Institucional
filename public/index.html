@@ -5,17 +5,16 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="./js/sessao.js"></script>
   <title> Nexus Energy | Homepage</title>
-  <link rel="shortcut icon" href="./assets/LogoNexusMinimizado.png" type="image/x-icon">
+  <link rel="shortcut icon" href="./assets/siteInstitucional/LogoNexusMinimizado.png" type="image/x-icon">
   <link rel="stylesheet" href="./css/estilo.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
-  <header>
-    <div class="logoNavBar"><img src="./assets/LogoNexus.png" alt=""></div>
+  <header >
+    <div class="logoNavBar"><img src="./assets/siteInstitucional/LogoNexus.png" alt=""></div>
     <nav class="navBarNexus">
       <ul>
         <li><a href="#home">Home</a></li>
@@ -27,7 +26,7 @@
     <button onclick="acessarLogin()" class="btnLoginNavBar">Login</button>
     <i class="fa-solid fa-bars" onclick="menu()" id="iconMenu"></i>
   </header>
-  <div class="mobileMenu">
+  <div class="mobileMenu" >
     <ul>
       <li><a href="#home">Home</a></li>
       <li><a href="#service">Serviços</a></li>
@@ -36,7 +35,8 @@
     </ul>
     <button onclick="acessarLogin()" class="btnLoginMobile">Login</button>
   </div>
-  <section class="homepageNexus" id="home">
+  <section id="home"></section>
+  <section class="homepageNexus">
     <div class="containerNexusHome">
       <div class="contentHome">
         <div class="leftHome">
@@ -57,12 +57,12 @@
           </div>
           <div data-aos="zoom-in-down" data-aos-duration="1500" class="btnSideNexus">
             <button onclick="acessarLogin()" class="btnHomeNexus">SINTA A ENERGIA</button>
-            <img src="./assets/image 5.png" alt="" class="raioHomeBtn">
+            <img src="./assets/siteInstitucional/image 5.png" alt="" class="raioHomeBtn">
           </div>
         </div>
         <div class="rightHome">
           <div class="imageNexusHome">
-            <img data-aos="fade-left" data-aos-duration="1500" src="./assets/Ellipse 1.png" alt="">
+            <img data-aos="fade-left" data-aos-duration="1500" src="./assets/siteInstitucional/Ellipse 1.png" alt="">
           </div>
         </div>
       </div>
@@ -75,7 +75,7 @@
         data-aos-anchor-placement="center-bottom" data-aos-duration="1500" class="titleService">
           <h1>SERVIÇOS</h1>
           <div class="engrenagemTitle">
-            <img src="./assets/🦆 icon _cog_.png" alt="">
+            <img src="./assets/siteInstitucional/🦆 icon _cog_.png" alt="">
           </div>
         </div>
         <div data-aos="fade-up"
@@ -93,7 +93,7 @@
         data-aos-easing="ease-out-cubic"
         data-aos-duration="2000" class="childOne">
           <div class="imgBoxOne">
-            <img src="./assets/Vector.png" alt="">
+            <img src="./assets/siteInstitucional/Vector.png" alt="">
           </div>
           <div class="titleBoxOne">
             <p>Análise de Padrões
@@ -109,7 +109,7 @@
         data-aos-easing="ease-out-cubic"
         data-aos-duration="2000" class="childTwo">
           <div class="imgBoxTwo">
-            <img src="./assets/Google Docs.png" alt="">
+            <img src="./assets/siteInstitucional/Google Docs.png" alt="">
           </div>
           <div class="titleBoxTwo">
             <p>Relatórios Personalizados</p>
@@ -123,7 +123,7 @@
         data-aos-easing="ease-out-cubic"
         data-aos-duration="2000" class="childThree">
           <div class="imgBoxThree">
-            <img src="./assets/Group 33.png" alt="">
+            <img src="./assets/siteInstitucional/Group 33.png" alt="">
           </div>
           <div class="titleBoxThree">
             <p>Assessoria Ambiental</p>
@@ -144,14 +144,14 @@
           <div data-aos="fade-right"
           data-aos-offset="300"
           data-aos-easing="ease-in-sine" class="imgWhyNexus">
-            <img src="./assets/Ellipse 9.png" alt="">
+            <img src="./assets/siteInstitucional/Ellipse 9.png" alt="">
           </div>
         </div>
         <div class="rightWhyNexus">
           <div data-aos="fade-up"
           data-aos-anchor-placement="center-bottom" data-aos-duration="1500" class="tilteWhyNexus">
             <div class="imgLampWhyNexus">
-              <img src="./assets/🦆 icon _Lightbulb_.png" alt="">
+              <img src="./assets/siteInstitucional/🦆 icon _Lightbulb_.png" alt="">
             </div>
             <p>POR QUE <span style="color: #FF8C00; font-weight: bold;">NEXUS</span>?</p>
           </div>
@@ -208,7 +208,7 @@
 
     </div>
     <div class="imgContact">
-      <img src="assets/Group.png" alt="" class="group">
+      <img src="./assets/siteInstitucional/Group.png" alt="" class="group">
     </div>
 
   </section>
@@ -216,7 +216,7 @@
 
     <footer>
       <div class="conteudosFooter">
-        <img src="assets/logoNexusEnergy.png" class="imglogo" alt="">
+        <img src="./assets/siteInstitucional/logoNexusEnergy.png" class="imglogo" alt="">
         <div class="linksUteis">
           <p>Links Uteis</p>
           <ul>
@@ -388,7 +388,7 @@
   function enviarMensage() {
     leftContactVerificado.innerHTML = `<div class="leftContactVerificado">
     <h1>Mensagem enviada com sucesso!</h1>
-    <img src="./assets/verificar.png" alt="">
+    <img src="./assets/siteInstitucional/verificar.png" alt="">
   </div>`
   }
 

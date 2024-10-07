@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexSystem | DASHBOARD</title>
+    <link rel="stylesheet" href="./css/NexSystem.css">
+    <link rel="shortcut icon" href="./assets/nexSystem/logoNex.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+    <div class="container">
+        <nav id="ativar">
+            <div id="menu">
+                <button id="transition"><img src="./assets/nexSystem/logoNex.png" alt=""></button>
+                <h2 id="mainTitle" class="nexsystem">Nexus Energy</h2>
+            </div>
+            <div class="line"></div>
+            <ul id="menuItens">
+                <li><i class="material-icons">home</i>
+                    <h4 id="titulo">Home</h4>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+</body>
+
+</html>
+<script>
+    const button = document.getElementById('transition');
+    const box = document.getElementById('ativar');
+    const menuItems = document.getElementById('menuItens');
+    const content = document.getElementById('titulo')
+    const main = document.getElementById('mainTitle');
+
+    button.addEventListener('click', () => {
+        box.classList.toggle('active');
+        menuItems.classList.toggle('open');
+        
+        if(content.style.display == 'flex'){
+            content.style.display = 'none'
+        }else{
+            content.style.display = 'flex'
+        }
+
+        if(main.style.display == 'flex'){
+            main.style.display = 'none'
+        }else{
+            main.style.display = 'flex'
+        }
+    });
+</script>
