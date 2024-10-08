@@ -19,8 +19,9 @@
             </div>
             <div class="line"></div>
             <ul id="menuItens">
-                <li><i class="material-icons">home</i>
-                    <h4 id="titulo">Home</h4>
+                <li>
+                    <i class="material-icons">dashboard</i>
+                    <h4 id="titulo">Dashboard</h4>
                 </li>
             </ul>
         </nav>
@@ -39,16 +40,16 @@
     button.addEventListener('click', () => {
         box.classList.toggle('active');
         menuItems.classList.toggle('open');
-        
-        if(content.style.display == 'flex'){
+
+        if (content.style.display == 'flex') {
             content.style.display = 'none'
-        }else{
+        } else {
             content.style.display = 'flex'
         }
 
-        if(main.style.display == 'flex'){
+        if (main.style.display == 'flex') {
             main.style.display = 'none'
-        }else{
+        } else {
             main.style.display = 'flex'
         }
     });

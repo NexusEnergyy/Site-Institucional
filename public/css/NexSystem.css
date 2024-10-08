@@ -39,8 +39,10 @@ body {
 
 .line{
   height: 2px;
-  margin: 25px 10px;
-  width: 90%;
+  margin: 15px 0px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
   background-color: aqua;
 }
 #menu{
@@ -49,18 +51,24 @@ body {
   justify-content: start;
   align-items: flex-start;
   border: none;
+  margin-top: 10px;
   height: 10%;
 
   & button{
+    margin: 0 0 0 35px;
+    display: flex;
+    justify-content:start;
+    align-items: end;
+    width: 25%;
+    height: 80%;
     background: transparent;
     border: none;
-    margin: 25px 0px 0px 30px;
     cursor: pointer;
   }
 
   & img{
-    width: 45px;
-    height: 45px;
+    width: 60px;
+    height: 60px;
   }
 
   & #mainTitle{
@@ -71,7 +79,8 @@ body {
     color: aliceblue;
     font-size: 30px;
     transition: all 0.3s ease;
-    margin: 10px 0;
+    height: 100%;
+    width: 50%;
     font-weight: 700;
 
   }
@@ -97,7 +106,7 @@ body {
   align-items: center;
   flex-direction: row;
   height: 6dvh;
-  width: 180px;;
+  width: 190px;;
   border-radius: 10px;
   max-height: 500px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
@@ -113,7 +122,7 @@ body {
   cursor: pointer;
   border-radius: 10px;
   background-color: rgb(0, 23, 81);
-  padding: 10px 15px;
+  padding: 15px 20px;
   transition: all 0.3s ease;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
@@ -129,7 +138,7 @@ body {
   height: 6dvh;
   display: flex;
   align-items: center;
-  margin: 0 26px;
+  margin: 0 0 0 30px;
   flex-direction: row;
   justify-content: start;
   transition: all 0.3s ease;
@@ -146,9 +155,8 @@ body {
 
 #menuItens li #titulo{
   display: none;
-
   height: 5dvh;
-  margin: 0 25px;
+  margin: 3px 10px;
   justify-content: center;
   font-family: "Wix Madefor Display", system-ui;
   align-items: center;
