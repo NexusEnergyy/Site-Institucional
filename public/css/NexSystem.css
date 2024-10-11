@@ -15,6 +15,7 @@ body {
   height: 100vh;
   min-height: 100vh;
   overflow: hidden;
+  display: flex;
 }
 
 
@@ -365,3 +366,118 @@ body {
     color: #fff;
   }
 }
+
+.highContentNex{
+  gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 75px 120px 655px;
+  top: 20px;
+  height: 889px;
+  width: 2500px;
+  position: relative;
+  left: -20px;
+  border-radius: 10px;
+  background-color: #0000009a;
+
+  & .NamePage{
+    background-color: aqua;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    & .currentPage{
+      border-radius: 10px;
+      width: 23%;
+      height: 90%;
+      background-color: #fff;
+    }
+
+    & .information{
+      gap: 5px;
+      background-color: #fff;
+      width: 24%;
+      height: 90%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 10px;
+
+      & .notify{
+        width: 16%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: black;
+      }
+
+      & .field{
+        width: 66%;
+        height: 90%;
+        border-radius: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+
+        & marquee{
+          width: 95%;
+          font-size: 20px;
+          height: 100%;
+          display: flex;
+          font-family: "Wix Madefor Display", system-ui;
+          justify-content: center;
+          align-items: center;
+          color: #fff;
+        }
+      }
+
+      & .perfil{
+        width: 16%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: black;
+      }
+    }
+  }
+
+  & .Kpis{
+    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 422px);
+    background-color: antiquewhite;
+    
+
+    & .cardKpis{
+      border-radius: 10px;
+      background-color: brown;
+    }
+  }
+
+  & .Graphics{
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1305px 422px;
+    grid-template-rows: repeat(2, 317px);
+    background-color: blue;
+
+    & .GraphicDash{
+      border-radius: 10px;
+      background-color: yellow;
+
+
+    }
+
+    & .GraphicDash:nth-child(1){
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(3, 422px);
+
+      & .consumo{
+        border-radius: 10px;
+        background-color: #fff;
+      }
+    }
+  }
+}
+
