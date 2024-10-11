@@ -357,7 +357,7 @@ body {
     background: transparent;
   }
 
-  & h2{
+  & h2 {
     display: none;
     cursor: pointer;
     font-family: "Wix Madefor Display", system-ui;
@@ -367,36 +367,33 @@ body {
   }
 }
 
-.highContentNex{
+.highContentNex {
   gap: 20px;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 75px 120px 655px;
-  top: 20px;
-  height: 889px;
+  grid-template-rows: 8% 15% 67%;
+  top: 25px;
+  height: 100%;
   width: 2500px;
   position: relative;
   left: -20px;
   border-radius: 10px;
-  background-color: #0000009a;
 
-  & .NamePage{
-    background-color: aqua;
+  & .NamePage {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 
-    & .currentPage{
+    & .currentPage {
       border-radius: 10px;
-      width: 23%;
+      width: 24%;
       height: 90%;
-      background-color: #fff;
+      background-color: #000000b9;
     }
 
-    & .information{
+    & .information {
       gap: 5px;
-      background-color: #fff;
       width: 24%;
       height: 90%;
       display: flex;
@@ -404,23 +401,26 @@ body {
       align-items: center;
       border-radius: 10px;
 
-      & .notify{
-        width: 16%;
-        height: 100%;
+      & .notify {
+        width: 15%;
+        height: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border-radius: 50%;
-        background-color: black;
+        background-color: rgb(208, 208, 208);
       }
 
-      & .field{
+      & .field {
         width: 66%;
         height: 90%;
         border-radius: 50px;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: black;
+        background-color: rgb(208, 208, 208);
 
-        & marquee{
+        & marquee {
           width: 95%;
           font-size: 20px;
           height: 100%;
@@ -428,56 +428,60 @@ body {
           font-family: "Wix Madefor Display", system-ui;
           justify-content: center;
           align-items: center;
-          color: #fff;
+          color: #0022ff;
         }
       }
 
-      & .perfil{
-        width: 16%;
-        height: 100%;
+      & .perfil {
+        width: 15%;
+        height: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border-radius: 50%;
-        background-color: black;
+        background-color: rgb(208, 208, 208);
       }
     }
   }
 
-  & .Kpis{
+  & .Kpis {
     gap: 20px;
     display: grid;
     grid-template-columns: repeat(4, 422px);
-    background-color: antiquewhite;
-    
 
-    & .cardKpis{
+
+    & .cardKpis {
       border-radius: 10px;
-      background-color: brown;
+      background-color: #000000b9;
     }
   }
 
-  & .Graphics{
+  & .Graphics {
     display: grid;
     gap: 20px;
     grid-template-columns: 1305px 422px;
-    grid-template-rows: repeat(2, 317px);
-    background-color: blue;
+    grid-template-rows: 45% 52%;
 
-    & .GraphicDash{
+    & .GraphicDash {
       border-radius: 10px;
-      background-color: yellow;
+      background-color: #000000b9;
 
 
     }
 
-    & .GraphicDash:nth-child(1){
+    & .GraphicDash:nth-child(1) {
       display: grid;
-      gap: 20px;
-      grid-template-columns: repeat(3, 422px);
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      grid-template-columns: repeat(3, 33%);
 
-      & .consumo{
+      & .consumo {
+        height: 90%;
+        width: 32%;
         border-radius: 10px;
-        background-color: #fff;
+        background-color: #ffffff38;
       }
     }
   }
 }
-
