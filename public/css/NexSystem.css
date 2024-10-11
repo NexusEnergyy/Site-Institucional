@@ -374,9 +374,10 @@ body {
   grid-template-rows: 8% 15% 67%;
   top: 25px;
   height: 100%;
-  width: 2500px;
+  z-index: 98;
+  width: 90%;
   position: relative;
-  left: -20px;
+  left: -40px;
   border-radius: 10px;
 
   & .NamePage {
