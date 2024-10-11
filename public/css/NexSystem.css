@@ -15,7 +15,7 @@ body {
   height: 100vh;
   min-height: 100vh;
   overflow: hidden;
-  display: flex;
+  display: flex;justify-content: start;
 }
 
 
@@ -370,14 +370,15 @@ body {
 .highContentNex {
   gap: 20px;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 100%;
   grid-template-rows: 8% 15% 67%;
   top: 25px;
   height: 100%;
   z-index: 98;
-  width: 90%;
-  position: relative;
-  left: -40px;
+  margin: 0 auto;
+  width: 90dvw;
+  right:30px;
+  position: fixed;
   border-radius: 10px;
 
   & .NamePage {
@@ -448,7 +449,7 @@ body {
   & .Kpis {
     gap: 20px;
     display: grid;
-    grid-template-columns: repeat(4, 422px);
+    grid-template-columns: repeat(4, 24.19%);
 
 
     & .cardKpis {
@@ -460,7 +461,7 @@ body {
   & .Graphics {
     display: grid;
     gap: 20px;
-    grid-template-columns: 1305px 422px;
+    grid-template-columns: 75% 24%;
     grid-template-rows: 45% 52%;
 
     & .GraphicDash {
@@ -473,11 +474,13 @@ body {
     & .GraphicDash:nth-child(1) {
       display: grid;
       display: flex;
-      justify-content: space-evenly;
+      justify-content: center;
       align-items: center;
+      gap: 15px;
       grid-template-columns: repeat(3, 33%);
 
       & .consumo {
+        
         height: 90%;
         width: 32%;
         border-radius: 10px;
