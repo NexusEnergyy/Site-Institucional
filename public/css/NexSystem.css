@@ -357,6 +357,11 @@ body {
   }
 
   & h2{
+    display: none;
+    cursor: pointer;
+    font-family: "Wix Madefor Display", system-ui;
+    position: relative;
+    left: 25px;
     color: #fff;
   }
 }

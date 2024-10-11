@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const button2 = document.getElementById('transition2');
   const nav = document.getElementById('ativar');
   const menuItems = document.getElementById('menuItens');
-  const menuItems2 = document.getElementById('menuItens2'); // Adicione o segundo ul
+  const menuItems2 = document.getElementById('menuItens2'); 
   const titles = [
     document.getElementById('titulo'), 
     document.getElementById('titulo2'), 
@@ -80,14 +80,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('titulo4'), 
     document.getElementById('titulo5'), 
     document.getElementById('titulo6')
-  ]; // Titulos do segundo menu
+  ];
   const configNex = document.getElementById('configNex');
   const mainTitle = document.getElementById('mainTitle');
+  const IA = document.getElementById('Bolt');
 
   function toggleMenu() {
     nav.classList.toggle('active');
     menuItems.classList.toggle('open');
-    menuItems2.classList.toggle('open'); // Agora também controla o segundo menu
+    menuItems2.classList.toggle('open'); 
 
     titles.forEach(title => {
       title.style.display = title.style.display === 'flex' ? 'none' : 'flex';
@@ -97,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     mainTitle.style.display = mainTitle.style.display === 'flex' ? 'none' : 'flex';
     configNex.style.display = configNex.style.display === 'flex' ? 'none' : 'flex';
+    IA.style.display = configNex.style.display === 'none' ? 'none' : 'flex';
   }
 
   button.addEventListener('click', toggleMenu);
