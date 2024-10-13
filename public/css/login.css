@@ -26,7 +26,7 @@ body {
 
 /* Parte roxa da box -------------------------------------------------*/
 .boxCinza{
-    width: 570px;
+    width: 560px;
     height: 800px;
     position: absolute;
     z-index: 2;
@@ -228,7 +228,7 @@ body {
     border: 2px solid #ffffff4f;
     border-radius: 6px;
     position: relative;
-    margin-left: 150px;
+    margin-left: 220px;
   }
   
   button::before {
@@ -261,7 +261,8 @@ body {
 .textCadastro1 {
     color: #FFFFFF;
     text-align: center;
-    padding-right: 20px;
+    padding-right: 50px;
+    ma
 }
 
 .textCadastro2 {
