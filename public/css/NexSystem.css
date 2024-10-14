@@ -15,7 +15,8 @@ body {
   height: 100vh;
   min-height: 100vh;
   overflow: hidden;
-  display: flex;justify-content: start;
+  display: flex;
+  justify-content: start;
 }
 
 
@@ -127,6 +128,11 @@ body {
   padding: 16px 20px;
   transition: all 0.3s ease;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
+  & title{
+    border: none;
+    background-color: #0022ff;
+  }
 }
 
 #menuItens2 i {
@@ -183,9 +189,19 @@ body {
   justify-content: start;
   align-items: flex-start;
   display: flex;
+  transition: all 0.3s ease;
 }
 
 #menuItens i:hover {
+  background-color: rgb(0, 33, 118);
+}
+
+#menuItens.open li:hover{
+  background-color: rgb(0, 33, 118);
+}
+
+
+#menuItens2.open li:hover{
   background-color: rgb(0, 33, 118);
 }
 
@@ -479,6 +495,18 @@ body {
         align-items: center;
         border-radius: 50%;
         background-color: #000000b9;
+
+        & .perfilIcon{
+          background: transparent;
+          width: 100%;
+          display: flex;
+          cursor: pointer;
+          justify-content: center;
+          align-items: center;
+          border: none;
+          height: 100%;
+          border-radius: 50%;
+        }
       }
     }
   }
