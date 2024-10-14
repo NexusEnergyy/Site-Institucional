@@ -6,32 +6,28 @@
 
 
 body {
-    margin: 0;
-    height: 200vh;
-    background:linear-gradient(120deg, purple, blue);
-    /*background-image: url(../assets/detalhesTeste.png);//
-    background-repeat: no-repeat;
-    background-size: cover;*/
+    width: 1000px;
+    height: 1000px;
+    background: linear-gradient(140deg, #330066, #6400BE, #3300FF, #0047FF);
 }
 
 
-.boxesDiv{
+.boxesDiv {
     display: flex;
     justify-content: center;
     position: relative;
-    top: -620px;
+    top: -720px;
     transition: transform 1.5s ease;
 }
 
 
-/* Parte roxa da box -------------------------------------------------*/
-.boxCinza{
-    width: 560px;
-    height: 800px;
+/* Parte cinza da box -------------------------------------------------*/
+.boxCinza {
+    width: 570px;
+    height: 720px;
     position: absolute;
     z-index: 2;
-    /*background-color: #9c4ecc;*/
-    background:linear-gradient(120deg, rgba(210, 210, 210, 0.429), rgba(255, 255, 255, 0.34));
+    background-color: #d9d9d96d;
     left: 380px;
     border-radius: 50px 0 0 50px;
     transition: 1s;
@@ -41,23 +37,24 @@ body {
     animation: opacidade 0.5s ease-in-out;
 }
 
-.boxLogo1 img{
+.boxLogo1 img {
+    position: relative;
+    bottom: 190px;
+    right: 110px;
+    opacity: 100%;
+}
+
+.boxLogo2 img {
     position: relative;
     bottom: 190px;
     right: 110px;
 }
 
-.boxLogo2 img{
-    position: relative;
-    bottom: 190px;
-    right: 110px;
-}
-
-.boxCinzaContent2{
+.boxCinzaContent2 {
     display: none;
 }
 
-.boxLogo1{
+.boxLogo1 {
     position: absolute;
     z-index: 2;
     width: 300px;
@@ -67,7 +64,7 @@ body {
     align-items: center;
 }
 
-.boxLogo2{
+.boxLogo2 {
     position: absolute;
     z-index: 3;
     width: 300px;
@@ -77,12 +74,12 @@ body {
     align-items: center;
 }
 
-.logoImg{
+.logoImg {
     width: 580px;
     height: 300px;
 }
 
-.botaoVoltar1{
+.botaoVoltar1 {
     position: relative;
     bottom: 300px;
     right: 240px;
@@ -90,7 +87,7 @@ body {
     cursor: pointer;
 }
 
-.botaoVoltar2{
+.botaoVoltar2 {
     position: relative;
     bottom: 270px;
     left: 240px;
@@ -98,27 +95,27 @@ body {
     cursor: pointer;
 }
 
-.botaoVoltar1:hover{
+.botaoVoltar1:hover {
     transform: scale(115%);
     transition: 0.3s;
     opacity: 80%;
 }
 
-.botaoVoltar2:hover{
+.botaoVoltar2:hover {
     transform: scale(115%);
     transition: 0.3s;
     opacity: 80%;
 }
 
 
-/* Parte azul da box -------------------------------------------------*/
-.boxRosa{
+/* Parte rosa da box -------------------------------------------------*/
+.boxRosa {
     width: 570px;
-    height: 800px;
+    height: 720px;
     position: absolute;
     z-index: 1;
-    background-color: #007cf780;
-    margin-left: 540px;
+    background: linear-gradient(140deg, #0047FF,#3476f0);
+    margin-left: 1470px;
     border-radius: 0 50px 50px 0;
     display: flex;
     justify-content: center;
@@ -126,15 +123,15 @@ body {
     animation: opacidade 1s ease-in-out;
 }
 
-.titleText1{
-   text-align: center;
+.titleText1 {
+    text-align: center;
     color: #FFFFFF;
     margin-top: 100px;
     margin-bottom: 40px;
     margin-left: 150px;
 }
-/*
-.titleText2{
+
+.titleText2 {
     text-align: center;
     color: #FFFFFF;
     margin-top: 40px;
@@ -142,13 +139,13 @@ body {
     margin-left: 500px;
 }*/
 
-.boxRosaContent1{
+.boxRosaContent1 {
     display: flex;
     flex-direction: column;
     margin-left: 20px;
 }
 
-.boxRosaContent2{
+.boxRosaContent2 {
     display: none;
     flex-direction: column;
     margin-left: 20px;
@@ -158,59 +155,57 @@ body {
 
 .input-group {
     position: relative;
-   }
-   /*campo de digitação cadastro empresa*/
-   .input {
-    border: solid 2px #9e9e9e;
+}
+
+.input {
+    border: solid 2px #a9a9a965;
     border-radius: 50px;
-    background: none;
+    background: #0048ff5a;
     padding: 1rem;
     font-size: 1rem;
-    color: #f5f5f5;
+    color: #000000;
     width: 350px;
-    transition: border 150ms cubic-bezier(0.4,0,0.2,1);
-    margin-left: 200px;
-   }
-    
-   /*nome dos campos*/
-   .user-label {
+    transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.user-label {
     position: absolute;
     left: 15px;
     color: #ffffff;
     pointer-events: none;
     transform: translateY(1rem);
-    transition: 150ms cubic-bezier(0.4,0,0.2,1);
-    margin-left: 200px;
-   }
-   
-   .input:focus, input:valid {
+    transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input:focus,
+input:valid {
     outline: none;
     border: 2px solid #EE609C;
-   }
-   
-   .input:focus ~ label, input:valid ~ label {
+}
+
+.input:focus~label,
+input:valid~label {
     transform: translateY(-50%) scale(0.8);
     background-color: #764ba2d1;
     padding: 0 .2em;
     color: #ffffff;
-   }
+}
 
-   .olhoSenha{
+.olhoSenha {
     position: relative;
     right: 35px;
     top: 2px;
     cursor: pointer;
-    margin-left: 260px;
-   }
+}
 
-   .olhoSenha:hover{
+.olhoSenha:hover {
     opacity: 50%;
-   }
+}
 
 
-   /*Botão*/
+/*Botão*/
 
-   button {
+button {
     --color: #ffffff;
     background-color: #1368D9;
     font-family: inherit;
@@ -228,10 +223,9 @@ body {
     border: 2px solid #ffffff4f;
     border-radius: 6px;
     position: relative;
-    margin-left: 220px;
-  }
-  
-  button::before {
+}
+
+button::before {
     position: absolute;
     content: "";
     background: var(--color);
@@ -239,22 +233,22 @@ body {
     height: 200px;
     z-index: -1;
     border-radius: 20%;
-  }
-  
-  button:hover {
-    color: #EE609C;
-  }
-  
-  button:before {
+}
+
+button:hover {
+    color: #1368D9;
+}
+
+button:before {
     top: 100%;
     left: 100%;
     transition: 0.3s all;
-  }
-  
-  button:hover::before {
+}
+
+button:hover::before {
     top: -30px;
     left: -30px;
-  }
+}
 
 /*----------------------------------------------*/
 
@@ -275,7 +269,7 @@ body {
 .botaoCadastro {
     cursor: pointer;
 }
-  
+
 
 .copyRight {
     color: #ffffff4d;
@@ -285,12 +279,12 @@ body {
 }
 
 
-@keyframes opacidade{
-    0%{
+@keyframes opacidade {
+    0% {
         opacity: 0%;
     }
 
-    100%{
+    100% {
         opacity: 100%;
     }
 }
@@ -322,7 +316,7 @@ body {
 
 
 
-.boxCinza, .boxRosa{
+.boxCinza,
+.boxRosa {
     transition: transform 0.8 ease;
 }
-
