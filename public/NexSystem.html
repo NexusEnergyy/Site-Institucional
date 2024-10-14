@@ -8,28 +8,31 @@
     <link rel="stylesheet" href="./css/NexSystem.css">
     <link rel="shortcut icon" href="./assets/nexSystem/logoNex.png" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <script src="https://kit.fontawesome.com/17011d8c1f.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
-    <div class="container">
+    <div data-aos="zoom-out" class="container">
         <nav id="ativar">
             <div id="menu">
                 <button id="transition"><img src="./assets/nexSystem/logoNex.png" alt="Logo"></button>
                 <h2 id="mainTitle">Nexus Energy</h2>
             </div>
             <ul id="menuItens">
-                <li>
+                <li id="dashboardItem">
                     <i class="material-icons">dashboard</i>
                     <h4 id="titulo">Dashboard</h4>
                 </li>
-                <li>
+                <li id="performanceItem">
                     <i class="material-icons">query_stats</i>
                     <h4 id="titulo2">Performance</h4>
                 </li>
-                <li>
+                <li id="empresasItem">
                     <i class="material-icons">apartment</i>
-                    <h4 id="titulo3">Empresas</h4>
+                    <h4 id="titulo3">Empresa</h4>
                 </li>
             </ul>
             <div class="line">
@@ -64,8 +67,9 @@
             </div>
         </nav>
     </div>
+    
     <div class="highContentNex">
-        <div class="NamePage">
+        <div data-aos="zoom-out" class="NamePage">
             <div class="currentPage">
                 <div class="contentPage">DASHBOARD/Home</div>
             </div>
@@ -85,11 +89,11 @@
                 </div>
             </div>
         </div>
-        <div class="Kpis">
+        <div data-aos="zoom-out" class="Kpis">
             <div class="cardKpis">
                 <div class="containerKPItitulo">
                     <div class="titleKpi">Consumo Medio Diário</div>
-                    <div class="insight">10MWh</div>
+                    <div class="i nsight">10MWh</div>
                 </div>
             </div>
             <div class="cardKpis">
@@ -111,7 +115,7 @@
                 </div>
             </div>
         </div>
-        <div class="Graphics">
+        <div data-aos="zoom-out" class="Graphics">
             <div class="GraphicDash">
                 <div class="consumo">
                     <div class="titleGraphic">Consumo Horário</div>
@@ -144,59 +148,71 @@
                 </div>
             </div>
         </div>
-
     </div>
+
+
+    <div class="highContentNex2" style="display: none;">
+        <div data-aos="zoom-out" class="NamePage">
+            <div class="currentPage">
+                <div class="contentPage">DASHBOARD/Performance</div>
+            </div>
+            <div class="information">
+                <div class="notify">
+                    <button class="sininho">
+                        <i class="fa-solid fa-bell fa-2xl" style="color: #ffffff;"></i>
+                    </button>
+                </div>
+                <div class="field">
+                    <marquee direction="">
+                        NEXUS ENERGY
+                    </marquee>
+                </div>
+                <div class="perfil">
+                    <i class="fa-solid fa-face-grin-tongue-squint fa-2xl" style="color: #ffffff;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="highContentNex3" style="display: none;">
+        <div data-aos="zoom-out" class="NamePage">
+            <div class="currentPage">
+                <div class="contentPage">DASHBOARD/Empresa</div>
+            </div>
+            <div class="information">
+                <div class="notify">
+                    <button class="sininho">
+                        <i class="fa-solid fa-bell fa-2xl" style="color: #ffffff;"></i>
+                    </button>
+                </div>
+                <div class="field">
+                    <marquee direction="">
+                        NEXUS ENERGY
+                    </marquee>
+                </div>
+                <div class="perfil">
+                    <i class="fa-solid fa-face-grin-tongue-squint fa-2xl" style="color: #ffffff;"></i>
+                </div>
+            </div>
+        </div>
+        <div data-aos="zoom-out" class="Funcionarios">
+            <div class="titleFuncionarios">
+                <h2> Gerenciar Funcionários </h2>
+            </div>
+            <div class="funcionariosBox">
+
+            </div>
+        </div>
+    </div>
+
 
 </body>
 
 </html>
 
+<script src="./js/NexSystem.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-    const button = document.getElementById('transition'); 
-    const button2 = document.getElementById('transition2'); 
-    const nav = document.getElementById('ativar'); 
-    const menuItems = document.getElementById('menuItens'); 
-    const menuItems2 = document.getElementById('menuItens2'); 
-    const titles = [
-        document.getElementById('titulo'),
-        document.getElementById('titulo2'),
-        document.getElementById('titulo3')
-    ]; 
-    const titles2 = [
-        document.getElementById('titulo4'),
-        document.getElementById('titulo5'),
-        document.getElementById('titulo6')
-    ]; 
-    const configNex = document.getElementById('configNex');
-    const mainTitle = document.getElementById('mainTitle');
-    const IA = document.getElementById('Bolt'); 
-    const gearIcon = document.querySelector('.gear-icon');
-
-    function toggleMenu() {
-        nav.classList.toggle('active');
-        menuItems.classList.toggle('open');
-        menuItems2.classList.toggle('open');
-
-        titles.forEach(title => {
-            title.style.display = title.style.display === 'flex' ? 'none' : 'flex';
-        });
-        titles2.forEach(title => {
-            title.style.display = title.style.display === 'flex' ? 'none' : 'flex';
-        });
-        mainTitle.style.display = mainTitle.style.display === 'flex' ? 'none' : 'flex';
-        configNex.style.display = configNex.style.display === 'flex' ? 'none' : 'flex';
-        IA.style.display = configNex.style.display === 'none' ? 'none' : 'flex';
-    }
-    function rotateGear() {
-        gearIcon.classList.toggle('rotate'); 
-    }
-
-    button.addEventListener('click', toggleMenu); 
-    button2.addEventListener('click', () => {
-        toggleMenu(); 
-        rotateGear(); 
-    });
-});
-
+    AOS.init();
 </script>
