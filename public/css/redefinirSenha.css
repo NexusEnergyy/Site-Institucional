@@ -125,6 +125,10 @@ body {
     animation: opacidade 1s ease-in-out;
 }
 
+#titleTextLogin1{
+font-weight: 760;
+}
+
 .titleTextLogin{
     color: #FFFFFF;
     font-size: xx-large;
@@ -145,11 +149,6 @@ body {
     gap: 20px;
 }
 
-#titleTextLogin1{
-    font-weight: 900;
-
-}
-
 .titleText2{
     text-align: center;
     color: #FFFFFF;
@@ -158,6 +157,7 @@ body {
 }
 
 .boxRosaContent1{
+    
     display: flex;
     gap: 5%;
     flex-direction: column;
@@ -298,7 +298,7 @@ body {
   
 
 .copyRight {
-    color: #ffffff4d;
+    color: #ffffff8f;
     font-size: 12px;
     text-align: center;
     padding-right: 10px;
@@ -314,31 +314,6 @@ body {
         opacity: 100%;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
