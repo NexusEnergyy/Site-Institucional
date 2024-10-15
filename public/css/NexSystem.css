@@ -754,6 +754,10 @@ body {
       background-color: var(--boxGraphicContent);
       width: 100%;
       height: 50%;
+
+      & h1{
+        color: #ffffff;
+      }
     }
   }
 }
