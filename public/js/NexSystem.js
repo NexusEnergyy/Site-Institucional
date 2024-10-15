@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nav = document.getElementById('ativar');
     const menuItems = document.getElementById('menuItens');
     const menuItems2 = document.getElementById('menuItens2');
+    const html = document.documentElement
     const titles = [
         document.getElementById('titulo'),
         document.getElementById('titulo2'),
@@ -23,9 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const dashboardContent = document.querySelector('.highContentNex');
     const performanceContent = document.querySelector('.highContentNex2');
     const empresasContent = document.querySelector('.highContentNex3');
+    const perfilContent = document.querySelector('.highContentNex4');
 
     function toggleDisplay(activeSection) {
-        const sections = [dashboardContent, performanceContent, empresasContent];
+        const sections = [dashboardContent, performanceContent, empresasContent, perfilContent];
         
         sections.forEach(section => {
             section.classList.remove('visible');
@@ -55,6 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('dashboardItem').addEventListener('click', () => toggleDisplay(dashboardContent));
         document.getElementById('performanceItem').addEventListener('click', () => toggleDisplay(performanceContent));
         document.getElementById('empresasItem').addEventListener('click', () => toggleDisplay(empresasContent));
+        document.getElementById('perfilItem').addEventListener('click', () => toggleDisplay(perfilContent));
+        
     });
 
     function toggleMenu() {
@@ -80,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     button.addEventListener('click', toggleMenu);
     button2.addEventListener('click', rotateGear);
+    button2.addEventListener('click', toggleMenu);
     
 
     document.getElementById('dashboardItem').addEventListener('click', () => {
@@ -93,4 +98,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('empresasItem').addEventListener('click', () => {
         toggleDisplay(empresasContent);
     });
+    document.getElementById('perfilItem').addEventListener('click', () => {
+        toggleDisplay(perfilContent);
+    });
+
+
+
+    document.getElementById('temaItem').addEventListener('click', () => lightColor());
+
+    function lightColor(){
+        html.classList.toggle('light');
+    }
 });
