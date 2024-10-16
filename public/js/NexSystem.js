@@ -25,9 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const performanceContent = document.querySelector('.highContentNex2');
     const empresasContent = document.querySelector('.highContentNex3');
     const perfilContent = document.querySelector('.highContentNex4');
+    const boltContent = document.querySelector('.highContentNex5');
 
     function toggleDisplay(activeSection) {
-        const sections = [dashboardContent, performanceContent, empresasContent, perfilContent];
+        const sections = [dashboardContent, performanceContent, empresasContent, perfilContent, boltContent];
         
         sections.forEach(section => {
             section.classList.remove('visible');
@@ -58,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('performanceItem').addEventListener('click', () => toggleDisplay(performanceContent));
         document.getElementById('empresasItem').addEventListener('click', () => toggleDisplay(empresasContent));
         document.getElementById('perfilItem').addEventListener('click', () => toggleDisplay(perfilContent));
+        document.getElementById('boltItem').addEventListener('click', () => toggleDisplay(boltContent));
         
     });
 
@@ -100,6 +102,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.getElementById('perfilItem').addEventListener('click', () => {
         toggleDisplay(perfilContent);
+    });
+    document.getElementById('boltItem').addEventListener('click', () => {
+        toggleDisplay(boltContent);
     });
 
 

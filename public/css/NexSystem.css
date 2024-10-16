@@ -412,7 +412,7 @@ body {
 }
 
 
-.highContentNex, .highContentNex2, .highContentNex3, .highContentNex4{
+.highContentNex, .highContentNex2, .highContentNex3, .highContentNex4, .highContentNex5{
   gap: 20px;
   display: grid;
   grid-template-columns: 100%;
@@ -534,13 +534,13 @@ body {
 }
 
 .highContentNex {
-  .highContentNex, .highContentNex2, .highContentNex3, .highContentNex4 {
+  .highContentNex, .highContentNex2, .highContentNex3, .highContentNex4, .highContentNex5 {
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
     display: none;
   }
 
-  .highContentNex.active, .highContentNex2.active, .highContentNex3.active, .highContentNex4.active {
+  .highContentNex.active, .highContentNex2.active, .highContentNex3.active, .highContentNex4.active, .highContentNex5.active {
     opacity: 1;
     display: grid;
   }
@@ -561,6 +561,8 @@ body {
         height: 100%;
         border-radius: 10px;
         display: grid;
+        justify-content: center;
+        align-items: center;
         grid-template-rows: 35% 65%;
 
         & .titleKpi{
@@ -569,7 +571,8 @@ body {
           align-items: center;
           text-align: center;
           color:var(--titulos);
-          font-size: 25px;
+          width: max-content;
+          font-size: 24.5px;
           font-family: "Wix Madefor Display", system-ui;
           font-weight: 700;
         }
@@ -817,6 +820,15 @@ body {
     }
   }
   
+}
+
+.highContentNex4{
+   /*ALISSIN*/ 
+}
+
+
+.highContentNex5{
+  /*AREA DO PEPE*/
 }
 
 
