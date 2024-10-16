@@ -53,6 +53,7 @@ body {
 
 .boxCinzaContent2 {
     display: none;
+    justify-content: center;
 }
 
 .boxLogo1 {
@@ -129,7 +130,7 @@ body {
     color: #FFFFFF;
     margin-top: 100px;
     margin-bottom: 40px;
-    margin-left: 150px;
+    /* margin-left: 150px; */
 }
 
 .titleText2 {
@@ -137,8 +138,8 @@ body {
     color: #FFFFFF;
     margin-top: 40px;
     margin-bottom: 40px;
-    margin-left: 500px;
-}*/
+    /* margin-left: 500px; */
+}
 
 .boxRosaContent1 {
     display: flex;
@@ -153,6 +154,10 @@ body {
     display: none;
     flex-direction: column;
     margin-left: 20px;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: space-around;
 }
 
 /*Inputs*/
