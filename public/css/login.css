@@ -11,6 +11,7 @@ body {
     width: 100vw;
     height: 100vh;
     min-height: 100vh;
+    margin-top: 150px;
     overflow: hidden;
 }
 
@@ -19,8 +20,6 @@ body {
     display: flex;
     justify-content: center;
     position: relative;
-    top: -53%;
-    transition: transform 1.5s ease;
 }
 
 
