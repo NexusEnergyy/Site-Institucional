@@ -65,6 +65,7 @@ function mudarTela1() {
         inputSenha3.value = '';
 
 
+
     setTimeout(function() {    
         boxRosaContent1.style.display = "none";
         boxRosaContent2.style.display = "flex";
