@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Wix+Madefor+Display:wght@400..800&display=swap');
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 * {
   padding: 0;
   box-sizing: border-box;
@@ -964,11 +969,11 @@ body {
 
 
   .duvidasContent {
-    gap: 7vh; 
+    gap: 2vh;
     display: flex;
     text-align: center;
     width: 100%;
-    height: 10%;
+    height: 6%;
     font-family: 'Montserrat', sans-serif;
   }
 
@@ -983,23 +988,79 @@ body {
     background-color: #051f3c99;
     height: 15vh;
     text-align: start;
-    padding: 3vh;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    padding: 2.5vh;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   }
 
 
   .word {
 
-    font-weight: 500;
+    font-weight: 400;
 
   }
 
   .frase {
-    
-    color: rgba(255, 255, 255, 0.707);
+    font-size: 1.5vh;
+    color: rgba(255, 255, 255, 0.50);
 
   }
 
+  
+  .boxChatMsg {
+    display: flex;
+    color: white;
+    height: 9vh;
+    width: 103%;
+    align-items: flex-start;
+
+  }
+
+  .chatMsg {
+    font-family: inherit;
+    font-size: larger;
+    padding: 4vh;
+    width: 100%;
+    height: 8vh;
+    outline: none;
+    border: none;
+    border-radius: 4vh;
+    background-color: #092c5451;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .chatMsg:focus {
+    color: white;
+  }
+
+  
+  .arrow {
+    top: 2vh;
+    left: -8vh;
+    position: relative;
+    width: 5vh;
+  }
+  
+  .textPolitica {
+    color: white;
+    text-decoration: underline;
+  }
+  
+  .frase.Terms {
+    font-size: 1.7vh;
+    font-weight: 100;
+  }
+  
+  .contentChaTerms {
+    width: 100%;
+    height: 13vh;
+    display: flex;
+    position: relative;
+    top: 28vh;
+    flex-direction: column;
+    text-align: center;
+    gap: 2vh;
+  }
+  
 
 }
 
