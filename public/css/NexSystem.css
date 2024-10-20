@@ -1034,12 +1034,19 @@ body {
 
   
   .arrow {
+    cursor: pointer;
+    z-index: 1;
     top: 2vh;
     left: -8vh;
     position: relative;
-    width: 5vh;
+    width: 4.5vh;
+    transition: 0.5s;
   }
   
+  .arrow:hover{
+    transform:scale(105%);
+  }
+
   .textPolitica {
     color: white;
     text-decoration: underline;
