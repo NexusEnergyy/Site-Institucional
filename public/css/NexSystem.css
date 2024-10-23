@@ -1016,6 +1016,7 @@ body {
   }
 
   .chatMsg {
+    color:white;
     font-family: inherit;
     font-size: larger;
     padding: 4vh;
