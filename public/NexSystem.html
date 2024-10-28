@@ -125,21 +125,21 @@
             <div class="GraphicDash">
                 <div class="consumo">
                     <div class="titleGraphic">Consumo Horário</div>
-                    <div class="graphicContent"></div>
+                    <div class="graphicContent" id="consumoHorarioChart" style="width: 100%; height: 100%;"></div>
                 </div>
                 <div class="consumo">
                     <div class="titleGraphic">Consumo Mensal</div>
-                    <div class="graphicContent"></div>
+                    <div class="graphicContent" id="consumoMensalChart" style="width: 100%; height: 100%;"></div>
                 </div>
                 <div class="consumo">
                     <div class="titleGraphic">Previsão de Consumo</div>
-                    <div class="graphicContent"></div>
+                    <div class="graphicContent" id="previsaoConsumoChart" style="width: 100%; height: 100%;"></div>
                 </div>
             </div>
             <div class="GraphicDash">
                 <div class="EmissaoCo2">
                     <div class="titleCo2">Emissão de Co2</div>
-                    <div class="contentCo2"></div>
+                    <div class="contentCo2" id="emissaoCo2Chart" style="width: 100%; height: 100%;"></div>
                 </div>
             </div>
             <div class="GraphicDash">
@@ -203,6 +203,9 @@
             </div>
         </div>
         <div data-aos="zoom-out" class="Funcionarios">
+            <dialog id="modal" class="modalFuncionario">
+                <button onclick="fecharModal()">Close</button>
+            </dialog>
             <div class="titleFuncionarios">
                 <h2> Gerenciar Funcionários </h2>
             </div>
@@ -219,10 +222,9 @@
             </div>
             <div class="btnsActions">
                 <div class="btn excluir"> Excluir Funcionários </div>
-                <div class="btn adicionar"> Adicionar Funcionários </div>
+                <div onclick="abrirModal()" class="btn adicionar"> Adicionar Funcionários </div>
             </div>
         </div>
-
     </div>
 
 
@@ -394,3 +396,4 @@
 <script>
     AOS.init();
 </script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>

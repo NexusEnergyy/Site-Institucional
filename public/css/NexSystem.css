@@ -839,6 +839,28 @@ body {
     }
   }
 
+  & .modalFuncionario{
+    width: 800px;
+    height: 600px;
+    background-color: #591680;
+    border: none;
+    border-radius: 10px;
+    margin: auto;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .modalFuncionario.show {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .modalFuncionario.hide {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
 }
 
 .highContentNex4 {
