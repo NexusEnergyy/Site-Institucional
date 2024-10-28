@@ -110,8 +110,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     document.getElementById('temaItem').addEventListener('click', () => lightColor());
+    document.getElementById('saida').addEventListener('click', () => sair());
 
     function lightColor(){
         html.classList.toggle('light');
+    }
+
+    function sair(){
+        window.location.href="./index.html"
     }
 });
