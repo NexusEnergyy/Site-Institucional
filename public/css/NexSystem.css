@@ -12,6 +12,7 @@ a {
   list-style: none;
   text-decoration: none;
   user-select: none;
+  font-family: "Wix Madefor Display", system-ui;
 }
 
 :root {
@@ -25,6 +26,7 @@ a {
   --titulos: #ffffff;
   --boxGraphic: #000000b9;
   --boxGraphicContent: #00000071;
+  --downLetter: #c5c3c32e;
 }
 
 .light {
@@ -37,6 +39,7 @@ a {
   --boxGraphicContent: #ffffffae;
   --bgcLi: rgba(90, 136, 255, 0.781);
   --bcgIcone: #8aabff;
+  --downLetter: #0000002e;
 }
 
 body {
@@ -839,7 +842,7 @@ body {
     }
   }
 
-  & .modalFuncionario{
+  & .modalFuncionario {
     width: 800px;
     height: 600px;
     background-color: #591680;
@@ -864,7 +867,114 @@ body {
 }
 
 .highContentNex4 {
-  /*ALISSIN*/
+  grid-template-rows: 8% 85%;
+
+  .contentProfile {
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    background-color: var(--boxGraphic);
+
+    .leftProfile {
+      width: 50%;
+      gap: 10px;
+      height: 70%;
+      border-radius: 15px 0 0 15px;
+      background-color: var(--boxGraphic);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+
+      .imgProfileUser {
+        display: flex;
+        border-radius: 50%;
+        width: 42%;
+        background-image: url(../assets/nexSystem/Veigh.jpeg);
+        background-size: cover;
+        background-position-y: bottom;
+        height: 65%;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+      }
+
+      .infoUser {
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        align-items: center;
+        display: flex;
+        font-size: 50px;
+        font-weight: 700;
+        font-family: "Wix Madefor Display", system-ui;
+        width: 45%;
+        height: 70%;
+
+        .Username {
+          width: 100%;
+          height: 30%;
+          background-color: var(--downLetter);
+          width: max-content;
+          height: max-content;
+          padding: 10px 31px;
+          display: flex;
+          border-radius: 15px;
+          justify-content: center;
+          align-items: center;
+          color: var(--titulos);
+
+        }
+
+        .EntUser {
+          width: 100%;
+          height: 40%;
+          display: flex;
+          background-color: var(--downLetter);
+          width: max-content;
+          height: max-content;
+          padding: 10px 40px;
+          border-radius: 15px;
+          justify-content: center;
+          align-items: center;
+          color: var(--titulos);
+
+        }
+
+        .confirmarAlt {
+          width: 100%;
+          height: 20%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+
+          button {
+            padding: 25px 70px;
+            width: max-content;
+            border: none;
+            font-size: 20px;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+            cursor: pointer;
+            font-weight: 700;
+            color: #fff;
+            border-radius: 15px;
+            background-color: var(--hoverColor);
+          }
+
+          button:hover {
+            background-color: var(--marquee);
+          }
+        }
+      }
+    }
+
+    .rightProfile {
+      width: 50%;
+      height: 100%;
+      border-radius: 0 15px 15px 0;
+      background-color: var(--boxGraphicContent);
+    }
+  }
 }
 
 
@@ -1027,7 +1137,7 @@ body {
 
   }
 
-  
+
   .boxChatMsg {
     display: flex;
     color: white;
@@ -1038,7 +1148,7 @@ body {
   }
 
   .chatMsg {
-    color:white;
+    color: white;
     font-family: inherit;
     font-size: larger;
     padding: 4vh;
@@ -1050,12 +1160,12 @@ body {
     background-color: #092c5451;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   }
-  
+
   .chatMsg:focus {
     color: white;
   }
 
-  
+
   .arrow {
     cursor: pointer;
     z-index: 1;
@@ -1065,21 +1175,21 @@ body {
     width: 4.5vh;
     transition: 0.5s;
   }
-  
-  .arrow:hover{
-    transform:scale(105%);
+
+  .arrow:hover {
+    transform: scale(105%);
   }
 
   .textPolitica {
     color: white;
     text-decoration: underline;
   }
-  
+
   .frase.Terms {
     font-size: 1.7vh;
     font-weight: 100;
   }
-  
+
   .contentChaTerms {
     width: 100%;
     height: 13vh;
@@ -1090,7 +1200,7 @@ body {
     text-align: center;
     gap: 2vh;
   }
-  
+
 
 }
 
