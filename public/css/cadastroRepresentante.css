@@ -332,10 +332,11 @@ button:hover::before {
 }
 
 
-
-
-
-.boxCinza,
-.boxRosa {
+.boxCinza, .boxRosa {
     transition: transform 0.8 ease;
+}
+
+
+#voltarPrimeiraTela{
+    cursor: pointer;
 }

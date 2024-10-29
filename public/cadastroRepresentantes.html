@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexusEnergy | Acesso</title>
     <link rel="stylesheet" href="./css/cadastroRepresentante.css">
-    <link rel="shortcut icon" href="./assets/LogoNexusMinimizado.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/siteInstitucional/LogoNexusMinimizado.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="shortcut icon" href="./assets/LogoNexusMinimizado.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/siteInstitucional/LogoNexusMinimizado.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
     <script src="./js/cadastroRepresentante.js"></script>
@@ -19,17 +19,13 @@
     <div class="boxesDiv">
         <div class="boxCinza">
             <div class="boxCinzaContent1">
-                <!-- <div onclick="telaHome()" class="botaoVoltar1" id="botaoVoltar">
-                    <img src="./assets/botaoVoltar1.png" alt="">
-                </div> -->
+
                 <div class="boxLogo1">
                     <img class="logoImg" src="./assets/login/logoNexusEnergy.png">
                 </div>
             </div>
             <div class="boxCinzaContent2">
-                <!-- <div onclick="telaHome()" class="botaoVoltar2" id="botaoVoltar">
-                    <img src="./assets/botaoVoltar2.png" alt="">
-                </div> -->
+
                 <div class="boxLogo2">
                     <img class="logoImg" src="./assets/login/logoNexusEnergy.png">
                 </div>
@@ -40,15 +36,14 @@
 
                 <div class="titleText1">
                     <h2 id="titleText">Cadastro Empresa
-
                     </h2>
                 </div>
                 <div class="inputBox" id="inputBox">
                     <div class="input-group">
-                        <input required="" type="text" name="text" class="input" id="inputEmail1">
+                        <input required="" type="text" name="text" class="input" id="input_nome_empresa">
                         <label class="user-label">Nome da empresa</label>
                     </div>
-                    
+
                     <div class="input-group">
                         <select required="" type="text" name="text" class="input select" id="selectSubMercado">
                             <option vazio></option>
@@ -59,19 +54,21 @@
                         </select>
                         <label class="user-label">Sub-mercado</label>
                     </div>
-                    
+
                     <div class="input-group">
-                        <input required="" type="text" name="text" class="input" id="inputEmail1">
+                        <input required="" type="text" name="text" class="input" id="input_logradouro">
                         <label class="user-label">Logradouro</label>
                     </div>
-                    
+
                     <div class="input-group">
-                        <input required="" type="text" name="text" class="input" id="inputEmail1">
+                        <input required="" type="text" name="text" class="input" id="input_CNPJ" minlength="14" maxlength="14">
                         <label class="user-label">CNPJ</label>
                     </div>
-                
-                    <button onclick="mudarTela1()">Próximo</button>
+
+                    <button onclick="cadastrar_empresa()">Próximo</button>
                 </div>
+
+                <div id="resposta_erro"></div>
 
                 <p class="copyRight">Copyright 2024 - NexusEnergy Inc. All rights Reserved</p>
             </div>
@@ -82,32 +79,37 @@
                 </div>
                 <div class="inputBox" id="inputBox">
                     <div class="input-group">
-                        <input required="" type="text" name="text" autocomplete="off" class="input" id="inputNome1">
+                        <input required="" type="text" name="text" autocomplete="off" class="input"
+                            id="input_nome_usuario_adm">
                         <label class="user-label">Nome completo</label>
                     </div>
-                    
+
                     <div class="input-group">
-                        <input required="" type="text" name="text" autocomplete="off" class="input" id="inputEmail2">
+                        <input required="" type="text" name="text" autocomplete="off" class="input" id="inputEmail">
                         <label class="user-label">Email</label>
                     </div>
 
+
                     <div class="input-group">
-                        <input required="" type="text" name="text" autocomplete="off" class="input" id="inputEmail2">
+                        <input required="" type="text" name="text" autocomplete="off" class="input" id="input_filial">
                         <label class="user-label">Filial</label>
                     </div>
 
+
                     <div class="input-group">
-                        <input required="" type="text" name="text" autocomplete="off" class="input" id="inputEmail2">
+                        <input required="" type="text" name="text" autocomplete="off" class="input"
+                            id="input_matricula">
                         <label class="user-label">Matricula</label>
                     </div>
 
-                    <button>Cadastrar</button>
+                    <button onclick="CadastrarFuncionarioADM()">Cadastrar</button>
                 </div>
 
-                <p class="textCadastro2">Ainda não cadastrou a empresa? <b class="botaoCadastro"
-                        onclick="mudarTela2()">Voltar</b></p>
+                <div id="resposta_erro2"></div>
 
-                
+                <p class="textCadastro2">Ainda não cadastrou a empresa? <b id="voltarPrimeiraTela" onclick="voltarPrimeiraTela()">Voltar</b></p>
+
+
                 <p class="copyRight">Copyright 2024 - NexusEnergy Inc. All rights Reserved</p>
 
             </div>
