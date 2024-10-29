@@ -20,8 +20,7 @@ body {
     display: flex;
     justify-content: center;
     position: relative;
-    top: 4vh;
-}
+    }
 
 
 /* Parte cinza da box -------------------------------------------------*/
@@ -31,7 +30,7 @@ body {
     position: absolute;
     z-index: 2;
     background-color: #ffffff5b;
-    left: 34vh;
+    left: 41vh;
     border-radius: 50px 0 0 50px;
     transition: 1s;
     display: flex;
