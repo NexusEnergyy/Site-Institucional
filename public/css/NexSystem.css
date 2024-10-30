@@ -15,6 +15,7 @@ a {
 }
 
 :root {
+  --BoltIaUsername: linear-gradient(86deg, rgba(59,0,255,1) 0%, rgba(0,254,255,1) 50%, rgba(0,176,255,1) 100%);
   --background: linear-gradient(145deg, rgba(69, 0, 99, 1) 0%, rgba(9, 0, 111, 1) 25%, rgba(19, 104, 217, 1) 75%, rgba(11, 196, 217, 1) 100%);
   --marquee: #0022ff;
   --hoverColor: #002176;
@@ -26,10 +27,12 @@ a {
   --boxGraphic: #000000b9;
   --boxGraphicContent: #00000071;
   --downLetter: #c5c3c32e;
+  --BoxBolt: #051f3c99;
 }
 
 .light {
-  --background: linear-gradient(145deg, rgb(180, 63, 230) 0%, rgb(123, 118, 177) 25%, rgb(0, 110, 255) 75%, rgb(102, 149, 155) 100%);
+  --BoltIaUsername: linear-gradient(86deg, rgb(140, 0, 255) 0%, rgb(0, 102, 255) 50%, rgb(13, 0, 192) 100%);
+  --background: linear-gradient(145deg, rgb(179, 0, 255) 0%, rgb(21, 0, 255) 25%, rgb(0, 110, 255) 75%, rgb(0, 225, 255) 100%);
   --hoverColor: #4378ff;
   --menuAberto: rgba(255, 255, 255, 0.82);
   --titulos: #000000;
@@ -39,6 +42,7 @@ a {
   --bgcLi: rgba(90, 136, 255, 0.781);
   --bcgIcone: #8aabff;
   --downLetter: #0000002e;
+  --BoxBolt: #12509699;
 }
 
 body {
@@ -754,17 +758,21 @@ body {
 .highContentNex2 {}
 
 .highContentNex3 {
+  grid-template-rows: 8% 85%;
+
   & .Funcionarios {
     display: flex;
     width: 100%;
-    height: 800px;
+    gap: 10px;
+    height: 100%;
     border-radius: 10px;
     background-color: var(--boxGraphic);
     padding: 20px;
     flex-direction: column;
 
     & .titleFuncionarios {
-      margin-bottom: 70px;
+     width: 100%;
+     height: 5%;
     }
 
     & h2 {
@@ -776,25 +784,35 @@ body {
       background-color: var(--boxGraphicContent);
       width: 100%;
       height: 70%;
+      border-radius: 10px;
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: center;
       font-family: "Wix Madefor Display", system-ui;
-      margin-bottom: 20px;
+      
 
       & .cardFuncionario {
         width: 20%;
-        height: 90%;
+        height: 95%;
         background-color: #33333369;
         border-radius: 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: space-around;
 
-        &.imgFuncionario {
-          border-radius: 100%;
+        & .imgFuncionario {
+          width: 80%;
+          height: 50%;
+          border-radius: 50%;
+
+          img{
+            width: 100%;
+            border-radius: 50%;
+            background-size: cover;
+            height: 100%;
+          }
         }
       }
 
@@ -978,14 +996,14 @@ body {
 
 
 .highContentNex5 {
+  grid-template-rows: 8% 85%;
 
-  /*AREA DO PEPE*/
   .boltContent {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: "Wix Madefor Display", system-ui;
     position: relative;
     display: flex;
     width: 100%;
-    height: 85vh;
+    height: 100%;
     border-radius: 10px;
     background-color: var(--boxGraphic);
     padding: 20px;
@@ -999,12 +1017,8 @@ body {
     position: absolute;
     width: max-content;
     height: max-content;
-    left: 97%;
+    left: 98%;
     top: 2%;
-  }
-
-  .iconInterrogacao {
-    width: 55%;
   }
 
 
@@ -1013,9 +1027,10 @@ body {
     position: absolute;
     left: -22.5vh;
     width: 23vh;
+    border-radius: 10px;
     padding: 10px;
-    background-color: white;
-    color: rgb(23 58 133);
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     text-align: start;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
@@ -1063,7 +1078,7 @@ body {
   .gradient-text {
     font-size: 7.5vh;
     font-weight: bold;
-    background: linear-gradient(-325deg, #381777, #181890, #80165C, #AC4ED6, #CF539F);
+    background: var(--BoltIaUsername);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -1074,7 +1089,7 @@ body {
 
   .msgUser {
     font-size: 5.5vh;
-    color: white;
+    color: var(--titulos);
     font-weight: bolder;
   }
 
@@ -1093,8 +1108,8 @@ body {
     text-align: center;
     position: relative;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-    color: white;
+    font-weight: 500;
+    color: var(--titulos);
 
   }
 
@@ -1112,27 +1127,27 @@ body {
 
   .caixa {
     width: 50%;
-    color: white;
+    color: var(--titulos);
     top: 13vh;
     position: relative;
     border-radius: 1vh;
-    background-color: #051f3c99;
+    background-color: var(--BoxBolt);
     height: 15vh;
     text-align: start;
+    cursor: pointer;
     padding: 2.5vh;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   }
 
 
   .word {
-
-    font-weight: 400;
+    font-weight: 700;
 
   }
 
   .frase {
-    font-size: 1.5vh;
-    color: rgba(255, 255, 255, 0.50);
+    font-size: 1rem;
+    color: rgb(215, 215, 215);
 
   }
 
@@ -1147,7 +1162,7 @@ body {
   }
 
   .chatMsg {
-    color: white;
+    color: var(--titulos);
     font-family: inherit;
     font-size: larger;
     padding: 4vh;
@@ -1156,12 +1171,16 @@ body {
     outline: none;
     border: none;
     border-radius: 4vh;
-    background-color: #092c5451;
+    background-color: var(--BoxBolt);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   }
 
+  ::-webkit-input-placeholder {
+    color: var(--titulos);
+ }
+
   .chatMsg:focus {
-    color: white;
+    color: var(--titulos);
   }
 
 
@@ -1180,11 +1199,12 @@ body {
   }
 
   .textPolitica {
-    color: white;
+    color: var(--titulos);
     text-decoration: underline;
   }
 
   .frase.Terms {
+    color: var(--titulos);
     font-size: 1.7vh;
     font-weight: 100;
   }

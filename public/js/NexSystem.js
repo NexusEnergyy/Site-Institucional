@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
       top: '5%',
       left: 'center',
       textStyle: {
-        color: '#FFFFFF' // Define a cor branca para a legenda
+        color: '#FFFFFF'// Define a cor branca para a legenda
       }
     },
     series: [
