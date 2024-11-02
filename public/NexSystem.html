@@ -16,19 +16,27 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Montagu+Slab:opsz,wght@16..144,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Montagu+Slab:opsz,wght@16..144,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Montagu+Slab:opsz,wght@16..144,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Montagu+Slab:opsz,wght@16..144,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Montagu+Slab:opsz,wght@16..144,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Montagu+Slab:opsz,wght@16..144,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Montagu+Slab:opsz,wght@16..144,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Wix+Madefor+Display:wght@400..800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Montagu+Slab:opsz,wght@16..144,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Wix+Madefor+Display:wght@400..800&display=swap"
+        rel="stylesheet">
 
     <script src="https://kit.fontawesome.com/17011d8c1f.js" crossorigin="anonymous"></script>
 
@@ -115,7 +123,8 @@
             <div class="cardKpis">
                 <div class="containerKPItitulo">
                     <div class="titleKpi">Consumo Medio Diário</div>
-                    <div class="insight">2<span style="color: #0CBDD9; margin: 0;">M</span><span style="color: #FFBB00; margin: 0;">Wh</span></div>
+                    <div class="insight">2<span style="color: #0CBDD9; margin: 0;">M</span><span
+                            style="color: #FFBB00; margin: 0;">Wh</span></div>
                 </div>
             </div>
             <div class="cardKpis">
@@ -297,13 +306,44 @@
                     <div class="Username">ALISSON</div>
                     <div class="EntUser">MINSAIT</div>
                     <div class="confirmarAlt">
-                        <button>Upload imagem</button>
+                        <label for="file-upload" class="custom-file-label">Escolher foto</label>
+                        <input id="file-upload" type="file" accept=".jpg, .jpeg, .png" />
                     </div>
+                    <div class="membroData">Membro desde: 2024</div>
                 </div>
             </div>
             <div class="rightProfile">
-                <div class="titleProfileUser"></div>
-                <div class="contentInputUser"></div>
+                <div class="titleProfileUser">
+                    <div class="edit">Editar Perfil</div>
+                </div>
+                <div class="contentInputUser">
+                    <div class="inputs_box">
+                        <span class="caracterPerson">Nome</span>
+                        <label for="">
+                            <input maxlength="70" placeholder="Digite aqui" type="text">
+                            <span class="correcao">Nome completo</span>
+                        </label>
+
+                        <span class="caracterPerson">E-mail</span>
+                        <label for="">
+                            <input maxlength="90" placeholder="Digite aqui" type="text">
+                            <span class="correcao">@ plmds</span>
+                        </label>
+
+                        <span class="caracterPerson">CPF</span>
+                        <label for="">
+                            <input maxlength="11" placeholder="Digite aqui" type="text">
+                            <span class="correcao">Sem pontos e traços</span>
+                        </label>
+
+                        <span class="caracterPerson">Senha</span>
+                        <label for="">
+                            <input maxlength="90" placeholder="Digite aqui" type="text">
+                            <span class="correcao" id="dica">Senha forte/fraca</span>
+                        </label>
+                    </div>
+                </div>
+                <button>Alterar informações</button>
             </div>
         </div>
 

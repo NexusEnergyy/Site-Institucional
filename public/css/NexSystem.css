@@ -36,8 +36,8 @@ a {
   --menuAberto: rgba(255, 255, 255, 0.82);
   --titulos: #000000;
   --menuFechado: #ffffffc0;
-  --boxGraphic: #ffffffb9;
-  --boxGraphicContent: #ffffffae;
+  --boxGraphic: #ffffff76;
+  --boxGraphicContent: #ffffff31;
   --bgcLi: rgba(90, 136, 255, 0.781);
   --bcgIcone: #8aabff;
   --downLetter: #0000002e;
@@ -508,7 +508,7 @@ body {
         align-items: center;
         background-color: var(--boxGraphic);
 
-        & .search{
+        & .search {
           width: 100%;
           height: 100%;
           border-radius: 20px;
@@ -518,7 +518,7 @@ body {
           justify-content: space-between;
           align-items: center;
 
-          & input{
+          & input {
             width: 100%;
             padding: 10px;
             height: 100%;
@@ -531,7 +531,7 @@ body {
             outline: none;
           }
 
-          & i{
+          & i {
             padding: 10px;
             cursor: pointer;
             right: 10px;
@@ -811,14 +811,16 @@ body {
         justify-content: center;
         align-items: center;
 
-        & .comparativoMercado,.comparativoProprio {
+        & .comparativoMercado,
+        .comparativoProprio {
           height: 98%;
           width: 98.5%;
           gap: 10px;
           display: grid;
           grid-template-rows: 10% 85%;
 
-          & .titleMercado, .titleGDP {
+          & .titleMercado,
+          .titleGDP {
             display: flex;
             justify-content: start;
             align-items: center;
@@ -830,7 +832,8 @@ body {
             font-weight: 700;
           }
 
-          & .contentMercado, .contentGDP {
+          & .contentMercado,
+          .contentGDP {
             background-color: var(--boxGraphicContent);
             border-radius: 10px;
           }
@@ -848,23 +851,23 @@ body {
       background-color: var(--boxGraphic);
       height: 100%;
 
-      & .rankingPerf{
+      & .rankingPerf {
         height: 98%;
         width: 95%;
         gap: 10px;
         display: grid;
         grid-template-rows: 5% 93%;
 
-        & .titleRank{
-            display: flex;
-            justify-content: start;
-            align-items: center;
-            padding: 0 20px;
-            text-align: center;
-            color: var(--titulos);
-            font-size: 25px;
-            font-family: "Wix Madefor Display", system-ui;
-            font-weight: 700;
+        & .titleRank {
+          display: flex;
+          justify-content: start;
+          align-items: center;
+          padding: 0 20px;
+          text-align: center;
+          color: var(--titulos);
+          font-size: 25px;
+          font-family: "Wix Madefor Display", system-ui;
+          font-weight: 700;
         }
 
         & .ranking {
@@ -1055,6 +1058,7 @@ body {
           padding: 10px 31px;
           display: flex;
           border-radius: 15px;
+          box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
           justify-content: center;
           align-items: center;
           color: var(--titulos);
@@ -1070,6 +1074,7 @@ body {
           height: max-content;
           padding: 10px 40px;
           border-radius: 15px;
+          box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
           justify-content: center;
           align-items: center;
           color: var(--titulos);
@@ -1084,22 +1089,36 @@ body {
           align-items: center;
 
 
-          button {
-            padding: 25px 70px;
-            width: max-content;
+          & .custom-file-label {
+            width: 76%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px 40px;
             border: none;
             font-size: 20px;
             box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
             cursor: pointer;
             font-weight: 700;
-            color: #fff;
+            color: var(--titulos);
             border-radius: 15px;
             background-color: var(--hoverColor);
           }
 
-          button:hover {
+          & .custom-file-label:hover {
             background-color: var(--marquee);
           }
+
+          & input[type="file"] {
+            display: none;
+          }
+        }
+
+        & .membroData{
+          color: var(--titulos);
+          font-size: 15px;
+          font-weight: 700;
+          font-family: "Wix Madefor Display", system-ui;
         }
       }
     }
@@ -1107,8 +1126,136 @@ body {
     .rightProfile {
       width: 50%;
       height: 100%;
+      gap: 15px;
+      display: grid;
+      grid-template-columns: 100%;
+      justify-content: center;
+      grid-template-rows: 15% 65% 10%;
       border-radius: 0 15px 15px 0;
       background-color: var(--boxGraphicContent);
+
+      .titleProfileUser {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        padding: 0 20px;
+        justify-content: start;
+        align-items: center;
+
+        & .edit {
+          width: 100%;
+          height: 90%;
+          padding: 20px;
+          font-size: 55px;
+          color: var(--titulos);
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          font-weight: 700;
+          font-family: "Wix Madefor Display", system-ui;
+        }
+      }
+
+      .contentInputUser {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .inputs_box {
+          display: flex;
+          flex-direction: column;
+          border-radius: 15px;
+          width: 97%;
+          background-color: var(--boxGraphicContent);
+          height: 100%;
+
+          & .caracterPerson {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            width: 100%;
+            height: 50%;
+            padding: 0 20px;
+            color: var(--titulos);
+            font-size: 15px;
+            background-color: var(--boxGraphicContent);
+            font-weight: 700;
+            border-radius: 15px 15px 0 0;
+            font-family: "Wix Madefor Display", system-ui;
+          }
+
+          & label {
+            width: 100%;
+            padding: 0 15px;
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            background-color: var(--boxGraphicContent);
+            flex-direction: row;
+            height: 100%;
+            box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+            border-radius: 0 0 15px 15px;
+
+            & .correcao {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 20%;
+              height: 60%;
+              color: var(--titulos);
+              font-size: 15px;
+              font-weight: 700;
+              font-family: "Wix Madefor Display", system-ui;
+            }
+
+            & input {
+              width: 80%;
+              height: 60%;
+              padding: 0 15px;
+              background-color: var(--BoxBolt);
+              border-radius: 15px;
+              color: var(--titulos);
+              font-weight: 600;
+              border: none;
+              outline: none;
+            }
+
+            ::-webkit-input-placeholder {
+              color: var(--titulos);
+            }
+          }
+
+          & label:nth-child(6), label:nth-child(2), label:nth-child(4){
+            margin-bottom: 10px;
+          }
+        }
+      }
+
+      & button{
+        border: none;
+        outline: none;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+        border-radius: 15px;
+        display: flex;
+        justify-self: center;
+        align-self: center;
+        justify-content: center;
+        align-items: center;
+        color: var(--titulos);
+        font-size: 25px;
+        cursor: pointer;
+        width: 40%;
+        font-weight: 700;
+        font-family: "Wix Madefor Display", system-ui;
+        height: 100%;
+        background-color: var(--bcgIcone);
+      }
+
+      & button:hover{
+        background-color: var(--marquee);
+      }
     }
   }
 }
