@@ -432,7 +432,7 @@ document.addEventListener('DOMContentLoaded', function () {
       trigger: 'axis'
     },
     legend: {
-      data: ['Esse Mês', 'Mês Passado'],
+      data: ['Esse Ano', 'Ano Passado'],
       textStyle: {
         color: '#FFFFFF' // Cor branca para a legenda
       }
@@ -466,13 +466,13 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     series: [
       {
-        name: 'Esse Mês',
+        name: 'Esse Ano',
         type: 'line',
         stack: 'Total',
         data: [150, 200, 180, 250, 300, 270] // Dados de exemplo para os últimos 6 meses
       },
       {
-        name: 'Mês Passado',
+        name: 'Ano Passado',
         type: 'line',
         stack: 'Total',
         data: [100, 150, 130, 200, 220, 190] // Dados de exemplo para os últimos 6 meses
