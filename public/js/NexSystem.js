@@ -114,6 +114,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function lightColor(){
       html.classList.toggle('light');
+      changeLegendColor()
+      changeXAxisLabelColor()
+      changeYAxisLabelColor()
   }
 
   function sair(){
@@ -359,6 +362,64 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+// document.addEventListener('DOMContentLoaded', function () {
+//   const comparativoMercado2 = echarts.init(document.getElementById('comparativoMercado2'));
+
+//   var option = {
+//     title: { text: 'Empresas:' },
+//     tooltip: { trigger: 'axis' },
+//     legend: {
+//       data: ['Tim', 'OI', 'Vivo', 'Claro'],
+//       textStyle: { color: '#FFFFFF' }
+//     },
+//     grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
+//     toolbox: { feature: { saveAsImage: {} } },
+//     xAxis: {
+//       type: 'category',
+//       boundaryGap: false,
+//       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+//       axisLabel: { textStyle: { color: '#FFFFFF' } }
+//     },
+//     yAxis: {
+//       type: 'value',
+//       axisLabel: { textStyle: { color: '#FFFFFF' } } // Cor inicial dos rótulos do eixo Y
+//     },
+//     series: [
+//       { name: 'Tim', type: 'line', stack: 'Total', data: [120, 132, 101, 134, 90, 230, 210] },
+//       { name: 'OI', type: 'line', stack: 'Total', data: [220, 182, 191, 234, 290, 330, 310] },
+//       { name: 'Vivo', type: 'line', stack: 'Total', data: [150, 232, 201, 154, 190, 330, 410] },
+//       { name: 'Claro', type: 'line', stack: 'Total', data: [320, 332, 301, 334, 390, 330, 320] }
+//     ]
+//   };
+
+//   comparativoMercado2.setOption(option);
+
+//   // Redimensionamento automático
+//   window.addEventListener('resize', function () {
+//     comparativoMercado2.resize();
+//   });
+
+//   // Função para trocar a cor da legenda
+//   window.changeLegendColor = function () {
+//     const newColor = option.legend.textStyle.color === '#000' ? '#FFFFFF' : '#000';
+//     option.legend.textStyle.color = newColor;
+//     comparativoMercado2.setOption(option);
+//   };
+
+//   // Função para trocar a cor dos rótulos do eixo X
+//   window.changeXAxisLabelColor = function () {
+//     const newColor = option.xAxis.axisLabel.textStyle.color === '#000' ? '#FFFFFF' : '#000';
+//     option.xAxis.axisLabel.textStyle.color = newColor;
+//     comparativoMercado2.setOption(option);
+//   };
+
+//   // Função para trocar a cor dos rótulos do eixo Y
+//   window.changeYAxisLabelColor = function () {
+//     const newColor = option.yAxis.axisLabel.textStyle.color === '#000' ? '#FFFFFF' : '#000';
+//     option.yAxis.axisLabel.textStyle.color = newColor;
+//     comparativoMercado2.setOption(option);
+//   };
+// });
 
 
 document.addEventListener('DOMContentLoaded', function () {
