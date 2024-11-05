@@ -38,7 +38,7 @@ services:
       DB_HOST: nexusenergy-mysql
       DB_USER: root
       DB_PASSWORD: Vidanova-123
-      DB_NAME: nexusEnergy
+      DB_DATABASE: nexusEnergy
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
       AWS_SESSION_TOKEN: ${AWS_SESSION_TOKEN}

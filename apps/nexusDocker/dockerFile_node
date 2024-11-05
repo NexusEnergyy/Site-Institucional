@@ -8,13 +8,16 @@ RUN apt-get update && apt-get install -y git
 WORKDIR /usr/src/app
 
 # Clone o repositório do seu projeto
-RUN git clone https://github.com/NexusEnergyy/Site-Institucional.git .
+RUN git clone https://github.com/NexusEnergyy/nexusEnergy-app.git .
+
+# Navegue até a pasta onde está o projeto que você deseja
+WORKDIR /usr/src/app/nexusEnergy-app/apps/nexusEnergyWeb
 
 # Instale as dependências da aplicação
 RUN npm install
 
 # Exponha a porta que sua aplicação usa
-EXPOSE 80
+EXPOSE 3333
 
 # Comando para iniciar a aplicação
 CMD ["npm", "start"]
