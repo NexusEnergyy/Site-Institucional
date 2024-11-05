@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  nexusenergy-mysql:
+    build:
+      context: .
+      dockerfile: dockerFile_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./arquivos_sql:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    networks:
+      - nexus_network
+
+  nexusenergy-java:
+    build:
+      context: .
+      dockerfile: dockerFile_java
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+    depends_on:
+      - nexusenergy-mysql
+    networks:
+      - nexus_network
+
+  nexusenergy-node:
+    build:
+      context: .
+      dockerfile: dockerFile_node
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      APP_PORT: ${APP_PORT}
+    ports:
+      - "80:80"
+    networks:
+      - nexus_network
+
+networks:
+  nexus_network:
+    driver: bridge

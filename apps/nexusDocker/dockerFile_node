@@ -1,0 +1,20 @@
+# Use a imagem oficial do Node.js como imagem base
+FROM node:latest
+
+# Instale o Git no container para poder clonar o repositório
+RUN apt-get update && apt-get install -y git
+
+# Defina o diretório de trabalho dentro do container
+WORKDIR /usr/src/app
+
+# Clone o repositório do seu projeto
+RUN git clone https://github.com/NexusEnergyy/Site-Institucional.git .
+
+# Instale as dependências da aplicação
+RUN npm install
+
+# Exponha a porta que sua aplicação usa
+EXPOSE 80
+
+# Comando para iniciar a aplicação
+CMD ["npm", "start"]
