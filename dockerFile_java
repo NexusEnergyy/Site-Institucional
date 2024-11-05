@@ -5,13 +5,9 @@ FROM openjdk:21-slim
 RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
 
 # Define o diretório de trabalho dentro do container
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Clona o repositório do seu projeto
-RUN git clone https://github.com/NexusEnergyy/nexusEnergy-app.git .
-
-# Navegue até a pasta onde está o projeto que você deseja
-WORKDIR /usr/src/app/nexusEnergy-app/apps/nexusJava_ETL
+COPY nexusJava_ETL/PrototipoJar.jar .
 
 # Executa o arquivo JAR
 CMD ["java", "-jar", "PrototipoJar.jar"]

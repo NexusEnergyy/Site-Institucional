@@ -5,13 +5,15 @@ FROM node:latest
 RUN apt-get update && apt-get install -y git
 
 # Defina o diretório de trabalho dentro do container
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Copia o package json do nexusEnergy
 COPY package*.json ./
 
-# Instale as dependências da aplicação
-RUN npm install
+RUN npm cache clean --force && npm install --verbose
+
+# Copie o código do projeto para o diretório de trabalho
+COPY . .
 
 # Exponha a porta que sua aplicação usa
 EXPOSE 3333
