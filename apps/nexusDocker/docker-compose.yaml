@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  node-app:
+  nexusenergy_node:
     build:
       context: .
       dockerfile: docker-compose
@@ -28,7 +28,7 @@ services:
     volumes:
       - ./arquivos_sql:/docker-entrypoint-initdb.d
 
-  etl-java-api:
+  nexusenergy_java:
     build:
       context: .
       dockerfile: dockerFile_java
