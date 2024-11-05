@@ -4,11 +4,11 @@ services:
   nexusenergy_node:
     build:
       context: .
-      dockerfile: docker-compose
+      dockerfile: dockerFile_node
     ports:
       - "3333:3333"
     environment:
-      AMBIENTE_PROCESSO: development
+      AMBIENTE_PROCESSO: producao
       APP_HOST: localhost
       APP_PORT: 3333
       DB_HOST: nexusenergy-mysql
