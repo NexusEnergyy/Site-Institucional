@@ -4,7 +4,7 @@ USE nexusEnergy;
 
 CREATE TABLE Matriz (
     idMatriz INT PRIMARY KEY AUTO_INCREMENT,
-    CNPJ CHAR(20),
+    CNPJ VARCHAR(45),
     nome VARCHAR(245),
     ativoTotal INT
 );
