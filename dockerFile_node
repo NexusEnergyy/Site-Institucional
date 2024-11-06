@@ -16,7 +16,7 @@ RUN npm cache clean --force && npm install --verbose
 COPY . .
 
 # Torne o script de espera executável
-RUN chmod +x /app/wait-for-mysql-connection.sh
+RUN chmod +x /app/wait-for-mysql.sh
 
 # Exponha a porta que o aplicativo irá rodar
 EXPOSE 3333
