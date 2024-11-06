@@ -1,8 +1,3 @@
-CREATE DATABASE nexusEnergy;
-
-USE nexusEnergy;
-
-
 CREATE TABLE Matriz (
     idMatriz INT PRIMARY KEY AUTO_INCREMENT,
     CNPJ CHAR(18),

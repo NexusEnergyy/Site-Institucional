@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y default-mysql-client
 # Define o diretório de trabalho dentro do container
 WORKDIR /app
 
+# Copia o protótipo jar no diretório de trabalho
 COPY nexusJava_ETL/PrototipoJar.jar .
 
 # Copie o script de espera para o container
