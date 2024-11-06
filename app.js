@@ -1,7 +1,5 @@
-// Acima, temos o uso do operador ternário para definir o caminho do arquivo .env
-// A sintaxe do operador ternário é: condição ? valor_se_verdadeiro : valor_se_falso
+require("dotenv").config({ path: '.env' });
 
-require("dotenv").config();
 var express = require("express");
 var cors = require("cors");
 var path = require("path");
