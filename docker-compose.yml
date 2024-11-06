@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  nexusenergy_node:
+    build:
+      context: .
+      dockerfile: dockerFile_node
+    ports:
+      - "3333:3333"
+    environment:
+      AMBIENTE_PROCESSO: producao
+      APP_HOST: localhost
+      APP_PORT: 3333
+      DB_HOST: nexusenergy-mysql
+      DB_USER: root
+      DB_PASSWORD: root123
+      DB_DATABASE: nexusEnergy
+    depends_on:
+      - nexusenergy-mysql
+
+  nexusenergy-mysql:
+    image: mysql:8.0.39
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: nexusEnergy
+    volumes:
+      - ./arquivos_sql:/docker-entrypoint-initdb.d
+
+  nexusenergy_java:
+    build:
+      context: .
+      dockerfile: dockerFile_java
+    depends_on:
+      - nexusenergy-mysql
+    environment:
+      DB_HOST: nexusenergy-mysql
+      DB_USER: root
+      DB_PASSWORD: root123
+      DB_DATABASE: nexusEnergy
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_SESSION_TOKEN: ${AWS_SESSION_TOKEN}
+volumes:
+  db_data:
