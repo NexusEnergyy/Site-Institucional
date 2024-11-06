@@ -4,6 +4,9 @@ FROM node:latest
 # Instale o Git no container para poder clonar o repositório
 RUN apt-get update && apt-get install -y git
 
+# Instale o cliente MySQL
+RUN apt-get update && apt-get install -y default-mysql-client
+
 # Defina o diretório de trabalho dentro do container
 WORKDIR /app
 
