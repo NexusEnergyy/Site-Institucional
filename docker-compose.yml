@@ -9,7 +9,7 @@ services:
       - "3333:3333"
     environment:
       AMBIENTE_PROCESSO: producao
-      APP_HOST: localhost
+      APP_HOST: 0.0.0.0
       APP_PORT: 3333
       DB_HOST: nexusenergy-mysql
       DB_USER: root
@@ -26,6 +26,7 @@ services:
       MYSQL_ROOT_PASSWORD: senhaROOT@123
       MYSQL_DATABASE: nexusEnergy
     volumes:
+      - db_data:/var/lib/mysql
       - ./arquivos_sql:/docker-entrypoint-initdb.d
 
   nexusenergy_java:

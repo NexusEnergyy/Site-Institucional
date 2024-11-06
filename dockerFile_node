@@ -13,6 +13,7 @@ WORKDIR /app
 # Copia o package json do nexusEnergy
 COPY package*.json ./
 
+# Roda o npm install limpando o cache
 RUN npm cache clean --force && npm install --verbose
 
 # Copie o código do projeto para o diretório de trabalho
@@ -25,4 +26,4 @@ RUN chmod +x /app/wait-for-mysql.sh
 EXPOSE 3333
 
 # Comando para rodar o aplicativo
-CMD ["sh", "/app/wait-for-mysql.sh", "db", "node", "app.js"]
+CMD ["sh", "/app/wait-for-mysql.sh", "nexusenergy-mysql", "node", "app.js"]
