@@ -17,7 +17,7 @@ body {
     display: flex;
     justify-content: center;
     position: relative;
-    top: -680px;
+    top: -735px;
     transition: transform 1.5s ease;
 }
 
