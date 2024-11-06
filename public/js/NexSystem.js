@@ -362,64 +362,74 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// document.addEventListener('DOMContentLoaded', function () {
-//   const comparativoMercado2 = echarts.init(document.getElementById('comparativoMercado2'));
+document.addEventListener('DOMContentLoaded', function () {
+  const comparativoMercado2 = echarts.init(document.getElementById('comparativoMercado2'));
 
-//   var option = {
-//     title: { text: 'Empresas:' },
-//     tooltip: { trigger: 'axis' },
-//     legend: {
-//       data: ['Tim', 'OI', 'Vivo', 'Claro'],
-//       textStyle: { color: '#FFFFFF' }
-//     },
-//     grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
-//     toolbox: { feature: { saveAsImage: {} } },
-//     xAxis: {
-//       type: 'category',
-//       boundaryGap: false,
-//       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-//       axisLabel: { textStyle: { color: '#FFFFFF' } }
-//     },
-//     yAxis: {
-//       type: 'value',
-//       axisLabel: { textStyle: { color: '#FFFFFF' } } // Cor inicial dos rótulos do eixo Y
-//     },
-//     series: [
-//       { name: 'Tim', type: 'line', stack: 'Total', data: [120, 132, 101, 134, 90, 230, 210] },
-//       { name: 'OI', type: 'line', stack: 'Total', data: [220, 182, 191, 234, 290, 330, 310] },
-//       { name: 'Vivo', type: 'line', stack: 'Total', data: [150, 232, 201, 154, 190, 330, 410] },
-//       { name: 'Claro', type: 'line', stack: 'Total', data: [320, 332, 301, 334, 390, 330, 320] }
-//     ]
-//   };
+  const option = {
+    title: { 
+      text: 'Comparativo de Mercado das Empresas', 
+      textStyle: { color: '#FFFFFF' },
+    },
+    tooltip: { 
+      trigger: 'axis',
+      formatter: function(params) {
+        let content = `${params[0].axisValue}<br>`;
+        params.forEach(item => {
+          content += `${item.marker} ${item.seriesName}: ${item.data}<br>`;
+        });
+        return content;
+      }
+    },
+    legend: {
+      data: ['Tim', 'OI', 'Vivo', 'Claro'],
+      textStyle: { color: '#FFFFFF' }
+    },
+    grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
+    toolbox: { feature: { saveAsImage: {} } },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      axisLabel: { textStyle: { color: '#FFFFFF' } }
+    },
+    yAxis: {
+      type: 'value',
+      axisLabel: { textStyle: { color: '#FFFFFF' } }
+    },
+    series: [
+      { name: 'Tim', type: 'line', stack: 'Total', data: [120, 132, 101, 134, 90, 230, 210], color: '#1f77b4' },
+      { name: 'OI', type: 'line', stack: 'Total', data: [220, 182, 191, 234, 290, 330, 310], color: '#ff7f0e' },
+      { name: 'Vivo', type: 'line', stack: 'Total', data: [150, 232, 201, 154, 190, 330, 410], color: '#2ca02c' },
+      { name: 'Claro', type: 'line', stack: 'Total', data: [320, 332, 301, 334, 390, 330, 320], color: '#9467bd' }
+    ]
+  };
 
-//   comparativoMercado2.setOption(option);
+  comparativoMercado2.setOption(option);
 
-//   // Redimensionamento automático
-//   window.addEventListener('resize', function () {
-//     comparativoMercado2.resize();
-//   });
+  // Redimensionamento automático
+  window.addEventListener('resize', function () {
+    comparativoMercado2.resize();
+  });
 
-//   // Função para trocar a cor da legenda
-//   window.changeLegendColor = function () {
-//     const newColor = option.legend.textStyle.color === '#000' ? '#FFFFFF' : '#000';
-//     option.legend.textStyle.color = newColor;
-//     comparativoMercado2.setOption(option);
-//   };
-
-//   // Função para trocar a cor dos rótulos do eixo X
-//   window.changeXAxisLabelColor = function () {
-//     const newColor = option.xAxis.axisLabel.textStyle.color === '#000' ? '#FFFFFF' : '#000';
-//     option.xAxis.axisLabel.textStyle.color = newColor;
-//     comparativoMercado2.setOption(option);
-//   };
-
-//   // Função para trocar a cor dos rótulos do eixo Y
-//   window.changeYAxisLabelColor = function () {
-//     const newColor = option.yAxis.axisLabel.textStyle.color === '#000' ? '#FFFFFF' : '#000';
-//     option.yAxis.axisLabel.textStyle.color = newColor;
-//     comparativoMercado2.setOption(option);
-//   };
-// });
+  // Função para trocar a cor da legenda
+  window.changeLegendColor = function () {
+    const newColor = option.legend.textStyle.color === '#000' ? '#FFFFFF' : '#000';
+    option.legend.textStyle.color = newColor;
+    comparativoMercado2.setOption(option);
+  };
+  // Função para trocar a cor dos rótulos do eixo X
+  window.changeXAxisLabelColor = function () {
+    const newColor = option.xAxis.axisLabel.textStyle.color === '#000' ? '#FFFFFF' : '#000';
+    option.xAxis.axisLabel.textStyle.color = newColor;
+    comparativoMercado2.setOption(option);
+  };
+  // Função para trocar a cor dos rótulos do eixo Y
+  window.changeYAxisLabelColor = function () {
+    const newColor = option.yAxis.axisLabel.textStyle.color === '#000' ? '#FFFFFF' : '#000';
+    option.yAxis.axisLabel.textStyle.color = newColor;
+    comparativoMercado2.setOption(option);
+  };
+});
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -571,3 +581,118 @@ window.addEventListener('resize', function () {
   historicoChart.resize();
 });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Inicializa o gráfico dentro do elemento com ID 'historicoChart'
+  const TreeGraphic = echarts.init(document.getElementById('TreeGraphic'));;
+  var option;
+
+  const treeDataURI =
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAA2CAYAAADUOvnEAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA5tJREFUeNrcWE1oE0EUnp0kbWyUpCiNYEpCFSpIMdpLRTD15s2ePHixnj00N4/GoyfTg2fbiwdvvagHC1UQ66GQUIQKKgn1UAqSSFua38b3prPJZDs7s5ufKn0w7CaZ2W/fe9/73kyMRqNB3Nrj1zdn4RJ6du9T2u1a2iHYSxjP4d41oOHGQwAIwSUHIyh8/RA8XeiXh0kLGFoaXiTecw/hoTG4ZCSAaFkY0+BpsZceLtiAoV2FkepZSDk5EpppczBvpuuQCqx0YnkYcVVoqQYMyeCG+lFdaGkXeVOFNu4aEBalOBk6sbQrQF7gSdK5JXjuHXuYVIVyr0TZ0FjKDeCs6km7JYMUdrWAUVmZUBtmRnVPK+x6nIR2xomH06R35ggwJPeofWphr/W5UjPIxq8B2bKgE8C4HVHWvg+2gZjXj19PkdFztY7bk9TDCH/g6oafDPpaoMvZIRI5WyMB/0Hv++HkpTKE0kM+A+h20cPAfN4GuRyp9G+LMTW+z8rCLI8b46XO9zRcYZTde/j0AZm8WGb3Y2F9KLlE2nqYkjFLJAsDOl/lea0q55mqxXcL7YBc++bsCPMe8mUyU2ZIpnCoblca6TZA/ga2Co8PGg7UGUlEDd0ueptglbrRZLLE7poti6pCaWUo2pu1oaYI1CF9b9cCZPO3F8ikJQ/rPpQT5YETht26ss+uCIL2Y8vHwJGpA96GI5mjOlaKhowUy6BcNcgIhDviTGWCGFaqEuufWz4pgcbCh+w0gEOyOjTlTtYYlIWPYWKEsLDzOs+nhzaO1KEpd+MXpOoTUgKiNyhdy5aSMPNVqxtSsJFgza5EWA4zKtCJ2OGbLn0JSLu8+SL4G86p1Fpr7ABXdGFF/UTD4rfmFYFw4G9VAJ9SM3aF8l3yok4/J6IV9sDVb36ynmtJ2M5+CwxTYBdKNMBaocKGV2nYgkz6r+cHBP30MzAfi4Sy+BebSoPIOi8PW1PpCCvr/KOD4k9Zu0WSH0Y0+SxJ2awp/nlwKtcGyHOJ8vNHtRJzhPlsHr8MogtlVtwUU0tSM1x58upSKbfJnSKUR07GVMKkDNfXpzpv0RTHy3nZMVx5IOWdZIaPabGFvfpwpjnvfmJHXLaEvZUTseu/TeLc+xgAPhEAb/PbjO6PBaOTf6LQRh/dERde23zxLtOXbaKNhfq2L/1fAOPHDUhOpIf5485h7l+GNHHiSYPKE3Myz9sFxoJuAyazvwIMAItferha5LTqAAAAAElFTkSuQmCC';
+  const beginPercentage = 0;
+  const endPercentage = 100;
+  const lineCount = 7;
+
+  option = {
+    color: ['#e54035'],
+    xAxis: {
+      axisLine: { show: false },
+      axisLabel: { show: false },
+      axisTick: { show: false },
+      splitLine: { show: false },
+      name: beginPercentage + '%',
+      nameLocation: 'middle',
+      nameGap: 20,
+      nameTextStyle: {
+        color: 'white',
+        fontWeight: 900,
+        fontSize: 30,
+        fontFamily: 'Wix Madefor Display, system-ui'
+      },
+      min: -2800,
+      max: 2800
+    },
+    yAxis: {
+      data: makeCategoryData(),
+      show: false
+    },
+    grid: {
+      top: 'center',
+      height: 280
+    },
+    series: [
+      {
+        name: 'all',
+        type: 'pictorialBar',
+        symbol: 'image://' + treeDataURI,
+        symbolSize: [20, 35],
+        symbolRepeat: true,
+        data: makeSeriesData(beginPercentage),
+        animationEasing: 'elasticOut'
+      },
+      {
+        name: 'all',
+        type: 'pictorialBar',
+        symbol: 'image://' + treeDataURI,
+        symbolSize: [20, 35],
+        symbolRepeat: true,
+        data: makeSeriesData(beginPercentage, true),
+        animationEasing: 'elasticOut'
+      }
+    ]
+  };
+
+  function makeCategoryData() {
+    var categoryData = [];
+    for (var i = 0; i < lineCount; i++) {
+      categoryData.push(i + 'a');
+    }
+    return categoryData;
+  }
+
+  function makeSeriesData(percentage, negative) {
+    const r = (percentage - beginPercentage + 1) * 10;
+    const seriesData = [];
+    for (let i = 0; i < lineCount; i++) {
+      let sign = negative ? -1 * (i % 3 ? 0.9 : 1) : 1 * ((i + 1) % 3 ? 0.9 : 1);
+      seriesData.push({
+        value:
+          sign *
+          (percentage <= beginPercentage + 1
+            ? Math.abs(i - lineCount / 2 + 0.5) < lineCount / 5
+              ? 5
+              : 0
+            : (lineCount - Math.abs(i - lineCount / 2 + 0.5)) * r),
+        symbolOffset: i % 2 ? ['50%', 0] : undefined
+      });
+    }
+    return seriesData;
+  }
+
+  var currentPercentage = beginPercentage;
+  setInterval(function () {
+    currentPercentage += 25;
+    if (currentPercentage > endPercentage) {
+      currentPercentage = beginPercentage;
+    }
+    TreeGraphic.setOption({
+      xAxis: {
+        name: currentPercentage + '%'
+      },
+      series: [
+        {
+          data: makeSeriesData(currentPercentage)
+        },
+        {
+          data: makeSeriesData(currentPercentage, true)
+        }
+      ]
+    });
+  }, 800);
+
+  option && TreeGraphic.setOption(option);
+  // Responsividade para redimensionamento da janela
+  window.addEventListener('resize', function () {
+    TreeGraphic.resize();
+  });
+  });

@@ -675,6 +675,7 @@ body {
         width: 100%;
         gap: 10px;
         display: grid;
+
         grid-template-rows: 10% 85%;
         border-radius: 10px;
 
@@ -692,6 +693,15 @@ body {
         & .graphicContent {
           background-color: var(--boxGraphicContent);
           border-radius: 15px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        & #consumoHorarioChart{
+
+          width: 100%;
+          height: 100%;
         }
       }
     }
@@ -763,21 +773,40 @@ body {
       display: flex;
       justify-content: center;
       align-items: center;
+      gap: 10px;
+      flex-direction: column;
+
+
+      & .titleTree{
+        width: 100%;
+        padding: 0 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: var(--titulos);
+        font-size: 25px;
+        font-family: "Wix Madefor Display", system-ui;
+        font-weight: 700;
+      }
 
       & .Three {
-        height: 95%;
+        height: 82.5%;
         border-radius: 10px;
-        width: 96%;
+        width: 96.5%;
         display: flex;
+        overflow: hidden;
         justify-content: center;
         align-items: center;
         background-color: var(--boxGraphicContent);
 
-        & img {
-          width: 100%;
-          height: 100%;
-          border-radius: 10px;
-          background-image: cover;
+
+
+        & #TreeGraphic  {
+          position: relative;
+          top: -70px;
+          width: 390px;
+          height: 440px
         }
       }
     }
@@ -834,7 +863,15 @@ body {
 
           & .contentMercado,
           .contentGDP {
+            background-color: var(--boxGraphicContent);
+            width: 100%;
+            height: 100%;
             border-radius: 10px;
+
+            & #comparativoMercado2{
+              width: 1190px;
+              height: 320px;
+            }
 
             & .containerContentGDP{
               display: grid;
@@ -1152,7 +1189,7 @@ body {
         display: flex;
         border-radius: 50%;
         width: 42%;
-        background-image: url(../assets/nexSystem/Veigh.jpeg);
+        background-image: url(../assets/nexSystem/ed09ecde-6b65-448c-9681-f06add7cf182.jpeg);
         background-size: cover;
         background-position-y: bottom;
         height: 65%;
