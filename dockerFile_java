@@ -4,6 +4,8 @@ FROM openjdk:21-slim
 # Instala o Git no container
 RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
 
+# Instale o cliente MySQL
+RUN apt-get update && apt-get install -y default-mysql-client
 
 # Define o diretório de trabalho dentro do container
 WORKDIR /app
