@@ -9,7 +9,7 @@ services:
       - "3333:3333"
     environment:
       AMBIENTE_PROCESSO: producao
-      APP_HOST: 0.0.0.0
+      APP_HOST: localhost
       APP_PORT: 3333
       DB_HOST: nexusenergy-mysql
       DB_USER: root
