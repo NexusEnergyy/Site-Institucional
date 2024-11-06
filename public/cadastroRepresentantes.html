@@ -38,14 +38,23 @@
                     <h2 id="titleText">Cadastro Empresa
                     </h2>
                 </div>
+
                 <div class="inputBox" id="inputBox">
+                    <div class="input-group">
+                        <select required="" type="text" name="text" class="input select" id="select_Categoria" onchange="selecionar_categoria()">
+                            <option vazio></option>
+                            <option matriz>Matriz</option>
+                            <option filial>Filial</option>
+                        </select>
+                        
+                        <label class="user-label">Categoria</label>
+                    </div>
                     <div class="input-group">
                         <input required="" type="text" name="text" class="input" id="input_nome_empresa">
                         <label class="user-label">Nome da empresa</label>
                     </div>
-
                     <div class="input-group">
-                        <select required="" type="text" name="text" class="input select" id="selectSubMercado">
+                        <select required="" type="text" name="text" class="input select" id="select_SubMercado">
                             <option vazio></option>
                             <option sudesteCentroOeste>Sudeste / Centro Oeste</option>
                             <option Sul>Sul</option>
@@ -56,13 +65,26 @@
                     </div>
 
                     <div class="input-group">
-                        <input required="" type="text" name="text" class="input" id="input_logradouro">
-                        <label class="user-label">Logradouro</label>
+                        <input required="" type="text" name="text" class="input" id="input_cidade">
+                        <label class="user-label">Cidade</label>
+                    </div>
+                    <div class="input-group">
+                        <input required="" type="text" name="text" class="input" id="input_UF">
+                        <label class="user-label">UF</label>
                     </div>
 
                     <div class="input-group">
-                        <input required="" type="text" name="text" class="input" id="input_CNPJ" minlength="14" maxlength="14">
+                        <input required="" type="text" name="text" class="input" id="input_CNPJ" minlength="14"
+                            maxlength="14">
                         <label class="user-label">CNPJ</label>
+                    </div>
+
+                    <!-- Quando for selecionado categoria matriz isso aparece -->
+                    <div id = "campos_matriz" style="display: none;">
+                        <div class="input-group">
+                            <input required="" type="text" name="text" class="input" id="input_ativo_total">
+                            <label class="user-label">Ativo total</label>
+                        </div>
                     </div>
 
                     <button onclick="cadastrar_empresa()">Próximo</button>
@@ -102,12 +124,13 @@
                         <label class="user-label">Matricula</label>
                     </div>
 
-                    <button onclick="CadastrarFuncionarioADM()">Cadastrar</button>
+                    <button onclick="cadastrar_adm()">Cadastrar</button>
                 </div>
 
                 <div id="resposta_erro2"></div>
 
-                <p class="textCadastro2">Ainda não cadastrou a empresa? <b id="voltarPrimeiraTela" onclick="voltarPrimeiraTela()">Voltar</b></p>
+                <p class="textCadastro2">Ainda não cadastrou a empresa? <b id="voltarPrimeiraTela"
+                        onclick="voltarPrimeiraTela()">Voltar</b></p>
 
 
                 <p class="copyRight">Copyright 2024 - NexusEnergy Inc. All rights Reserved</p>

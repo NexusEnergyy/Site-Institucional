@@ -25,7 +25,7 @@ body {
 /* Parte cinza da box -------------------------------------------------*/
 .boxCinza {
     width: 570px;
-    height: 720px;
+    height: 850px;
     position: absolute;
     z-index: 2;
     background-color: #ffffff5b;
@@ -114,7 +114,7 @@ body {
 /* Parte rosa da box -------------------------------------------------*/
 .boxRosa {
     width: 570px;
-    height: 720px;
+    height: 850px;
     position: absolute;
     z-index: 1;
     background-color: #ffffff27;
