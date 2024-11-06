@@ -1,3 +1,5 @@
+CREATE DATABASE nexusEnergy;
+
 USE nexusEnergy;
 
 CREATE TABLE Matriz (

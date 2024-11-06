@@ -26,7 +26,6 @@ services:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: senhaROOT@123
-      MYSQL_DATABASE: nexusEnergy
     volumes:
       - db_data:/var/lib/mysql
       - ./arquivos_sql:/docker-entrypoint-initdb.d
