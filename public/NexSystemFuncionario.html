@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexSystem | DASHBOARD</title>
+    <link rel="stylesheet" href="./css/NexSystemFuncionario.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="shortcut icon" href="./assets/nexSystem/logoNex.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Montagu+Slab:opsz,wght@16..144,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Montagu+Slab:opsz,wght@16..144,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Montagu+Slab:opsz,wght@16..144,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Montagu+Slab:opsz,wght@16..144,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Wix+Madefor+Display:wght@400..800&display=swap"
+        rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/17011d8c1f.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div data-aos="zoom-out" class="container">
+        <nav id="ativar">
+            <div id="menu">
+                <button id="transition"><img src="./assets/nexSystem/logoNex.png" alt="Logo"></button>
+                <h2 id="mainTitle">Nexus Energy</h2>
+            </div>
+            <ul id="menuItens">
+                <li id="dashboardItem">
+                    <i title="Dashboard" class="material-icons">dashboard</i>
+                    <h4 id="titulo">Dashboard</h4>
+                </li>
+                <li id="performanceItem">
+                    <i title="Performance" class="material-icons">query_stats</i>
+                    <h4 id="titulo2">Performance</h4>
+                </li>
+                <li id="empresasItem">
+                    <i title="Insights"  class="fa-solid fa-lightbulb"></i>
+                    <h4 id="titulo3">Empresa</h4>
+                </li>
+            </ul>
+            <div class="line">
+                <div class="lines"></div>
+            </div>
+            <div id="config">
+                <button title="Configurações" id="transition2">
+                    <svg id="gear" class="gear-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path fill="var(--titulos)"
+                            d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z" />
+                    </svg>
+                </button>
+                <h2 id="configNex">Configuração</h2>
+            </div>
+            <ul id="menuItens2">
+                <li id="perfilItem">
+                    <i title="Editar Perfil" class="fa-solid fa-user-pen"></i>
+                    <h4 id="titulo4">Editar Perfil</h4>
+                </li>
+                <li id="temaItem">
+                    <i title="Mudar Tema" class="fa-solid fa-circle-half-stroke"></i>
+                    <h4 id="titulo5">Tema</h4>
+                </li>
+                <li>
+                    <i id="saida" title="Sair" class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <h4 id="titulo6">Sair</h4>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="highContentNex">
+        <div data-aos="zoom-out" class="NamePage">
+            <div class="currentPage">
+                <div class="contentPage">DASHBOARD/Home</div>
+            </div>
+            <div class="information">
+                <div class="notify">
+                    <button class="sininho">
+                        <i class="fa-solid fa-bell fa-2xl" style="color: #ffffff;"></i>
+                    </button>
+                </div>
+                <div class="field">
+                    <marquee direction="">
+                        NEXUS ENERGY
+                    </marquee>
+                </div>
+                <div class="perfil">
+                    <button id="perfilItem" class="perfilIcon">
+                        <i class="fa-solid fa-face-grin-tongue-squint fa-2xl" style="color: #ffffff;"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div data-aos="zoom-out" class="Kpis">
+            <div class="cardKpis">
+                <div class="containerKPItitulo">
+                    <div class="titleKpi">Consumo Medio Diário</div>
+                    <div class="insight">2<span style="color: #0CBDD9; margin: 0;">M</span><span
+                            style="color: #FFBB00; margin: 0;">Wh</span></div>
+                </div>
+            </div>
+            <div class="cardKpis">
+                <div class="containerKPItitulo">
+                    <div class="titleKpi">Eficiência das Máquinas</div>
+                    <div class="insight">3.0%</div>
+                </div>
+            </div>
+            <div class="cardKpis">
+                <div class="containerKPItitulo">
+                    <div class="titleKpi">Previsão Anual da Emissão Co2</div>
+                    <div class="insight">1.023.092<span style="color: rgb(196, 52, 52); margin: 0;">Kg<span></div>
+                </div>
+            </div>
+            <div class="cardKpis">
+                <div class="containerKPItitulo">
+                    <div class="titleKpi">Compensação Ambiental</div>
+                    <div class="insight"><img src="./assets/icon/Clip path group.png" alt="">140</div>
+                </div>
+            </div>
+        </div>
+        <div data-aos="zoom-out" class="Graphics">
+            <div class="GraphicDash">
+                <div class="consumo">
+                    <div class="titleGraphic">Consumo Horário</div>
+                    <div class="graphicContent">
+                        <span id="consumoHorarioChart"></span>
+                    </div>
+                </div>
+                <div class="consumo">
+                    <div class="titleGraphic">Consumo Mensal</div>
+                    <div class="graphicContent" id="consumoMensalChart" style="width: 100%; height: 100%;"></div>
+                </div>
+                <div class="consumo">
+                    <div class="titleGraphic">Previsão de Consumo</div>
+                    <div class="graphicContent" id="previsaoConsumoChart" style="width: 100%; height: 100%;"></div>
+                </div>
+            </div>
+            <div class="GraphicDash">
+                <div class="EmissaoCo2">
+                    <div class="titleCo2">Emissão de Co2</div>
+                    <div class="contentCo2" id="emissaoCo2Chart" style="width: 100%; height: 100%;"></div>
+                </div>
+            </div>
+            <div class="GraphicDash">
+                <div class="historicoConsumo">
+                    <div class="titleHistory">Histórico de Consumo</div>
+                    <div class="graphicHistory" id="historicoChart" style="width: 100%; height: 100%;"></div>
+                </div>
+            </div>
+            <div class="GraphicDash">
+                <div class="titleTree">Nivel de sustentabilidade</div>
+                <div class="Three">
+                    <span id="TreeGraphic"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="highContentNex2" style="display: none;">
+        <div data-aos="zoom-out" class="NamePage">
+            <div class="currentPage">
+                <div class="contentPage">DASHBOARD/Performance</div>
+            </div>
+            <div class="information">
+                <div class="notify">
+                    <button class="sininho">
+                        <i class="fa-solid fa-bell fa-2xl" style="color: #ffffff;"></i>
+                    </button>
+                </div>
+                <div class="field">
+                    <div class="search">
+                        <input type="text" placeholder="Procurar empresa" maxlength="25">
+                        <i class="fa-solid fa-magnifying-glass" style="color: var(--titulos);"></i>
+                    </div>
+                </div>
+                <div id="perfilItem" class="perfil">
+                    <i class="fa-solid fa-face-grin-tongue-squint fa-2xl" style="color: #ffffff;"></i>
+                </div>
+            </div>
+        </div>
+        <div class="PerformanceContent">
+            <div class="leftPerf">
+                <div class="graphicsPerf">
+                    <div class="comparativoMercado">
+                        <div class="titleMercado">Comparativo de Mercado</div>
+                        <div class="contentMercado">
+                            <span id="comparativoMercado2" ></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="graphicsPerf">
+                    <div class="comparativoProprio">
+                        <div class="titleGDP">Informações da empresa</div>
+                        <div class="contentGDP">
+                            <div class="containerContentGDP">
+                                <div class="numFiliais">
+                                    <div class="titleNumfiliais">Numero de filiais</div>
+                                    <div class="contentNumFiliais">
+                                        <img id="graficoMockado" src="./assets/nexSystem/filialjpg.jpg" alt="">
+                                    </div>
+                                </div>
+                                <div class="mediaConsuFiliais">
+                                    <div class="titleMediaConsuFiliais"> Consumo das filiais</div>
+                                    <div class="contentMediaConsuFiliais">
+                                        <img id="graficoMockado" src="./assets/nexSystem/filialjpg.jpg" alt="">
+                                    </div>
+                                </div>
+                                <div class="compFiliais">
+                                    <div class="titlecompFiliais">Comparativo entre filiais</div>
+                                    <div class="contentcompFiliais">
+                                        <img id="graficoMockado" src="./assets/nexSystem/filialjpg.jpg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rightPerf">
+                <div class="rankingPerf">
+                    <div class="titleRank">Ranking de Consumo</div>
+                    <div class="ranking">
+                        <div class="contentRank">
+                            <div class="rank1">
+                                <div class="numLeftRank">
+                                    <div class="numRank">1</div>
+                                </div>
+                                <div class="infoRightRank">
+                                    <div class="titleInfoRank">Telefonica (Vivo)</div>
+                                    <div class="KMHInfoRank">200 GWh</div>
+                                </div>
+                            </div>
+                            <div class="rank1">
+                                <div class="numLeftRank">
+                                    <div class="numRank">2</div>
+                                </div>
+                                <div class="infoRightRank">
+                                    <div class="titleInfoRank">TIM</div>
+                                    <div class="KMHInfoRank">170 GWh</div>
+                                </div>
+                            </div>
+                            <div class="rank1">
+                                <div class="numLeftRank">
+                                    <div class="numRank">3</div>
+                                </div>
+                                <div class="infoRightRank">
+                                    <div class="titleInfoRank">Claro</div>
+                                    <div class="KMHInfoRank"> 180 GWh</div>
+                                </div>
+                            </div>
+                            <div class="rank1">
+                                <div class="numLeftRank">
+                                    <div class="numRank">4</div>
+                                </div>
+                                <div class="infoRightRank">
+                                    <div class="titleInfoRank">OI</div>
+                                    <div class="KMHInfoRank">150 GWh</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="highContentNex3" style="display: none;">
+        <div data-aos="zoom-out" class="NamePage">
+            <div class="currentPage">
+                <div class="contentPage">DASHBOARD/Insights
+                </div>
+            </div>
+            <div class="information">
+                <div class="notify">
+                    <button class="sininho">
+                        <i class="fa-solid fa-bell fa-2xl" style="color: #ffffff;"></i>
+                    </button>
+                </div>
+                <div class="field">
+                    <marquee direction="">
+                        NEXUS ENERGY
+                    </marquee>
+                </div>
+                <div id="perfilItem" class="perfil">
+                    <i class="fa-solid fa-face-grin-tongue-squint fa-2xl" style="color: #ffffff;"></i>
+                </div>
+            </div>
+        </div>
+        <div data-aos="zoom-out" class="Funcionarios">
+            <dialog id="modal" class="modalFuncionario">
+                <button onclick="fecharModal()">Close</button>
+            </dialog>
+            <div class="titleFuncionarios">
+                <h2> Histórico de Insights </h2>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="highContentNex4" style="display: none;">
+        <div data-aos="zoom-out" class="NamePage">
+            <div class="currentPage">
+                <div class="contentPage">DASHBOARD/Perfil</div>
+            </div>
+            <div class="information">
+                <div class="notify">
+                    <button class="sininho">
+                        <i class="fa-solid fa-bell fa-2xl" style="color: #ffffff;"></i>
+                    </button>
+                </div>
+                <div class="field">
+                    <marquee direction="">
+                        NEXUS ENERGY
+                    </marquee>
+                </div>
+                <div class="perfil">
+                    <button id="perfilItem" class="perfilIcon">
+                        <i class="fa-solid fa-face-grin-tongue-squint fa-2xl" style="color: #ffffff;"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="contentProfile">
+            <div class="leftProfile">
+                <div class="imgProfileUser"></div>
+                <div class="infoUser">
+                    <div class="Username">LEONARDO</div>
+                    <div class="EntUser">SPTECH</div>
+                    <div class="confirmarAlt">
+                        <label for="file-upload" class="custom-file-label">Escolher foto</label>
+                        <input id="file-upload" type="file" accept=".jpg, .jpeg, .png" />
+                    </div>
+                    <div class="membroData">Membro desde: 2024</div>
+                </div>
+            </div>
+            <div class="rightProfile">
+                <div class="titleProfileUser">
+                    <div class="edit">Editar Perfil</div>
+                </div>
+                <div class="contentInputUser">
+                    <div class="inputs_box">
+                        <span class="caracterPerson">Nome</span>
+                        <label for="">
+                            <input maxlength="70" placeholder="Digite aqui" type="text">
+                            <span class="correcao">Nome completo</span>
+                        </label>
+
+                        <span class="caracterPerson">E-mail</span>
+                        <label for="">
+                            <input maxlength="90" placeholder="Digite aqui" type="text">
+                            <span class="correcao">@ plmds</span>
+                        </label>
+
+                        <span class="caracterPerson">CPF</span>
+                        <label for="">
+                            <input maxlength="11" placeholder="Digite aqui" type="text">
+                            <span class="correcao">Sem pontos e traços</span>
+                        </label>
+
+                        <span class="caracterPerson">Senha</span>
+                        <label for="">
+                            <input maxlength="90" placeholder="Digite aqui" type="text">
+                            <span class="correcao" id="dica">Senha forte/fraca</span>
+                        </label>
+                    </div>
+                </div>
+                <button>Alterar informações</button>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
+
+<script src="./js/NexSystemFuncionario.js" defer></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
