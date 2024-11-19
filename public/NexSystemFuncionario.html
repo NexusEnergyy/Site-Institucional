@@ -59,8 +59,8 @@
                     <h4 id="titulo2">Performance</h4>
                 </li>
                 <li id="empresasItem">
-                    <i title="Insights" id="lamp"  class="fa-solid fa-lightbulb"></i>
-                    <h4 id="titulo3">Insights</h4>
+                    <i title="Empresas" class="material-icons">apartment</i>
+                    <h4 id="titulo3">Empresa</h4>
                 </li>
             </ul>
             <div class="line">
@@ -89,6 +89,10 @@
                     <h4 id="titulo6">Sair</h4>
                 </li>
             </ul>
+            <div class="boltIA" id="boltItem">
+                <button title="Bolt IA" class="cachorro"><img src="assets/icon/icone BoltIA.png" alt=""></button>
+                <h2 id="Bolt">Bolt IA</h2>
+            </div>
         </nav>
     </div>
 
@@ -125,14 +129,8 @@
             </div>
             <div class="cardKpis">
                 <div class="containerKPItitulo">
-                    <div class="titleKpi">Eficiência das Máquinas</div>
-                    <div class="insight">3.0%</div>
-                </div>
-            </div>
-            <div class="cardKpis">
-                <div class="containerKPItitulo">
-                    <div class="titleKpi">Previsão Anual da Emissão Co2</div>
-                    <div class="insight">1.023.092<span style="color: rgb(196, 52, 52); margin: 0;">Kg<span></div>
+                    <div class="titleKpi">Previsão do gasto do proximo mês</div>
+                    <div class="insight">1000000<span style="color: rgb(196, 52, 52); margin: 0;">R$<span></div>
                 </div>
             </div>
             <div class="cardKpis">
@@ -209,7 +207,7 @@
                     <div class="comparativoMercado">
                         <div class="titleMercado">Comparativo de Mercado</div>
                         <div class="contentMercado">
-                            <span id="comparativoMercado2" ></span>
+                            <span id="comparativoMercado2"></span>
                         </div>
                     </div>
                 </div>
@@ -219,21 +217,15 @@
                         <div class="contentGDP">
                             <div class="containerContentGDP">
                                 <div class="numFiliais">
-                                    <div class="titleNumfiliais">Numero de filiais</div>
+                                    <div class="titleNumfiliais">Número de filiais</div>
                                     <div class="contentNumFiliais">
-                                        <img id="graficoMockado" src="./assets/nexSystem/filialjpg.jpg" alt="">
+                                        <h1>10</h1>
                                     </div>
                                 </div>
                                 <div class="mediaConsuFiliais">
-                                    <div class="titleMediaConsuFiliais"> Consumo das filiais</div>
+                                    <div class="titleMediaConsuFiliais"> Comparativo do consumo entre as filiais</div>
                                     <div class="contentMediaConsuFiliais">
-                                        <img id="graficoMockado" src="./assets/nexSystem/filialjpg.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="compFiliais">
-                                    <div class="titlecompFiliais">Comparativo entre filiais</div>
-                                    <div class="contentcompFiliais">
-                                        <img id="graficoMockado" src="./assets/nexSystem/filialjpg.jpg" alt="">
+                                        <img id="graficoMockado" src="image.png" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -293,8 +285,7 @@
     <div class="highContentNex3" style="display: none;">
         <div data-aos="zoom-out" class="NamePage">
             <div class="currentPage">
-                <div class="contentPage">DASHBOARD/Insights
-                </div>
+                <div class="contentPage">DASHBOARD/Empresa</div>
             </div>
             <div class="information">
                 <div class="notify">
@@ -317,7 +308,22 @@
                 <button onclick="fecharModal()">Close</button>
             </dialog>
             <div class="titleFuncionarios">
-                <h2> Histórico de Insights </h2>
+                <h2> Gerenciar Funcionários </h2>
+            </div>
+            <div class="funcionariosBox">
+                <div class="cardFuncionario">
+                    <div class="imgFuncionario">
+                        <img id="imgFuncionario" src="https://picsum.photos/300/200">
+                    </div>
+
+                    <h2 id="nomeFuncionario"> Nome </h2>
+                    <h1> Função </h1>
+                </div>
+                <!-- <h1> Sem funcionários cadastrados </h1> -->
+            </div>
+            <div class="btnsActions">
+                <div class="btn excluir"> Excluir Funcionários </div>
+                <div onclick="abrirModal()" class="btn adicionar"> Adicionar Funcionários </div>
             </div>
         </div>
     </div>
@@ -395,11 +401,145 @@
         </div>
 
     </div>
+
+
+    <!-- AREA DO PEPE -->
+    <div class="highContentNex5" style="display: none;">
+        <div data-aos="zoom-out" class="NamePage">
+            <div class="currentPage">
+                <div class="contentPage">DASHBOARD/Bolt IA</div>
+            </div>
+            <div class="information">
+                <div class="notify">
+                    <button class="sininho">
+                        <i class="fa-solid fa-bell fa-2xl" style="color: #ffffff;"></i>
+                    </button>
+                </div>
+                <div class="field">
+                    <marquee direction="">
+                        NEXUS ENERGY
+                    </marquee>
+                </div>
+                <div class="perfil">
+                    <button id="perfilItem" class="perfilIcon">
+                        <i class="fa-solid fa-face-grin-tongue-squint fa-2xl" style="color: #ffffff;"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div data-aos="zoom-out" class="boltContent">
+
+            <div class="Interrogacao">
+                <i class="fa-solid fa-question fa-xl" style="color: var(--titulos);"></i>
+                <div class="caption">Digite no <strong style="color: rgb(178, 33, 33);">chat</strong> possiveis <strong
+                        style="color:  rgb(178, 33, 33);">dúvidas</strong></div>
+            </div>
+
+            <div class="contentImgTexto">
+                <div class="dogLogo">
+                    <div title="Bolt IA" class="cachorro"><svg class="cachorroContent" width="141" height="192"
+                            viewBox="0 0 141 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M0.057477 160.022C0.057477 160.022 23.2158 179.847 55.7408 180.709C83.3239 181.456 86.7143 173.813 86.7143 173.813V161.803L70.9689 140.082L9.3093 132.496L0 160.022H0.057477Z"
+                                fill="black" />
+                            <path
+                                d="M116.133 160.366C114.927 162.263 113.03 163.757 110.272 164.676C98.7789 168.641 86.3665 161.573 86.3665 161.573C81.482 163.584 70.0466 175.595 45.7964 165.998C41.0269 164.389 11.6624 151.804 3.6748 149.448L12.8117 122.152L42.8657 98.5918L90.8488 108.131C90.8488 108.131 101.997 120.773 110.272 134.162C116.593 144.276 119.926 154.39 116.133 160.366Z"
+                                fill="white" />
+                            <path
+                                d="M55.7354 115.486C56.4824 114.05 77.9742 128.014 83.2035 136.691C85.7319 140.886 102.856 165.653 110.672 158.815C118.487 151.977 111.246 138.76 102.052 126.692C91.0187 112.268 81.5945 105.028 81.5945 105.028L55.7354 115.486Z"
+                                fill="#706354" />
+                            <path
+                                d="M65.6797 118.417C66.3118 117.211 84.1258 128.819 88.4931 136.002C90.6193 139.45 104.813 160.022 111.307 154.333C117.8 148.701 111.766 137.668 104.181 127.669C95.0441 115.717 87.229 109.683 87.229 109.683L65.7371 118.36L65.6797 118.417Z"
+                                fill="#F15A24" />
+                            <g style="mix-blend-mode:multiply" opacity="0.3">
+                                <path
+                                    d="M82.2856 135.312C90.3306 131.347 97.8585 128.301 104.18 127.669L90.8478 108.073C90.8478 108.073 67.1723 110.142 67.4022 109.682C67.632 109.223 59.2422 116.291 59.2422 116.291C59.2422 116.291 76.2518 126.635 82.2856 135.254V135.312Z"
+                                    fill="#915413" />
+                            </g>
+                            <path
+                                d="M21.1461 52.5054C34.7652 43.8857 78.0936 19.9804 97.9764 67.6761C97.9764 67.6761 133.375 69.7448 137.627 79.2839C139.523 83.5363 142.224 89.2828 140.385 92.6157C136.995 98.7645 127.226 103.477 127.226 103.477C127.226 103.477 90.6784 121.578 71.83 120.256C52.9241 118.935 12.8137 122.095 12.8137 122.095C3.67682 92.9031 1.37825 68.653 21.2036 52.4479L21.1461 52.5054Z"
+                                fill="white" />
+                            <path
+                                d="M116.131 160.367C114.925 162.263 113.028 163.757 110.27 164.677C98.777 168.642 86.3646 161.574 86.3646 161.574C86.3646 161.574 82.8018 163.815 76.4807 166.975C73.8373 154.62 68.0334 141.921 60.7354 129.106C60.7354 129.106 79.239 140.656 84.928 148.357C91.7663 157.666 105.673 168.699 116.189 160.309L116.131 160.367Z"
+                                fill="#998675" />
+                            <path
+                                d="M120.383 86.4672L133.657 78.8818L135.726 85.0306L132.221 89.9151L132.623 95.6615L130.439 90.777L123.314 90.6046L120.383 86.4672Z"
+                                fill="#1A1A1A" />
+                            <path
+                                d="M13.5619 74.5149C13.5619 74.5149 4.53994 43.8862 14.3089 19.6935C14.6537 18.8316 15.803 18.7166 16.2627 19.5211C23.0436 30.4394 31.6058 42.4496 41.4898 55.0918L13.5619 74.5149Z"
+                                fill="white" />
+                            <path
+                                d="M17.7547 64.803C15.9733 56.2407 12.2381 37.7945 15.5136 22.7388C20.9153 31.0712 29.4201 41.2999 37.2927 51.5861C30.3395 53.4249 23.099 59.5736 17.7547 64.8604V64.803Z"
+                                fill="#998675" />
+                            <path
+                                d="M46.8928 53.3101C46.8928 53.3101 44.8816 20.4977 59.7649 0.385018C60.2821 -0.304559 61.4314 -0.0172246 61.7187 0.844746C65.9136 13.7168 71.5452 30.4966 78.3835 46.7591L46.8928 53.3101Z"
+                                fill="white" />
+                            <path
+                                d="M52.7518 45.0351C52.8093 36.6452 53.8436 20.2103 61.7738 6.07397C65.3366 16.8773 68.2673 28.2553 73.4391 41.07C66.4284 40.3804 58.958 42.3917 52.6943 45.0925L52.7518 45.0351Z"
+                                fill="#998675" />
+                            <ellipse cx="44.2974" cy="184.197" rx="7.5787" ry="6.8224" fill="#FD8B00" />
+                            <ellipse cx="45.4215" cy="183.604" rx="7.5787" ry="6.8224" fill="#FFBB00" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="textUser">
+
+                    <h1 class="gradient-text">Olá, Alisson<br></h1>
+                    <h2 class="msgUser">Em que posso ser útil?</h2>
+
+                </div>
+            </div>
+
+            <h3 class="textDuvidas">Dúvidas Frequentes</h3>
+
+            <div class="duvidasContent">
+                <div class="caixa Insight">
+
+                    <h1 class="word Insight">Insights</h1><br>
+                    <p class="frase Insight">Quais insigths podem ser gerados para este mês?</p>
+
+                </div>
+
+                <div class="caixa Empresas">
+
+                    <h1 class="word Empresa">Empresas Cadastradas</h1> <br>
+                    <p class="frase Empresa">Mostra com base em dados atualizados,a quantidade de empresas cadastradas
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="contentChaTerms">
+
+                <div class="boxChatMsg">
+
+                    <input class="chatMsg" type="text" placeholder="Digite sua dúvida aqui">
+
+                    <img class="arrow" src="./assets/icon/iconArrow.png" alt="Enviar Menssagem">
+
+                </div>
+                <div class="boxTerms">
+
+                    <h4 class="frase Terms"> Ao enviar mensagens para o BoltIA, <strong class="textTerms"> você
+                            aceita nossos termos</strong> e <strong class="textPolitica"><a
+                                href="./assets/nexSystem/Politica de Privacidade - NexusEnergy.pdf"
+                                download="Politica de Privacidade - NexusEnergy.pdf">declara ter lido nossa Política
+                                de Privacidade</strong>.</a></h4>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
 </body>
 
 </html>
 
-<script src="./js/NexSystemFuncionario.js" defer></script>
+<script src="./js/NexSystem.js" defer></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init();
