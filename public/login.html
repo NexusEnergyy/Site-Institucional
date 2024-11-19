@@ -63,7 +63,7 @@
                         <label class="user-label">Senha</label>
                     </div>
 
-                    <button onclick="plataformaNexus()">Continuar</button>
+                    <button onclick="logar()">Continuar</button>
                 </div>
                 <p class="copyRight">Copyright 2024 - NexusEnergy Inc. All rights Reserved</p>
              </div>
@@ -216,8 +216,35 @@ function telaHome(){
 }
 
 
-function plataformaNexus(){
-    window.location.href="./NexSystem.html"
-}
+function logar(){
+    email = inputEmail1.value;
+    senha = inputSenha1.value;
 
+    if (email === '' || senha === '') {
+        alert("Preencha todos os dados!");
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { 
+        alert("Por favor, insira um email válido!");
+    } else {
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: email,
+                senhaServer: senha
+            })
+        }).then(function(resposta){
+            if(resposta.ok){
+                console.log(resposta);
+
+                window.location.href= "./NexSystem.html"
+            } else{
+                alert("Houve um erro ao tentar realizar o login!");
+            }
+        })
+            
+        
+    }   
+}
 </script>

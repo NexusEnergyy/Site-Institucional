@@ -30,7 +30,7 @@ app.listen(PORTA_APP, function () {
     ##  ###  ##       ##  ##   ##  ##       ##
     ##   ##  ######   ##  ##   ######   ######
     \n\n\n                                                                                                 
-    Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar .: http://"endereço da EC2":${PORTA_APP} :. \n\n
+    Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar .: http://localhost:${PORTA_APP} :. \n\n
     Você está rodando sua aplicação em ambiente de .:${process.env.AMBIENTE_PROCESSO}:. \n\n
     \tSEJA BEM-VINDO à NEXUS ENERGY\n`);
 });
