@@ -147,52 +147,40 @@ document.addEventListener('DOMContentLoaded', function () {
   // Configurações do gráfico
   const option = {
     tooltip: {
-      trigger: 'item'
+      trigger: 'axis'
     },
     legend: {
       top: '5%',
       left: 'center',
       textStyle: {
-        color: '#FFFFFF'// Define a cor branca para a legenda
+        color: '#FFFFFF' // Define a cor branca para a legenda
       }
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+    yAxis: {
+      type: 'value'
     },
     series: [
       {
-        name: 'Access From',
-        type: 'pie',
-        radius: ['40%', '70%'],
-        avoidLabelOverlap: false,
-        label: {
-          show: false,
-          position: 'center'
+        name: 'Consumo Mensal',
+        type: 'line',
+        data: [120, 132, 101, 134, 90, 230, 210, 180, 150, 200, 170, 250], // Valores de exemplo
+        itemStyle: {
+          color: 'rgba(75, 192, 192, 1)'
         },
-        emphasis: {
-          label: {
-            show: true,
-            fontSize: 40,
-            fontWeight: 'bold'
-          }
-        },
-        labelLine: {
-          show: false
-        },
-        data: [
-          { value: 1048, name: 'Datacenters' },
-          { value: 735, name: 'Máquinas' },
-          { value: 580, name: 'Outros' }
-          
-        ]
+        lineStyle: {
+          width: 2
+        }
       }
     ]
   };
 
-  // Renderiza o gráfico
+  // Usa a configuração especificada e os dados para mostrar o gráfico
   consumoMensalChart.setOption(option);
-
-  // Responsividade para redimensionamento da janela
-  window.addEventListener('resize', function () {
-    consumoMensalChart.resize();
-  });
 });
 
 
@@ -318,15 +306,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Configurações do gráfico de Consumo Horário
   const option = {
+    tooltip: {
+      trigger: 'axis'
+    },
+    legend: {
+      top: '5%',
+      left: 'center',
+      textStyle: {
+        color: '#FFFFFF' // Define a cor branca para a legenda
+      }
+    },
     xAxis: {
       type: 'category',
       data: ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00'],
       axisLabel: {
         color: '#FFFFFF' // Cor branca para os horários
       }
-    },
-    yAxis: {
-      type: 'value',
     },
     yAxis: [
       {
@@ -347,6 +342,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ],
     series: [
       {
+        name: 'Consumo Horário',
         data: [70, 85, 95, 110, 130, 150, 165, 120], // Exemplo de consumo para cada horário
         type: 'bar'
       }
