@@ -14,24 +14,29 @@ document.addEventListener("DOMContentLoaded", function () {
   boxesDiv.style.transform = 'translateY(780px)';
 });
 
-function selecionar_categoria(){
-
-  let categoria = document.getElementById('select_Categoria').value;
-  let campos_matriz = document.getElementById('campos_matriz');
-  const resposta_erro = document.getElementById('resposta_erro');
-
-  // Exibe o input somente se a categoria for "matriz"
-  if (categoria == "Matriz") {
-    campos_matriz.style.display = "block";
-    resposta_erro.innerHTML = "";
-  }if (categoria == "Filial") {
-    campos_matriz.style.display = "none";
-    resposta_erro.innerHTML = "";
-  }else{
-    resposta_erro.innerHTML = `Selecione a categoria para que seja preenchidatodas as informaçoes necessárias`;
-     return false;
-  }
+function buscarMatrizes(){
+    fetch("/empresas/buscarMatrizes", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      const select = document.getElementById('select_Categoria');
+      data.forEach((item) => {
+        const option = document.createElement('option');
+        option.value = item.idMatriz; // ou outro campo que represente o valor
+        option.textContent = item.nome; // ou outro campo que represente o texto
+        select.appendChild(option);
+      });
+    })
+    .catch((error) => {
+      console.error('Erro ao buscar matrizes:', error);
+    });
 }
+document.addEventListener('DOMContentLoaded', buscarMatrizes);
+
 
 
 function cadastrar_empresa() {

@@ -220,31 +220,39 @@ function logar(){
     email = inputEmail1.value;
     senha = inputSenha1.value;
 
-    if (email === '' || senha === '') {
-        alert("Preencha todos os dados!");
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { 
-        alert("Por favor, insira um email válido!");
-    } else {
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: email,
-                senhaServer: senha
-            })
-        }).then(function(resposta){
-            if(resposta.ok){
-                console.log(resposta);
-
-                window.location.href= "./NexSystem.html"
-            } else{
-                alert("Houve um erro ao tentar realizar o login!");
-            }
+if (email === '' || senha === '') {
+    alert("Preencha todos os dados!");
+} else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { 
+    alert("Por favor, insira um email válido!");
+} else {
+    fetch("/usuarios/autenticar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            emailServer: email,
+            senhaServer: senha
         })
-            
-        
-    }   
+    }).then(function(resposta){
+        if(resposta.ok){
+            console.log(resposta)
+            return resposta.json(); // Parse the JSON response
+        } else{
+            alert("Houve um erro ao tentar realizar o login!");
+            throw new Error("O login falhou!");
+        }
+    }).then(function(json){
+        sessionStorage.CPF_USER = json.CPF; 
+        sessionStorage.NOME_USER = json.nome;
+        sessionStorage.EMAIL_USER = json.email;
+        sessionStorage.FILIAL_USER = json.idFilial;
+        sessionStorage.CARGO_USER = json.fkCargo;
+
+        window.location.href= "./NexSystem.html";
+    }).catch(function(error){
+        console.error("Error:", error);
+    });
 }
-</script>
+}
+</script>1

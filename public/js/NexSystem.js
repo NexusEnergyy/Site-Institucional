@@ -5,11 +5,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuItems = document.getElementById('menuItens');
   const menuItems2 = document.getElementById('menuItens2');
   const html = document.documentElement
+
+  
+
+
+
+
+  document.getElementById('empresasItem').addEventListener('click', function() {
+    
+    
+  });
+
   const titles = [
-      document.getElementById('titulo'),
-      document.getElementById('titulo2'),
-      document.getElementById('titulo3')
+        document.getElementById('titulo'),
+        document.getElementById('titulo2'),
+        document.getElementById('titulo3')
   ];
+  
   const titles2 = [
       document.getElementById('titulo4'),
       document.getElementById('titulo5'),
@@ -57,7 +69,14 @@ document.addEventListener('DOMContentLoaded', () => {
   
       document.getElementById('dashboardItem').addEventListener('click', () => toggleDisplay(dashboardContent));
       document.getElementById('performanceItem').addEventListener('click', () => toggleDisplay(performanceContent));
-      document.getElementById('empresasItem').addEventListener('click', () => toggleDisplay(empresasContent));
+      document.getElementById('empresasItem').addEventListener('click', () => {
+        if (sessionStorage.CARGO_USER == 0) {
+          window.location.href = './cadastroRepresentantes.html';
+        } else {
+          console.log('caiu aqui')
+          toggleDisplay(empresasContent)     
+        }
+      });
       document.getElementById('perfilItem').addEventListener('click', () => toggleDisplay(perfilContent));
       document.getElementById('boltItem').addEventListener('click', () => toggleDisplay(boltContent));
       
@@ -140,6 +159,7 @@ function fecharModal() {
 }
 
 
+// GRÁFICO CONSUMO MENSAL DE ENERGIA
 document.addEventListener('DOMContentLoaded', function () {
   // Inicializa o gráfico dentro do elemento com ID 'consumoMensalChart'
   const consumoMensalChart = echarts.init(document.getElementById('consumoMensalChart'));
@@ -159,10 +179,22 @@ document.addEventListener('DOMContentLoaded', function () {
     xAxis: {
       type: 'category',
       boundaryGap: false,
-      data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+      data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      axisLabel: {
+        color: '#FFFFFF' // Cor branca para os meses
+      }
     },
     yAxis: {
-      type: 'value'
+      type: 'value',
+      axisLine: {
+        show: true,
+        lineStyle: {
+          color: '#FFFFFF' // Cor branca para a linha do eixo Y
+        }
+      },
+      axisLabel: {
+        formatter: '{value} kWh'
+      }
     },
     series: [
       {
@@ -176,15 +208,29 @@ document.addEventListener('DOMContentLoaded', function () {
           width: 2
         }
       }
-    ]
+    ],
+    toolbox: {
+      feature: {
+        saveAsImage: {
+          title: 'Baixar Gráfico'
+        }
+      }
+    }
   };
 
   // Usa a configuração especificada e os dados para mostrar o gráfico
   consumoMensalChart.setOption(option);
+
+  // Responsividade para redimensionamento da janela
+  window.addEventListener('resize', function () {
+    consumoMensalChart.resize();
+  });
 });
 
 
-// Aguarda o carregamento do DOM
+
+
+// GRÁFICO PREVISÃO MENSAL DE ENERGIA
 document.addEventListener('DOMContentLoaded', function () {
   // Inicializa o gráfico dentro do elemento com ID 'previsaoConsumoChart'
   const previsaoConsumoChart = echarts.init(document.getElementById('previsaoConsumoChart'));
@@ -300,6 +346,9 @@ option = {
   ]
 };
 
+
+
+// GRÁFICO CONSUMO HORÁRIO DE ENERGIA
 document.addEventListener('DOMContentLoaded', function () {
   // Inicializa o gráfico dentro do elemento com ID 'consumoHorarioChart'
   const consumoHorarioChart = echarts.init(document.getElementById('consumoHorarioChart'));
@@ -346,7 +395,14 @@ document.addEventListener('DOMContentLoaded', function () {
         data: [70, 85, 95, 110, 130, 150, 165, 120], // Exemplo de consumo para cada horário
         type: 'bar'
       }
-    ]
+    ],
+    toolbox: {
+      feature: {
+        saveAsImage: {
+          title: 'Baixar Gráfico'
+        }
+      }
+    }
   };
 
   // Renderiza o gráfico
@@ -358,76 +414,10 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-  const comparativoMercado2 = echarts.init(document.getElementById('comparativoMercado2'));
-
-  const option = {
-    title: { 
-      text: 'Comparativo de Mercado das Empresas', 
-      textStyle: { color: '#FFFFFF' },
-    },
-    tooltip: { 
-      trigger: 'axis',
-      formatter: function(params) {
-        let content = `${params[0].axisValue}<br>`;
-        params.forEach(item => {
-          content += `${item.marker} ${item.seriesName}: ${item.data}<br>`;
-        });
-        return content;
-      }
-    },
-    legend: {
-      data: ['Tim', 'OI', 'Vivo', 'Claro'],
-      textStyle: { color: '#FFFFFF' }
-    },
-    grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
-    toolbox: { feature: { saveAsImage: {} } },
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-      axisLabel: { textStyle: { color: '#FFFFFF' } }
-    },
-    yAxis: {
-      type: 'value',
-      axisLabel: { textStyle: { color: '#FFFFFF' } }
-    },
-    series: [
-      { name: 'Tim', type: 'line', stack: 'Total', data: [120, 132, 101, 134, 90, 230, 210], color: '#1f77b4' },
-      { name: 'OI', type: 'line', stack: 'Total', data: [220, 182, 191, 234, 290, 330, 310], color: '#ff7f0e' },
-      { name: 'Vivo', type: 'line', stack: 'Total', data: [150, 232, 201, 154, 190, 330, 410], color: '#2ca02c' },
-      { name: 'Claro', type: 'line', stack: 'Total', data: [320, 332, 301, 334, 390, 330, 320], color: '#9467bd' }
-    ]
-  };
-
-  comparativoMercado2.setOption(option);
-
-  // Redimensionamento automático
-  window.addEventListener('resize', function () {
-    comparativoMercado2.resize();
-  });
-
-  // Função para trocar a cor da legenda
-  window.changeLegendColor = function () {
-    const newColor = option.legend.textStyle.color === '#000' ? '#FFFFFF' : '#000';
-    option.legend.textStyle.color = newColor;
-    comparativoMercado2.setOption(option);
-  };
-  // Função para trocar a cor dos rótulos do eixo X
-  window.changeXAxisLabelColor = function () {
-    const newColor = option.xAxis.axisLabel.textStyle.color === '#000' ? '#FFFFFF' : '#000';
-    option.xAxis.axisLabel.textStyle.color = newColor;
-    comparativoMercado2.setOption(option);
-  };
-  // Função para trocar a cor dos rótulos do eixo Y
-  window.changeYAxisLabelColor = function () {
-    const newColor = option.yAxis.axisLabel.textStyle.color === '#000' ? '#FFFFFF' : '#000';
-    option.yAxis.axisLabel.textStyle.color = newColor;
-    comparativoMercado2.setOption(option);
-  };
-});
 
 
+
+// GRÁFICO DE EMISSAO DE CO2
 document.addEventListener('DOMContentLoaded', function () {
   // Inicializa o gráfico dentro do elemento com ID 'emissaoCo2Chart'
   const emissaoCo2Chart = echarts.init(document.getElementById('emissaoCo2Chart'));
@@ -494,6 +484,83 @@ document.addEventListener('DOMContentLoaded', function () {
     emissaoCo2Chart.resize();
   });
 });
+
+
+
+
+// GRÁFICO DE COMPARATIVO DE EMPRESAS
+document.addEventListener('DOMContentLoaded', function () {
+  const comparativoMercado2 = echarts.init(document.getElementById('comparativoMercado2'));
+
+  const option = {
+    title: { 
+      text: 'Comparativo de Mercado das Empresas', 
+      textStyle: { color: '#FFFFFF' },
+    },
+    tooltip: { 
+      trigger: 'axis',
+      formatter: function(params) {
+        let content = `${params[0].axisValue}<br>`;
+        params.forEach(item => {
+          content += `${item.marker} ${item.seriesName}: ${item.data}<br>`;
+        });
+        return content;
+      }
+    },
+    legend: {
+      data: ['Tim', 'OI', 'Vivo', 'Claro'],
+      textStyle: { color: '#FFFFFF' }
+    },
+    grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
+    toolbox: { feature: { saveAsImage: {} } },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      axisLabel: { textStyle: { color: '#FFFFFF' } }
+    },
+    yAxis: {
+      type: 'value',
+      axisLabel: { textStyle: { color: '#FFFFFF' } }
+    },
+    series: [
+      { name: 'Tim', type: 'line', stack: 'Total', data: [120, 132, 101, 134, 90, 230, 210], color: '#1f77b4' },
+      { name: 'OI', type: 'line', stack: 'Total', data: [220, 182, 191, 234, 290, 330, 310], color: '#ff7f0e' },
+      { name: 'Vivo', type: 'line', stack: 'Total', data: [150, 232, 201, 154, 190, 330, 410], color: '#2ca02c' },
+      { name: 'Claro', type: 'line', stack: 'Total', data: [320, 332, 301, 334, 390, 330, 320], color: '#9467bd' }
+    ]
+  };
+
+  comparativoMercado2.setOption(option);
+
+
+
+
+  // Redimensionamento automático
+  window.addEventListener('resize', function () {
+    comparativoMercado2.resize();
+  });
+
+  // Função para trocar a cor da legenda
+  window.changeLegendColor = function () {
+    const newColor = option.legend.textStyle.color === '#000' ? '#FFFFFF' : '#000';
+    option.legend.textStyle.color = newColor;
+    comparativoMercado2.setOption(option);
+  };
+  // Função para trocar a cor dos rótulos do eixo X
+  window.changeXAxisLabelColor = function () {
+    const newColor = option.xAxis.axisLabel.textStyle.color === '#000' ? '#FFFFFF' : '#000';
+    option.xAxis.axisLabel.textStyle.color = newColor;
+    comparativoMercado2.setOption(option);
+  };
+  // Função para trocar a cor dos rótulos do eixo Y
+  window.changeYAxisLabelColor = function () {
+    const newColor = option.yAxis.axisLabel.textStyle.color === '#000' ? '#FFFFFF' : '#000';
+    option.yAxis.axisLabel.textStyle.color = newColor;
+    comparativoMercado2.setOption(option);
+  };
+});
+
 
 
 
@@ -578,8 +645,11 @@ window.addEventListener('resize', function () {
 });
 });
 
+
+
+// GRÁFICO DO NÍVEL DE SUSTENTABILIDADE
 document.addEventListener('DOMContentLoaded', function () {
-  // Inicializa o gráfico dentro do elemento com ID 'historicoChart'
+  // Inicializa o gráfico dentro do elemento com ID 'nivelSustentabilidadeChart'
   const TreeGraphic = echarts.init(document.getElementById('TreeGraphic'));;
   var option;
 
