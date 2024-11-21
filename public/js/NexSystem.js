@@ -7,15 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const html = document.documentElement
 
   
-
-
-
-
-  document.getElementById('empresasItem').addEventListener('click', function() {
-    
-    
-  });
-
   const titles = [
         document.getElementById('titulo'),
         document.getElementById('titulo2'),
@@ -58,29 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
   
   
   document.addEventListener('DOMContentLoaded', () => {
-      toggleDisplay(dashboardContent); 
-  
-      const button = document.getElementById('transition');
-      button.addEventListener('click', () => toggleDisplay(dashboardContent));
-  
-      const button2 = document.getElementById('transition2');
-      button2.addEventListener('click', () => toggleDisplay(performanceContent));
-  
-  
-      document.getElementById('dashboardItem').addEventListener('click', () => toggleDisplay(dashboardContent));
-      document.getElementById('performanceItem').addEventListener('click', () => toggleDisplay(performanceContent));
-      document.getElementById('empresasItem').addEventListener('click', () => {
-        if (sessionStorage.CARGO_USER == 0) {
-          window.location.href = './cadastroRepresentantes.html';
-        } else {
-          console.log('caiu aqui')
-          toggleDisplay(empresasContent)     
-        }
-      });
-      document.getElementById('perfilItem').addEventListener('click', () => toggleDisplay(perfilContent));
-      document.getElementById('boltItem').addEventListener('click', () => toggleDisplay(boltContent));
-      
+      toggleDisplay(dashboardContent);
   });
+
 
   function toggleMenu() {
       nav.classList.toggle('active');
@@ -117,7 +88,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   document.getElementById('empresasItem').addEventListener('click', () => {
-      toggleDisplay(empresasContent);
+    if (sessionStorage.CARGO_USER == 0) {
+      window.location.href = './cadastroRepresentantes.html';
+    } else {
+      toggleDisplay(empresasContent); 
+    }
   });
   document.getElementById('perfilItem').addEventListener('click', () => {
       toggleDisplay(perfilContent);
@@ -126,10 +101,10 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleDisplay(boltContent);
   });
 
-
-
   document.getElementById('temaItem').addEventListener('click', () => lightColor());
+
   document.getElementById('saida').addEventListener('click', () => sair());
+
 
   function lightColor(){
       html.classList.toggle('light');
