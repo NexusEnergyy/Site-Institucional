@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y default-mysql-client
 WORKDIR /app
 
 # Copia o protótipo jar no diretório de trabalho
-COPY nexusJava_ETL/PrototipoJar.jar .
+COPY nexusJava_ETL/NexFlow.jar .
 
 # Copie o script de espera para o container
 COPY wait-for-mysql.sh .
@@ -20,4 +20,4 @@ COPY wait-for-mysql.sh .
 RUN chmod +x /app/wait-for-mysql.sh
 
 # Comando para rodar o aplicativo, aguardando o MySQL estar pronto
-CMD ["sh", "-c", "/app/wait-for-mysql.sh db && java -jar PrototipoJar.jar && tail -f /dev/null"]
+CMD ["sh", "-c", "/app/wait-for-mysql.sh db && java -jar NexFlow.jar && tail -f /dev/null"]
