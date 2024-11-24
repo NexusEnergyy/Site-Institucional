@@ -305,7 +305,18 @@
         </div>
         <div data-aos="zoom-out" class="Funcionarios">
             <dialog id="modal" class="modalFuncionario">
-                <button onclick="fecharModal()">Close</button>
+                <button onclick="fecharModal()">X</button>
+                <form>
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome">
+                    <label for="funcao">Função:</label>
+                    <input type="text" id="funcao" name="funcao">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" id="telefone" name="telefone">
+                    <button type="submit">Salvar</button>
+                </form>
             </dialog>
             <div class="titleFuncionarios">
                 <h2> Gerenciar Funcionários </h2>
@@ -315,7 +326,6 @@
                     <div class="imgFuncionario">
                         <img id="imgFuncionario" src="https://picsum.photos/300/200">
                     </div>
-
                     <h2 id="nomeFuncionario"> Nome </h2>
                     <h1> Função </h1>
                 </div>
@@ -327,6 +337,7 @@
             </div>
         </div>
     </div>
+    
 
 
     <div class="highContentNex4" style="display: none;">
