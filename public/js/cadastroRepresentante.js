@@ -15,73 +15,149 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function buscarMatrizes(){
-    fetch("/empresas/buscarMatrizes", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      const select = document.getElementById('select_Categoria');
-      data.forEach((item) => {
-        const option = document.createElement('option');
-        option.value = item.idMatriz; // ou outro campo que represente o valor
-        option.textContent = item.nome; // ou outro campo que represente o texto
-        select.appendChild(option);
-      });
-    })
-    .catch((error) => {
-      console.error('Erro ao buscar matrizes:', error);
+  fetch("/empresas/buscarMatrizes", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    const select = document.getElementById('select_matriz');
+    const select2 = document.getElementById('select_SubMercado');
+    const defaultOption = document.createElement('option');
+    const defaultOption2 = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = 'Selecione uma matriz';
+    defaultOption2.textContent = 'Selecione um submercado';
+    defaultOption.selected = true;
+    defaultOption.disabled = true;
+    defaultOption2.selected = true;
+    defaultOption2.disabled = true;
+    select.appendChild(defaultOption);
+    select2.appendChild(defaultOption2);
+
+    data.forEach((item) => {
+      const option = document.createElement('option');
+      option.value = item.idMatriz; 
+      option.textContent = item.nome; 
+      option.dataset.cnpj = item.CNPJ; 
+      select.appendChild(option);
     });
+
+    // Adiciona evento para atualizar o CNPJ ao selecionar uma matriz
+    select.addEventListener('change', (event) => {
+      const selectedOption = event.target.selectedOptions[0];
+      const cnpjInput = document.getElementById('input_CNPJ');
+      cnpjInput.value = selectedOption.dataset.cnpj || ''; // Atualiza o valor do CNPJ
+    });
+  })
+  .catch((error) => {
+    console.error('Erro ao buscar matrizes:', error);
+  });
 }
 document.addEventListener('DOMContentLoaded', buscarMatrizes);
 
 
-
 function cadastrar_empresa() {
-
-  const categoria = document.getElementById('select_Categoria').value;
+  const fkMatriz = document.getElementById('select_matriz').value;
   const nome_empresa = document.getElementById('input_nome_empresa').value;
   const submercado = document.getElementById('select_SubMercado').value;
   const cidade = document.getElementById('input_cidade').value;
   const uf = document.getElementById('input_UF').value;
   const CNPJ = document.getElementById('input_CNPJ').value;
   const resposta_erro = document.getElementById('resposta_erro');
-  const ativoTotal= document.getElementById("input_ativo_total").value;
 
-  if (categoria === "Matriz") {
-    if (ativoTotal === "") {
-      resposta_erro.innerHTML = `Informe o ativo total`;
-      return false;
-    }
-  }
-  if(categoria == "" || nome_empresa == "" || submercado == "" || cidade == "" || uf == "" || CNPJ == ""){
+  localStorage.NOME_EMPRESA = nome_empresa;
+
+
+  if (fkMatriz === "" || nome_empresa === "" || submercado === "" || cidade === "" || uf === "" || CNPJ === "") {
     resposta_erro.innerHTML = `Preencha todos os campos para continuar`;
+    return false;
   }
-  if(CNPJ.length == 14){
-    mudarTela1();
-  }
+
+  fetch('/empresas/cadastrarEmpresa', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      fkMatriz: fkMatriz,
+      nome_empresa: nome_empresa,
+      submercado: submercado,
+      cidade: cidade,
+      uf: uf,
+    })
+  })
+
+  .then(function(resposta){
+    if(resposta.status === 201){
+      alert(`Empresa cadastrada com sucesso!`);
+      mudarTela1();
+    } else {
+      resposta_erro.innerHTML = `Erro ao cadastrar empresa: ${resposta.status}`;
+    }
+  })
+
+  .then(data => {
+    console.log(data);
+  })
+
+  .catch(error => {
+    resposta_erro.innerHTML = `Erro ao cadastrar empresa: ${error.message}`;
+  });
+
 }
 
 
- 
 
-  // fetch("/usuarios/cadastrar_empresa", {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify({
-  //     categoriaServer:categoria,
-  //     nome_empresaServer: nome_empresa,
-  //     submercadoServer: submercado,
-  //     cidadeServer: cidade,
-  //     ufServer: uf,
-  //     CNPJSrver: CNPJ,
-  //     ativoTotalServer: ativoTotal
-  //   }),
-  // });
+
+function cadastrar_responsavel() {
+  var nome_responsavel = document.getElementById('input_nome_responsavel').value;
+  const nome_empresa = localStorage.getItem('NOME_EMPRESA');
+  var email = document.getElementById('input_email').value;
+  var cpf = document.getElementById('input_cpf').value;
+  var telefone = document.getElementById('input_telefone').value;  
+  const resposta_erro = document.getElementById('resposta_erro2');
+
+
+  if (nome_responsavel === "" || email === "" || cpf === "" || telefone === "") {
+    resposta_erro.innerHTML = `Preencha todos os campos para continuar`;
+    return false;
+  } else if (email.indexOf("@") < 0) {
+    resposta_erro.innerHTML = "E-mail inválido, o e-mail deve conter @";
+    return false;
+  }
+
+
+  fetch("/usuarios/cadastrarResponsavel", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      nome_responsavelServer: nome_responsavel,
+      nome_empresaServer: nome_empresa,
+      emailServer: email,
+      cpfServer: cpf,
+      telefoneServer: telefone,
+    })
+  })
+  .then(function(resposta){
+    if(resposta.status === 201){
+      alert(`Responsável cadastrado com sucesso!`);
+      telaPlataforma();
+    } else {
+      resposta_erro2.innerHTML = `Erro ao cadastrar responsável: ${resposta.status}`;
+    }
+  })
+  
+}
+
+  
+
+
+
 
 // Função para transição de tela
 function mudarTela1() {
@@ -124,37 +200,7 @@ function mudarTela1() {
 }
 
 
-function cadastrar_adm() {
-  var nome_usuario_adm = input_nome_usuario_adm.value;
-  var Email = inputEmail.value;
-  var filial = input_filial.value;
-  var matricula = input_matricula.value;
 
-  if (nome_usuario_adm === "" || Email === "" || filial === "" || matricula === "") {
-    resposta_erro2.innerHTML = `Preencha todos os campos para continuar`;
-    return false;
-  } else if (Email.indexOf("@") < 0) {
-    resposta_erro2.innerHTML = "E-mail inválido, o e-mail deve conter @";
-    return false;
-  }
-
-  resposta_erro2.innerHTML="Cadastrado"
-
-  fetch("/usuarios/cadastrar", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      nome_usuario_admServer: nome_usuario_adm,
-      EmailServer: Email,
-      filialServer: filial,
-      matriculaServer: matricula,
-    }),
-  });
-
-  
-}
 
 
 
@@ -182,6 +228,10 @@ function voltarPrimeiraTela() {
 
 function telaHome() {
   window.location.href = "./index.html"
+}
+
+function telaPlataforma(){
+  window.location.href = "./NexSystem.html"
 }
 
 

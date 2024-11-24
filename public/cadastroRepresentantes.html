@@ -41,10 +41,9 @@
 
                 <div class="inputBox" id="inputBox">
                     <div class="input-group">
-                        <select required="" type="text" name="text" class="input select" id="select_Categoria" onchange="selecionar_categoria()">
+                        <select required="" type="text" name="text" class="input select" id="select_matriz">
                         </select>
                         
-                        <label class="user-label">Matriz</label>
                     </div>
                     <div class="input-group">
                         <input required="" type="text" name="text" class="input" id="input_nome_empresa">
@@ -58,9 +57,8 @@
                             <option Nordeste>Nordeste</option>
                             <option Norte>Norte</option>
                         </select>
-                        <label class="user-label">Sub-mercado</label>
                     </div>
-
+                    
                     <div class="input-group">
                         <input required="" type="text" name="text" class="input" id="input_cidade">
                         <label class="user-label">Cidade</label>
@@ -69,21 +67,12 @@
                         <input required="" type="text" name="text" class="input" id="input_UF">
                         <label class="user-label">UF</label>
                     </div>
-
+                    
                     <div class="input-group">
-                        <input required="" type="text" name="text" class="input" id="input_CNPJ" minlength="14"
-                            maxlength="14">
+                        <input required="" type="text" name="text" class="input" id="input_CNPJ" minlength="14" maxlength="14">
                         <label class="user-label">CNPJ</label>
                     </div>
-
-                    <!-- Quando for selecionado categoria matriz isso aparece -->
-                    <div id = "campos_matriz" style="display: none;">
-                        <div class="input-group">
-                            <input required="" type="text" name="text" class="input" id="input_ativo_total">
-                            <label class="user-label">Ativo total</label>
-                        </div>
-                    </div>
-
+                    
                     <button onclick="cadastrar_empresa()">Próximo</button>
                 </div>
 
@@ -93,35 +82,35 @@
             </div>
             <div class="boxRosaContent2">
                 <div class="titleText2">
-                    <h2 id="titleText">Cadastro usuário administrador
+                    <h2 id="titleText">Cadastro usuário responsável
                     </h2>
                 </div>
                 <div class="inputBox" id="inputBox">
                     <div class="input-group">
                         <input required="" type="text" name="text" autocomplete="off" class="input"
-                            id="input_nome_usuario_adm">
+                            id="input_nome_responsavel">
                         <label class="user-label">Nome completo</label>
                     </div>
 
                     <div class="input-group">
-                        <input required="" type="text" name="text" autocomplete="off" class="input" id="inputEmail">
+                        <input required="" type="text" name="text" autocomplete="off" class="input" id="input_email">
                         <label class="user-label">Email</label>
                     </div>
 
 
                     <div class="input-group">
-                        <input required="" type="text" name="text" autocomplete="off" class="input" id="input_filial">
-                        <label class="user-label">Filial</label>
+                        <input required="" type="text" name="text" autocomplete="off" class="input" id="input_cpf">
+                        <label class="user-label">CPF</label>
                     </div>
 
 
                     <div class="input-group">
                         <input required="" type="text" name="text" autocomplete="off" class="input"
-                            id="input_matricula">
-                        <label class="user-label">Matricula</label>
+                            id="input_telefone">
+                        <label class="user-label">Telefone</label>
                     </div>
 
-                    <button onclick="cadastrar_adm()">Cadastrar</button>
+                    <button onclick="cadastrar_responsavel()">Cadastrar</button>
                 </div>
 
                 <div id="resposta_erro2"></div>
@@ -139,3 +128,11 @@
 </body>
 
 </html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#input_CNPJ').mask('00.000.000/0000-00');
+    });
+</script>

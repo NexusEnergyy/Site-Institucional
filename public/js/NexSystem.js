@@ -116,6 +116,16 @@ document.addEventListener('DOMContentLoaded', () => {
   function sair(){
       window.location.href="./index.html"
   }
+  
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Verifica se o cargo armazenado no sessionStorage é zero
+  if (sessionStorage.CARGO_USER == 0) {
+      // Esconde o elemento com o ID 'perfilItem'
+      document.getElementById('perfilItem').style.display = 'none';
+  }
 });
 
 
