@@ -133,14 +133,16 @@ function abrirModal() {
   const modal = document.getElementById('modal');
   modal.classList.remove('hide');
   modal.classList.add('show');
-  modal.showModal( )
+  modal.showModal();
 }
 
 function fecharModal() {
   const modal = document.getElementById('modal');
   modal.classList.remove('show');
   modal.classList.add('hide');
-  modal.closeModal()
+  modal.addEventListener('transitionend', () => {
+    modal.close();
+  }, { once: true });
 }
 
 
