@@ -749,3 +749,91 @@ document.addEventListener('DOMContentLoaded', function () {
     TreeGraphic.resize();
   });
   });
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    carregarFuncionarios();
+  });
+
+  async function carregarFuncionarios() {
+    try {
+        const idFilial = sessionStorage.getItem('FILIAL_USER');
+
+        const response = await fetch(`usuarios/carregarFuncionarios?fkFilial=${idFilial}&fkCargo=2`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            const funcionarios = await response.json();
+            const funcionariosBox = document.querySelector('.funcionariosBox');
+            const noFuncionariosMessage = document.getElementById('noFuncionariosMessage');
+
+            funcionariosBox.innerHTML = ''; 
+
+            if (funcionarios.length > 0) {
+                noFuncionariosMessage.style.display = 'none'; // Esconder a mensagem
+                funcionarios.forEach(funcionario => {
+                    const cardFuncionario = document.createElement('div');
+                    cardFuncionario.className = 'cardFuncionario';
+                    cardFuncionario.innerHTML = `
+                        <div class="imgFuncionario">
+                            <img id="imgFuncionario" src="https://picsum.photos/300/200">
+                        </div>
+                        <h2 id="nomeFuncionario">${funcionario.nome}</h2>
+                        <h5 style="color: #ffffff;"> Email: ${funcionario.email} </h5>
+                    `;
+                    funcionariosBox.appendChild(cardFuncionario);
+                });
+            } else {
+                noFuncionariosMessage.style.display = 'block'; // Mostrar a mensagem
+            }
+        } else {
+            console.error('Erro ao carregar funcionários');
+        }
+    } catch (error) {
+        console.error('Erro ao carregar funcionários:', error);
+    }
+}
+
+
+
+
+async function cadastrar_funcionario() {
+  const nome = document.querySelector('#input_nome_funcionario').value;
+  const email = document.querySelector('#input_email_funcionario').value;
+  const cpf = document.querySelector('#input_cpf_funcionario').value;
+  const telefone = document.querySelector('#input_telefone_funcionario').value;
+  const idFilial = sessionStorage.getItem('FILIAL_USER');
+
+  const funcionario = {
+      nomeServer: nome,
+      emailServer: email,
+      cpfServer: cpf,
+      telefoneServer: telefone,
+      fkFilialServer: idFilial 
+  };
+
+  try {
+      const response = await fetch('usuarios/cadastrarFuncionario', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(funcionario)
+      });
+
+      if (response.ok) {
+          fecharModal();
+          await carregarFuncionarios(); // Aguarde a função carregarFuncionarios terminar
+      } else {
+          console.error('Erro ao cadastrar funcionário');
+      }
+  } catch (error) {
+      console.error('Erro ao cadastrar funcionário:', error);
+  }
+}
+
+    

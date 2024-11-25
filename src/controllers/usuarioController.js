@@ -80,7 +80,115 @@ function cadastrarResponsavel(req, res) {
     }
 }
 
+function cadastrarFuncionario(req, res) {
+    var nome_funcionario = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var telefone = req.body.telefoneServer;
+    var cpf = req.body.cpfServer;
+    var fkFilial = req.body.fkFilialServer;
+
+    if (nome_funcionario == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    } else if (email == undefined) {
+        res.status(400).send("Seu email está undefined!");
+    } else if (telefone == undefined) {
+        res.status(400).send("Seu telefone está indefinido!");
+    } else if (cpf == undefined) {
+        res.status(400).send("Seu cpf está indefinido!");
+    } else if (fkFilial == undefined) {
+        res.status(400).send("Sua filial está indefinida!");
+    } else {
+
+        usuarioModel.cadastrarFuncionario(nome_funcionario, email, telefone, cpf, fkFilial)
+            .then(
+                function (resultadoCadastrar) {
+                    console.log(`\nResultados encontrados: ${resultadoCadastrar.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultadoCadastrar)}`); // transforma JSON em String
+
+                    if (resultadoCadastrar.affectedRows == 1) {
+                        console.log(resultadoCadastrar);
+
+                        res.status(201).json(resultadoCadastrar);
+                    } else {
+                        res.status(403).send("Erro ao cadastrar usuário");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o cadastro! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+
+function carregarFuncionarios(req, res) {
+    var fkFilial = req.query.fkFilial;
+    var fkCargo = req.query.fkCargo;
+
+    if (fkFilial == undefined) {
+        res.status(400).send("Sua filial está undefined!");
+    } else if (fkCargo == undefined) {
+        res.status(400).send("Seu cargo está undefined!");
+    } else {
+        usuarioModel.carregarFuncionarios(fkFilial, fkCargo)
+            .then(
+                function (resultadoCarregar) {
+                    console.log(`\nResultados encontrados: ${resultadoCarregar.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultadoCarregar)}`);
+
+                    if (resultadoCarregar.length > 0) {
+                        res.status(200).json(resultadoCarregar);
+                    } else {
+                        res.status(404).send("Nenhum funcionário encontrado");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao carregar os funcionários! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function carregarFuncionarios(req, res) {
+    var fkFilial = req.query.fkFilial;
+    var fkCargo = req.query.fkCargo;
+
+    if (fkFilial == undefined) {
+        res.status(400).send("Sua filial está undefined!");
+    } else if (fkCargo == undefined) {
+        res.status(400).send("Seu cargo está undefined!");
+    } else {
+        usuarioModel.carregarFuncionarios(fkFilial, fkCargo)
+            .then(
+                function (resultadoCarregar) {
+                    console.log(`\nResultados encontrados: ${resultadoCarregar.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultadoCarregar)}`);
+
+                    if (resultadoCarregar.length > 0) {
+                        res.status(200).json(resultadoCarregar);
+                    } else {
+                        res.status(404).send("Nenhum funcionário encontrado");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao carregar os funcionários! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 module.exports = {
     autenticar,
-    cadastrarResponsavel
+    cadastrarResponsavel,
+    cadastrarFuncionario,
+    carregarFuncionarios
 }

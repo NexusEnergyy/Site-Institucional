@@ -306,30 +306,40 @@
         <div data-aos="zoom-out" class="Funcionarios">
             <dialog id="modal" class="modalFuncionario">
                 <button onclick="fecharModal()">X</button>
-                <form>
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome">
-                    <label for="funcao">Função:</label>
-                    <input type="text" id="funcao" name="funcao">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email">
-                    <label for="telefone">Telefone:</label>
-                    <input type="tel" id="telefone" name="telefone">
-                    <button type="submit">Salvar</button>
-                </form>
+                <div class="contentUserCadastro">
+                    <div class="inputs_box">
+                        <span class="caracterPerson">Nome</span>
+                        <label for="">
+                            <input maxlength="70" placeholder="Digite aqui" id="input_nome_funcionario" type="text">
+                            <span class="correcao">Nome completo</span>
+                        </label>
+
+                        <span class="caracterPerson">E-mail</span>
+                        <label for="">
+                            <input maxlength="90" placeholder="Digite aqui" id="input_email_funcionario" type="text">
+                            <span class="correcao">@ plmds</span>
+                        </label>
+
+                        <span class="caracterPerson">CPF</span>
+                        <label for="">
+                            <input maxlength="11" placeholder="Digite aqui" id="input_cpf_funcionario" type="text">
+                            <span class="correcao">Sem pontos e traços</span>
+                        </label>
+
+                        <span class="caracterPerson">Telefone</span>
+                        <label for="">
+                            <input maxlength="90" placeholder="Digite aqui" id="input_telefone_funcionario" type="text">
+                            <span class="correcao" id="dica">Telefone/Celular</span>
+                        </label>
+                    </div>
+                    <div onclick="cadastrar_funcionario()" class="btn"> Cadastrar Funcionário </div>
+                </div>
             </dialog>
             <div class="titleFuncionarios">
                 <h2> Gerenciar Funcionários </h2>
             </div>
             <div class="funcionariosBox">
-                <div class="cardFuncionario">
-                    <div class="imgFuncionario">
-                        <img id="imgFuncionario" src="https://picsum.photos/300/200">
-                    </div>
-                    <h2 id="nomeFuncionario"> Nome </h2>
-                    <h1> Função </h1>
-                </div>
-                <!-- <h1> Sem funcionários cadastrados </h1> -->
+                <h1 id="noFuncionariosMessage">Sem funcionários cadastrados</h1>
             </div>
             <div class="btnsActions">
                 <div class="btn excluir"> Excluir Funcionários </div>

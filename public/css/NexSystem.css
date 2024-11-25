@@ -1084,6 +1084,8 @@ body {
       align-items: center;
       justify-content: center;
       font-family: "Wix Madefor Display", system-ui;
+      flex-wrap: nowrap;
+      overflow-x: auto;
 
 
       & .cardFuncionario {
@@ -1095,6 +1097,8 @@ body {
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
+        flex: 0 0 auto;
+        margin-right: 10px;
 
         & .imgFuncionario {
           width: 80%;
@@ -1152,7 +1156,110 @@ body {
       }
     }
   }
+
+  .contentUserCadastro {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  
+    .inputs_box {
+      display: flex;
+      flex-direction: column;
+      border-radius: 15px;
+      width: 97%;
+      background-color: var(--boxGraphicContent);
+      height: 80%;
+  
+      & .caracterPerson {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        width: 100%;
+        height: 50%;
+        padding: 0 20px;
+        color: var(--titulos);
+        font-size: 15px;
+        background-color: var(--boxGraphicContent);
+        font-weight: 700;
+        border-radius: 15px 15px 0 0;
+        font-family: "Wix Madefor Display", system-ui;
+      }
+  
+      & label {
+        width: 100%;
+        padding: 0 15px;
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        background-color: var(--boxGraphicContent);
+        flex-direction: row;
+        height: 100%;
+        box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+        border-radius: 0 0 15px 15px;
+  
+        & .correcao {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 20%;
+          height: 60%;
+          color: var(--titulos);
+          font-size: 15px;
+          font-weight: 700;
+          font-family: "Wix Madefor Display", system-ui;
+        }
+  
+        & input {
+          width: 80%;
+          height: 60%;
+          padding: 0 15px;
+          background-color: var(--BoxBolt);
+          border-radius: 15px;
+          color: var(--titulos);
+          font-weight: 600;
+          border: none;
+          outline: none;
+        }
+  
+        ::-webkit-input-placeholder {
+          color: var(--titulos);
+        }
+      }
+      
+      & label:nth-child(6),
+      label:nth-child(2),
+      label:nth-child(4) {
+        margin-bottom: 10px;
+      }
+    }
+    .btn {
+      background-color: #585e70;
+      width: 150px;
+      height: 70px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      font-family: "Wix Madefor Display", system-ui;
+      color: #ffffff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.4s;
+      margin-top: 40px;
+    }
+    .btn:hover{
+        transform: scale(1.1);
+        background-color: #1c66ac;
+        transition: 0.4s;
+    }
+  }
+  
 }
+
+
 
 .modalFuncionario {
   width: 800px;
@@ -1164,6 +1271,19 @@ body {
   opacity: 0;
   transform: scale(0.9);
   transition: opacity 0.4s ease, transform 0.4s ease;
+
+  button{
+    width: 40px;
+    height: 40px;
+    font-weight: bold;
+    transition: 0.4s;
+    border-radius: 10px;
+    
+  }
+  button:hover{
+    background-color: #2096db;
+    transition: 0.4s;
+  }
 }
 
 .modalFuncionario.show {
@@ -1175,6 +1295,9 @@ body {
   opacity: 0;
   transform: scale(0.9);
 }
+
+
+
 
 .highContentNex4 {
   grid-template-rows: 8% 85%;

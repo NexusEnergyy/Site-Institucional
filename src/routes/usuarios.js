@@ -11,5 +11,12 @@ router.post("/cadastrarResponsavel", function(req,res){
     usuarioController.cadastrarResponsavel(req,res);
 })
 
+router.post("/cadastrarFuncionario", function(req,res){
+    usuarioController.cadastrarFuncionario(req,res);
+})
+
+router.get("/carregarFuncionarios", function(req,res){
+    usuarioController.carregarFuncionarios(req,res);
+})
 
 module.exports = router;
