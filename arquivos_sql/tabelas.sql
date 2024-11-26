@@ -9,17 +9,20 @@ CREATE TABLE Matriz (
     ativoTotal INT
 );
 
+
 CREATE TABLE Filial (
 	idFilial INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(200),
     cidade VARCHAR(45),
     UF CHAR(2),
     submercado VARCHAR(45),
+    fkPorte INT,
+    FOREIGN KEY (fkPorte)
+		REFERENCES Parametros(idParametro),
     fkMatriz INT,
     FOREIGN KEY (fkMatriz)
 		REFERENCES Matriz(idMatriz)
 );
-
 
 CREATE TABLE Cargo (
 	idCargo INT PRIMARY KEY,
@@ -46,17 +49,18 @@ CREATE TABLE Usuario (
         REFERENCES Cargo(idCargo)
 );
 
+
 INSERT INTO Usuario VALUES
-	('13187293867','Diogo Polastrine','diogo.silva@nexuseng.com','nexusEnergy@123',null, null, 0),
-    ('81238123813','Carolina Timóteo','carol.camargo@nexuseng.com','nexusEnergy@123',null, null, 0),
-    ('10192929292','Ryan Torres','ryan.torres@nexuseng.com','nexusEnergy@123',null, null, 0),
-    ('21293939393','Alexandre Frizzon','ale.frizon@nexuseng.com','nexusEnergy@123',null, null, 0),
-    ('50994914990','Pedro Paulo','pedro.paulo@nexuseng.com','nexusEnergy@123',null, null, 0),
-    ('43122344517','Alisson Ferro','alisson.ferro@nexuseng.com','nexusEnergy@123',null, null, 0);
+	('13187293867','Diogo Polastrine','diogo.silva@nexuseng.com','3716d5937ebfe1c6f527c6ba560519820bb7d89f76fd3f5d1dc1609517e83ac3',null, null, 0),
+    ('81238123813','Carolina Timóteo','carol.camargo@nexuseng.com','3716d5937ebfe1c6f527c6ba560519820bb7d89f76fd3f5d1dc1609517e83ac3',null, null, 0),
+    ('10192929292','Ryan Torres','ryan.torres@nexuseng.com','3716d5937ebfe1c6f527c6ba560519820bb7d89f76fd3f5d1dc1609517e83ac3',null, null, 0),
+    ('21293939393','Alexandre Frizzon','ale.frizon@nexuseng.com','3716d5937ebfe1c6f527c6ba560519820bb7d89f76fd3f5d1dc1609517e83ac3',null, null, 0),
+    ('50994914990','Pedro Paulo','pedro.paulo@nexuseng.com','3716d5937ebfe1c6f527c6ba560519820bb7d89f76fd3f5d1dc1609517e83ac3',null, null, 0),
+    ('43122344517','Alisson Ferro','alisson.ferro@nexuseng.com','3716d5937ebfe1c6f527c6ba560519820bb7d89f76fd3f5d1dc1609517e83ac3',null, null, 0);
     
 CREATE TABLE ConsumoDados (
 	idDados INT PRIMARY KEY AUTO_INCREMENT,
-    dataReferencia CHAR(6),
+    dataReferencia DATE,
     consumoEnergia DECIMAL(8,2),
     emissaoCO2 DECIMAL(8,2),
     qtdArvores INT,
@@ -88,3 +92,29 @@ CREATE TABLE HistoricoIA (
     resposta VARCHAR(1000),
     dataResposta DATETIME
 );
+
+CREATE TABLE Parametros (
+	idParametro INT PRIMARY KEY AUTO_INCREMENT,
+    porte CHAR(5),
+    ativoMin DECIMAL(12,2),
+    ativoMax DECIMAL(12,2)
+);
+
+INSERT INTO Parametros VALUES
+	(default,"Baixo",0,2000000.00),
+    (default,"Médio",2000000.01,30000000.00),
+    (default,"Alto",30000000.01,NULL);
+    
+
+
+
+
+SHOW TABLES;
+
+SELECT * FROM ConsumoDados;
+SELECT * FROM Filial;	
+SELECT * FROM Matriz;
+SELECT * FROM Usuario;
+SELECT * FROM Cargo;
+SELECT * FROM Insights;
+SELECT * FROM HistoricoIA;
