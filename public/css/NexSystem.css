@@ -467,14 +467,26 @@ body {
       & select{
         background-color: var(--boxGraphic);
         color: var(--titulos);
-        border-radius: 10px;
-        padding: 19px;
         outline: none;
         border: none;
         font-size: 25px;
         font-family: "Wix Madefor Display", system-ui;
         font-weight: 700;
       }
+
+      & #tempoEscolha{
+        background-color: var(--boxGraphic);
+        color: var(--titulos);
+        outline: none;
+        border: none;
+        border-radius: 10px;
+        padding: 20PX 10px;
+        font-size: 25px;
+        font-family: "Wix Madefor Display", system-ui;
+        font-weight: 700;
+      }
+
+
     }
 
 
