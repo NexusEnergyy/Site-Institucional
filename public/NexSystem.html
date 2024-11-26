@@ -100,6 +100,12 @@
         <div data-aos="zoom-out" class="NamePage">
             <div class="currentPage">
                 <div class="contentPage">DASHBOARD/Home</div>
+                <select id="empresasEscolha">
+                    <option value="">TIM</option>
+                    <option value="">OI</option>
+                    <option value="">VIVO</option>
+                    <option value="">CLARO</option>
+                </select>
             </div>
             <div class="information">
                 <div class="notify">
@@ -305,7 +311,7 @@
         </div>
         <div data-aos="zoom-out" class="Funcionarios">
             <dialog id="modal" class="modalFuncionario">
-                <button class="fecharModal" onclick="fecharModal()">X</button>
+                <i onclick="fecharModal()" class="fa-solid fa-xmark fa-lg" ></i> 
                 <div class="contentUserCadastro">
                     <div class="inputs_box">
                         <span class="caracterPerson">Nome</span>

@@ -448,22 +448,32 @@ body {
     align-items: center;
 
     & .currentPage {
-      border-radius: 10px;
-      width: 24%;
-      max-width: max-content;
+      width: 32.5%;
       display: flex;
-      padding: 0 20px;
-      justify-content: start;
+      justify-content: space-between;
       align-items: center;
       height: 90%;
-      background-color: var(--boxGraphic);
 
       & .contentPage {
+        background-color: var(--boxGraphic);
         color: var(--titulos);
+        border-radius: 10px;
+        padding: 20px;
         font-size: 25px;
         font-family: "Wix Madefor Display", system-ui;
         font-weight: 700;
+      }
 
+      & select{
+        background-color: var(--boxGraphic);
+        color: var(--titulos);
+        border-radius: 10px;
+        padding: 19px;
+        outline: none;
+        border: none;
+        font-size: 25px;
+        font-family: "Wix Madefor Display", system-ui;
+        font-weight: 700;
       }
     }
 
@@ -1273,19 +1283,23 @@ body {
   transform: scale(0.9);
   transition: opacity 0.4s ease, transform 0.4s ease;
 
-  button{
+  i{
     width: 45px;
     height: 20px;
     outline: none;
     border: none;
-    margin: 20px;
+    margin: 10px 15px;
     font-weight: bold;
+    color: var(--titulos);
     transition: 0.4s;
+    cursor: pointer;
     border-radius: 5px;
+    position: relative;
+    top: 10px;
     
   }
   button:hover{
-    background-color: #2096db;
+    background-color: #0029cc;
     transition: 0.4s;
   }
 }
