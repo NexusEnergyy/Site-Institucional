@@ -470,7 +470,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const option = {
     title: { 
-      text: 'Comparativo de Mercado das Empresas', 
+      text: 'kWh', 
       textStyle: { color: '#FFFFFF' },
     },
     tooltip: { 
