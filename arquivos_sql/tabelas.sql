@@ -2,12 +2,26 @@ CREATE DATABASE nexusEnergy;
 USE nexusEnergy;
 
 
+
+
 CREATE TABLE Matriz (
 	idMatriz INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45),
     CNPJ CHAR(18),
     ativoTotal INT
 );
+
+CREATE TABLE Parametros (
+	idParametro INT PRIMARY KEY AUTO_INCREMENT,
+    porte CHAR(5),
+    ativoMin DECIMAL(12,2),
+    ativoMax DECIMAL(12,2)
+);
+
+INSERT INTO Parametros VALUES
+	(default,"Baixo",0,2000000.00),
+    (default,"Médio",2000000.01,30000000.00),
+    (default,"Alto",30000000.01,NULL);
 
 
 CREATE TABLE Filial (
@@ -93,17 +107,6 @@ CREATE TABLE HistoricoIA (
     dataResposta DATETIME
 );
 
-CREATE TABLE Parametros (
-	idParametro INT PRIMARY KEY AUTO_INCREMENT,
-    porte CHAR(5),
-    ativoMin DECIMAL(12,2),
-    ativoMax DECIMAL(12,2)
-);
-
-INSERT INTO Parametros VALUES
-	(default,"Baixo",0,2000000.00),
-    (default,"Médio",2000000.01,30000000.00),
-    (default,"Alto",30000000.01,NULL);
     
 
 
