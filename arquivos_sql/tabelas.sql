@@ -3,11 +3,10 @@ USE nexusEnergy;
 
 
 
-
 CREATE TABLE Matriz (
 	idMatriz INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(45),
-    CNPJ CHAR(18),
+    nome VARCHAR(250),
+    CNPJ CHAR(19),
     ativoTotal INT
 );
 
@@ -26,7 +25,7 @@ INSERT INTO Parametros VALUES
 
 CREATE TABLE Filial (
 	idFilial INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(200),
+    nome VARCHAR(250),
     cidade VARCHAR(45),
     UF CHAR(2),
     submercado VARCHAR(45),
@@ -107,6 +106,7 @@ CREATE TABLE HistoricoIA (
     dataResposta DATETIME
 );
 
+
     
 
 
@@ -121,3 +121,4 @@ SELECT * FROM Usuario;
 SELECT * FROM Cargo;
 SELECT * FROM Insights;
 SELECT * FROM HistoricoIA;
+SELECT * FROM Parametros;
