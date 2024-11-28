@@ -6,17 +6,32 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuItems2 = document.getElementById('menuItens2');
   const html = document.documentElement
 
+
+  editNome.value = sessionStorage.NOME_USER
+  editCpf.value = sessionStorage.CPF_USER
+  editEmail.value = sessionStorage.EMAIL_USER
+  editSenha.value = "NE@111123"
+
+
+  var nomeCompleto = sessionStorage.getItem('NOME_USER');
+  var partesNome = nomeCompleto.split(' ');
+  var primeiroNome = partesNome[0];
+  var sobrenome = partesNome.length > 1 ? partesNome[1] : '';
   
+  document.getElementById('nome1').innerText = primeiroNome;
+  document.getElementById('sobrenome1').innerText = sobrenome;
+
+
   const titles = [
-        document.getElementById('titulo'),
-        document.getElementById('titulo2'),
-        document.getElementById('titulo3')
+    document.getElementById('titulo'),
+    document.getElementById('titulo2'),
+    document.getElementById('titulo3')
   ];
-  
+
   const titles2 = [
-      document.getElementById('titulo4'),
-      document.getElementById('titulo5'),
-      document.getElementById('titulo6')
+    document.getElementById('titulo4'),
+    document.getElementById('titulo5'),
+    document.getElementById('titulo6')
   ];
   const configNex = document.getElementById('configNex');
   const mainTitle = document.getElementById('mainTitle');
@@ -31,74 +46,74 @@ document.addEventListener('DOMContentLoaded', () => {
   const boltContent = document.querySelector('.highContentNex5');
 
   function toggleDisplay(activeSection) {
-      const sections = [dashboardContent, performanceContent, empresasContent, perfilContent, boltContent];
-      
-      sections.forEach(section => {
-          section.classList.remove('visible');
-          section.classList.add('hidden');
-          section.style.display = 'none'; 
-      });
-  
-      // Mostrar a seção ativa
-      activeSection.style.display = 'grid';
-      setTimeout(() => {
-          activeSection.classList.remove('hidden');
-          activeSection.classList.add('visible');
-      }, 50); 
+    const sections = [dashboardContent, performanceContent, empresasContent, perfilContent, boltContent];
+
+    sections.forEach(section => {
+      section.classList.remove('visible');
+      section.classList.add('hidden');
+      section.style.display = 'none';
+    });
+
+    // Mostrar a seção ativa
+    activeSection.style.display = 'grid';
+    setTimeout(() => {
+      activeSection.classList.remove('hidden');
+      activeSection.classList.add('visible');
+    }, 50);
   }
-  
-  
+
+
   document.addEventListener('DOMContentLoaded', () => {
-      toggleDisplay(dashboardContent);
+    toggleDisplay(dashboardContent);
   });
 
 
   function toggleMenu() {
-      nav.classList.toggle('active');
-      menuItems.classList.toggle('open');
-      menuItems2.classList.toggle('open');
+    nav.classList.toggle('active');
+    menuItems.classList.toggle('open');
+    menuItems2.classList.toggle('open');
 
-      titles.forEach(title => {
-          title.style.display = title.style.display === 'flex' ? 'none' : 'flex';
-      });
-      titles2.forEach(title => {
-          title.style.display = title.style.display === 'flex' ? 'none' : 'flex';
-      });
-      mainTitle.style.display = mainTitle.style.display === 'flex' ? 'none' : 'flex';
-      configNex.style.display = configNex.style.display === 'flex' ? 'none' : 'flex';
-      IA.style.display = configNex.style.display === 'none' ? 'none' : 'flex';
+    titles.forEach(title => {
+      title.style.display = title.style.display === 'flex' ? 'none' : 'flex';
+    });
+    titles2.forEach(title => {
+      title.style.display = title.style.display === 'flex' ? 'none' : 'flex';
+    });
+    mainTitle.style.display = mainTitle.style.display === 'flex' ? 'none' : 'flex';
+    configNex.style.display = configNex.style.display === 'flex' ? 'none' : 'flex';
+    IA.style.display = configNex.style.display === 'none' ? 'none' : 'flex';
   }
 
   function rotateGear() {
-      gearIcon.classList.toggle('rotate');
+    gearIcon.classList.toggle('rotate');
   }
 
-  
+
   button.addEventListener('click', toggleMenu);
   button2.addEventListener('click', rotateGear);
   button2.addEventListener('click', toggleMenu);
-  
+
 
   document.getElementById('dashboardItem').addEventListener('click', () => {
-      toggleDisplay(dashboardContent);
+    toggleDisplay(dashboardContent);
   });
-  
+
   document.getElementById('performanceItem').addEventListener('click', () => {
-      toggleDisplay(performanceContent);
+    toggleDisplay(performanceContent);
   });
-  
+
   document.getElementById('empresasItem').addEventListener('click', () => {
     if (sessionStorage.CARGO_USER == 0) {
       window.location.href = './cadastroRepresentantes.html';
     } else {
-      toggleDisplay(empresasContent); 
+      toggleDisplay(empresasContent);
     }
   });
   document.getElementById('perfilItem').addEventListener('click', () => {
-      toggleDisplay(perfilContent);
+    toggleDisplay(perfilContent);
   });
   document.getElementById('boltItem').addEventListener('click', () => {
-      toggleDisplay(boltContent);
+    toggleDisplay(boltContent);
   });
 
   document.getElementById('temaItem').addEventListener('click', () => lightColor());
@@ -106,15 +121,15 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('saida').addEventListener('click', () => sair());
 
 
-  function lightColor(){
-      html.classList.toggle('light');
-      changeLegendColor()
-      changeXAxisLabelColor()
-      changeYAxisLabelColor()
+  function lightColor() {
+    html.classList.toggle('light');
+    changeLegendColor()
+    changeXAxisLabelColor()
+    changeYAxisLabelColor()
   }
 
-  function sair(){
-      window.location.href="./index.html"
+  function sair() {
+    window.location.href = "./index.html"
   }
 });
 
@@ -123,7 +138,7 @@ function abrirModal() {
   const modal = document.getElementById('modal');
   modal.classList.remove('hide');
   modal.classList.add('show');
-  modal.showModal( )
+  modal.showModal()
 }
 
 function fecharModal() {
@@ -309,7 +324,7 @@ document.addEventListener('DOMContentLoaded', function () {
 option = {
   xAxis: {
     type: 'category',
-    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    data: ['Jan', 'Fev', 'Mar', 'Abr', 'Jun', 'JUl', 'Ago'],
   },
   yAxis: {
     type: 'value'
@@ -399,7 +414,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const emissaoCo2Chart = echarts.init(document.getElementById('emissaoCo2Chart'));
 
   const option = {
-   
+
     tooltip: {
       trigger: 'axis'
     },
@@ -469,13 +484,13 @@ document.addEventListener('DOMContentLoaded', function () {
   const comparativoMercado2 = echarts.init(document.getElementById('comparativoMercado2'));
 
   const option = {
-    title: { 
-      text: 'Comparativo de Mercado das Empresas', 
+    title: {
+      text: 'Consumo (MWh) Entre Empresas',
       textStyle: { color: '#FFFFFF' },
     },
-    tooltip: { 
+    tooltip: {
       trigger: 'axis',
-      formatter: function(params) {
+      formatter: function (params) {
         let content = `${params[0].axisValue}<br>`;
         params.forEach(item => {
           content += `${item.marker} ${item.seriesName}: ${item.data}<br>`;
@@ -510,8 +525,6 @@ document.addEventListener('DOMContentLoaded', function () {
   comparativoMercado2.setOption(option);
 
 
-
-
   // Redimensionamento automático
   window.addEventListener('resize', function () {
     comparativoMercado2.resize();
@@ -538,87 +551,82 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
-
-
-
-
 // Aguarda o carregamento do DOM
 document.addEventListener('DOMContentLoaded', function () {
-// Inicializa o gráfico dentro do elemento com ID 'historicoChart'
-const historicoChart = echarts.init(document.getElementById('historicoChart'));
+  // Inicializa o gráfico dentro do elemento com ID 'historicoChart'
+  const historicoChart = echarts.init(document.getElementById('historicoChart'));
 
-// Configurações do gráfico
-const colors = ['#5470C6', '#91CC75', '#EE6666'];
-const option = {
-  color: colors,
-  tooltip: {
-    trigger: 'axis',
-    axisPointer: {
-      type: 'cross'
-    }
-  },
-  grid: {
-    right: '20%'
-  },
-  toolbox: {
-    feature: {
-      dataView: { show: true, readOnly: false },
-      restore: { show: true },
-      saveAsImage: { show: true }
-    }
-  },
-  legend: {
-    data: ['Consumo'],
-    textStyle: {
-      color: '#FFFFFF' // Cor branca para a legenda
-    }
-  },
-  xAxis: [
-    {
-      type: 'category',
-      axisTick: {
-        alignWithLabel: true
-      },
-      data: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-      axisLabel: {
-        color: '#FFFFFF' // Cor branca para os nomes dos meses
+  // Configurações do gráfico
+  const colors = ['#5470C6', '#91CC75', '#EE6666'];
+  const option = {
+    color: colors,
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'cross'
       }
-    }
-  ],
-  yAxis: [
-    {
-      type: 'value',
-      name: 'kWh',
-      position: 'left',
-      alignTicks: true,
-      axisLine: {
-        show: true,
-        lineStyle: {
-          color: '#FFFFFF' // Cor branca para a linha do eixo Y
+    },
+    grid: {
+      right: '20%'
+    },
+    toolbox: {
+      feature: {
+        dataView: { show: true, readOnly: false },
+        restore: { show: true },
+        saveAsImage: { show: true }
+      }
+    },
+    legend: {
+      data: ['Consumo'],
+      textStyle: {
+        color: '#FFFFFF' // Cor branca para a legenda
+      }
+    },
+    xAxis: [
+      {
+        type: 'category',
+        axisTick: {
+          alignWithLabel: true
+        },
+        data: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+        axisLabel: {
+          color: '#FFFFFF' // Cor branca para os nomes dos meses
         }
-      },
-      axisLabel: {
-        formatter: '{value}'
       }
-    }
-  ],
-  series: [
-    {
-      name: 'kWh',
-      type: 'bar',
-      data: [100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650] // Exemplo de dados em kWh
-    }
-  ]
-};
+    ],
+    yAxis: [
+      {
+        type: 'value',
+        name: 'kWh',
+        position: 'left',
+        alignTicks: true,
+        axisLine: {
+          show: true,
+          lineStyle: {
+            color: '#FFFFFF' // Cor branca para a linha do eixo Y
+          }
+        },
+        axisLabel: {
+          formatter: '{value}'
+        }
+      }
+    ],
+    series: [
+      {
+        name: 'kWh',
+        type: 'bar',
+        data: [100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650] // Exemplo de dados em kWh
+      }
+    ]
+  };
 
-// Renderiza o gráfico
-historicoChart.setOption(option);
+  // Renderiza o gráfico
+  historicoChart.setOption(option);
 
-// Responsividade para redimensionamento da janela
-window.addEventListener('resize', function () {
-  historicoChart.resize();
-});
+  // Responsividade para redimensionamento da janela
+  window.addEventListener('resize', function () {
+    historicoChart.resize();
+  });
 });
 
 
@@ -737,4 +745,67 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('resize', function () {
     TreeGraphic.resize();
   });
+});
+
+
+function editPerfil(){
+  var editNome = document.getElementById('editNome').value
+  var editCpf = document.getElementById('editCpf').value
+  var editSenha = document.getElementById('editSenha').value
+  var editEmail = document.getElementById('editEmail').value
+
+  fetch("/usuarios/editPerfil", {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      Nome: editNome,
+      Email: editEmail,
+      Cpf: editCpf,
+      Senha: editSenha
+    })
+  }
+  ).then(function (resposta) {
+    if (resposta.ok) {
+            alert("Dados Atualizados com Sucesso")
+            atualizarNome()
+    } else {
+        throw ('Houve um erro na API!');
+    }
+}).catch(function (resposta) {
+    console.error(resposta);
+});
+}
+function qtdFiliais() {
+  const idFilial = sessionStorage.FILIAL_USER;
+
+  // Adicionando o parâmetro na URL como query string
+  const url = `/empresas/qtdFiliais?fkFilial=${idFilial}`;
+
+  fetch(url, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  }).then(function (resposta) {
+      if (resposta.ok) {
+          if (resposta.status == 204) {
+              throw "Nenhum resultado encontrado!!";
+          }
+          resposta.json().then(function (resposta) {
+              console.log("Dados recebidos: ", JSON.stringify(resposta));
+              numeroFiliais.innerHTML = `${resposta.qtdFiliais}`;
+          });
+      } else {
+          throw ('Houve um erro na API!');
+      }
+  }).catch(function (resposta) {
+      console.error(resposta);
   });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  qtdFiliais();
+});
+

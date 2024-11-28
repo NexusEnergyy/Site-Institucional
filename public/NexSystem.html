@@ -122,7 +122,7 @@
         <div data-aos="zoom-out" class="Kpis">
             <div class="cardKpis">
                 <div class="containerKPItitulo">
-                    <div class="titleKpi">Consumo Medio Diário</div>
+                    <div class="titleKpi">Consumo Medio Diário (Mês Atual)</div>
                     <div class="insight">2<span style="color: #0CBDD9; margin: 0;">M</span><span
                             style="color: #FFBB00; margin: 0;">Wh</span></div>
                 </div>
@@ -135,7 +135,7 @@
             </div>
             <div class="cardKpis">
                 <div class="containerKPItitulo">
-                    <div class="titleKpi">Compensação Ambiental</div>
+                    <div class="titleKpi">Compensação Ambiental (Mês Atual)</div>
                     <div class="insight"><img src="./assets/icon/Clip path group.png" alt="">140</div>
                 </div>
             </div>
@@ -143,13 +143,13 @@
         <div data-aos="zoom-out" class="Graphics">
             <div class="GraphicDash">
                 <div class="consumo">
-                    <div class="titleGraphic">Consumo Horário</div>
+                    <div class="titleGraphic">Consumo Horário (Mês Atual)</div>
                     <div class="graphicContent">
                         <span id="consumoHorarioChart"></span>
                     </div>
                 </div>
                 <div class="consumo">
-                    <div class="titleGraphic">Consumo Mensal</div>
+                    <div class="titleGraphic">Consumo Mensal (Mês Atual)</div>
                     <div class="graphicContent" id="consumoMensalChart" style="width: 100%; height: 100%;"></div>
                 </div>
                 <div class="consumo">
@@ -213,17 +213,17 @@
                 </div>
                 <div class="graphicsPerf">
                     <div class="comparativoProprio">
-                        <div class="titleGDP">Informações da empresa</div>
+                        <div class="titleGDP">Informações da sua empresa</div>
                         <div class="contentGDP">
                             <div class="containerContentGDP">
                                 <div class="numFiliais">
                                     <div class="titleNumfiliais">Número de filiais</div>
                                     <div class="contentNumFiliais">
-                                        <h1>10</h1>
+                                        <h1 id="numeroFiliais">10</h1>
                                     </div>
                                 </div>
                                 <div class="mediaConsuFiliais">
-                                    <div class="titleMediaConsuFiliais"> Comparativo do consumo entre as filiais</div>
+                                    <div class="titleMediaConsuFiliais"> Comparativo do consumo(Mhw) entre as filiais</div>
                                     <div class="contentMediaConsuFiliais">
                                         <img id="graficoMockado" src="image.png" alt="">
                                     </div>
@@ -235,7 +235,7 @@
             </div>
             <div class="rightPerf">
                 <div class="rankingPerf">
-                    <div class="titleRank">Ranking de Consumo</div>
+                    <div class="titleRank">Ranking de Consumo Ultimo Mês</div>
                     <div class="ranking">
                         <div class="contentRank">
                             <div class="rank1">
@@ -377,8 +377,8 @@
             <div class="leftProfile">
                 <div class="imgProfileUser"></div>
                 <div class="infoUser">
-                    <div class="Username">LEONARDO</div>
-                    <div class="EntUser">SPTECH</div>
+                    <div class="Username" id="nome1">LEONARDO</div>
+                    <div class="EntUser" id="sobrenome1">SPTECH</div>
                     <div class="confirmarAlt">
                         <label for="file-upload" class="custom-file-label">Escolher foto</label>
                         <input id="file-upload" type="file" accept=".jpg, .jpeg, .png" />
@@ -394,30 +394,29 @@
                     <div class="inputs_box">
                         <span class="caracterPerson">Nome</span>
                         <label for="">
-                            <input maxlength="70" placeholder="Digite aqui" type="text">
-                            <span class="correcao">Nome completo</span>
+                            <input maxlength="70" placeholder="Digite aqui" type="text" id="editNome">
+                            <span class="correcao" id="">Nome completo</span>
                         </label>
 
                         <span class="caracterPerson">E-mail</span>
                         <label for="">
-                            <input maxlength="90" placeholder="Digite aqui" type="text">
+                            <input maxlength="90" placeholder="Digite aqui" type="text" id="editEmail">
                             <span class="correcao">@ plmds</span>
                         </label>
 
                         <span class="caracterPerson">CPF</span>
                         <label for="">
-                            <input maxlength="11" placeholder="Digite aqui" type="text">
+                            <input maxlength="11" placeholder="Digite aqui" type="text" id="editCpf">
                             <span class="correcao">Sem pontos e traços</span>
                         </label>
-
                         <span class="caracterPerson">Senha</span>
                         <label for="">
-                            <input maxlength="90" placeholder="Digite aqui" type="text">
+                            <input maxlength="90" placeholder="Digite aqui" type="password" id="editSenha">
                             <span class="correcao" id="dica">Senha forte/fraca</span>
                         </label>
                     </div>
                 </div>
-                <button>Alterar informações</button>
+                <button onclick="editPerfil()">Alterar informações</button>
             </div>
         </div>
 

@@ -14,4 +14,21 @@ function cadastrarEmpresa(idMatriz, nome_empresa, submercado, cidade, uf) {
   });
 }
 
-module.exports = { buscarMatrizes, cadastrarEmpresa};
+function qtdFiliais(filial) {
+  var instrucaoSql = `
+  SELECT 
+    COUNT(F2.idFilial) AS qtd
+FROM 
+    Filial F1
+JOIN 
+    Matriz M ON F1.fkMatriz = M.idMatriz
+JOIN 
+    Filial F2 ON F2.fkMatriz = M.idMatriz
+WHERE 
+    F1.idFilial = ${filial};
+  `;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+module.exports = { buscarMatrizes, cadastrarEmpresa, qtdFiliais};

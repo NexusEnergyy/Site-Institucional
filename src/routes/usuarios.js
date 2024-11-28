@@ -18,5 +18,8 @@ router.post("/cadastrarFuncionario", function(req,res){
 router.get("/carregarFuncionarios", function(req,res){
     usuarioController.carregarFuncionarios(req,res);
 })
+router.put("/editPerfil", function(req,res){
+    usuarioController.editPerfil(req,res);
+})
 
 module.exports = router;

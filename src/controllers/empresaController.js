@@ -30,8 +30,24 @@ function cadastrarEmpresa(req, res) {
 
 }
 
+function qtdFiliais(req, res) {
+  const filial = req.query.fkFilial;
+  empresaModel.qtdFiliais(filial)
+      .then(function (resultado) {
+          if (resultado.length > 0) {
+              res.status(200).json({ qtdFiliais: resultado[0].qtd });
+          } else {
+              res.status(204).send("Nenhum resultado encontrado!");
+          }
+      })
+      .catch(function (erro) {
+          console.error(erro);
+          res.status(500).json(erro);
+      });
+}
 
 module.exports = {
   buscarMatrizes,
-  cadastrarEmpresa
+  cadastrarEmpresa,
+  qtdFiliais
 };

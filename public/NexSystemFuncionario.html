@@ -42,7 +42,7 @@
 
 </head>
 
-<body>
+<body> 
     <div data-aos="zoom-out" class="container">
         <nav id="ativar">
             <div id="menu">
@@ -219,7 +219,7 @@
                                 <div class="numFiliais">
                                     <div class="titleNumfiliais">Número de filiais</div>
                                     <div class="contentNumFiliais">
-                                        <h1>10</h1>
+                                        <h1 id="numeroFiliais">10</h1>
                                     </div>
                                 </div>
                                 <div class="mediaConsuFiliais">
@@ -356,8 +356,8 @@
             <div class="leftProfile">
                 <div class="imgProfileUser"></div>
                 <div class="infoUser">
-                    <div class="Username">LEONARDO</div>
-                    <div class="EntUser">SPTECH</div>
+                    <div class="Username" id="nome1">LEONARDO</div>
+                    <div class="EntUser" id="sobrenome1">SPTECH</div>
                     <div class="confirmarAlt">
                         <label for="file-upload" class="custom-file-label">Escolher foto</label>
                         <input id="file-upload" type="file" accept=".jpg, .jpeg, .png" />
@@ -373,30 +373,29 @@
                     <div class="inputs_box">
                         <span class="caracterPerson">Nome</span>
                         <label for="">
-                            <input maxlength="70" placeholder="Digite aqui" type="text">
-                            <span class="correcao">Nome completo</span>
+                            <input maxlength="70" placeholder="Digite aqui" type="text" id="editNome">
+                            <span class="correcao" id="">Nome completo</span>
                         </label>
 
                         <span class="caracterPerson">E-mail</span>
                         <label for="">
-                            <input maxlength="90" placeholder="Digite aqui" type="text">
+                            <input maxlength="90" placeholder="Digite aqui" type="text" id="editEmail">
                             <span class="correcao">@ plmds</span>
                         </label>
 
                         <span class="caracterPerson">CPF</span>
                         <label for="">
-                            <input maxlength="11" placeholder="Digite aqui" type="text">
+                            <input maxlength="11" placeholder="Digite aqui" type="text" id="editCpf">
                             <span class="correcao">Sem pontos e traços</span>
                         </label>
-
                         <span class="caracterPerson">Senha</span>
                         <label for="">
-                            <input maxlength="90" placeholder="Digite aqui" type="text">
+                            <input maxlength="90" placeholder="Digite aqui" type="password" id="editSenha">
                             <span class="correcao" id="dica">Senha forte/fraca</span>
                         </label>
                     </div>
                 </div>
-                <button>Alterar informações</button>
+                <button onclick="editPerfil()">Alterar informações</button>
             </div>
         </div>
 

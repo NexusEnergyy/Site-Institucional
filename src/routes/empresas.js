@@ -11,4 +11,8 @@ router.post("/cadastrarEmpresa", function(req,res){
     empresaController.cadastrarEmpresa(req,res);
 });
 
+router.get("/qtdFiliais", function (req, res) {
+    empresaController.qtdFiliais(req, res);
+  })
+
 module.exports = router;

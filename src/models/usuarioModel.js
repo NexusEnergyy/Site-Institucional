@@ -9,6 +9,14 @@ function autenticar(email, senha) {
     return database.executar(instrucaoSql);
 }
 
+function editPerfil(Nome, Email, Cpf, Senha) {
+    var instrucaoSql = `
+        UPDATE Usuario SET CPF = '${Cpf}', nome = '${Nome}', email = '${Email}', senha = SHA2('${Senha}', 256) WHERE CPF = '${Cpf}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 
 function cadastrarResponsavel(cpf, nome_responsavel, email, telefone, nome_empresa) {
     var selectSql = `SELECT idFilial FROM Filial WHERE nome = '${nome_empresa}'`;
@@ -47,5 +55,6 @@ module.exports = {
     autenticar,
     cadastrarResponsavel,
     cadastrarFuncionario,
-    carregarFuncionarios
+    carregarFuncionarios,
+    editPerfil
 };

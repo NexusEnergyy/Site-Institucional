@@ -123,6 +123,25 @@ function cadastrarFuncionario(req, res) {
     }
 }
 
+function editPerfil(req, res){
+    var Nome = req.body.Nome;
+    var Email = req.body.Email;
+    var Senha = req.body.Senha;
+    var Cpf = req.body.Cpf;
+    usuarioModel.editPerfil(Nome, Email, Cpf, Senha)
+            .then(
+                console.log("Perfil Atualizado com Sucesso!"),
+                res.status(200).json()
+                
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o cadastro! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+
 
 function carregarFuncionarios(req, res) {
     var fkFilial = req.query.fkFilial;
@@ -190,5 +209,6 @@ module.exports = {
     autenticar,
     cadastrarResponsavel,
     cadastrarFuncionario,
-    carregarFuncionarios
+    carregarFuncionarios,
+    editPerfil
 }
