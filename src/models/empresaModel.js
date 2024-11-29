@@ -31,4 +31,13 @@ WHERE
   return database.executar(instrucaoSql);
 }
 
-module.exports = { buscarMatrizes, cadastrarEmpresa, qtdFiliais};
+function buscarFiliais(){
+  var instrucaoSql = `
+      SELECT idFilial, nome from Filial;
+  `
+  
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+module.exports = { buscarMatrizes, cadastrarEmpresa, qtdFiliais, buscarFiliais };

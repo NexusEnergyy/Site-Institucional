@@ -99,18 +99,9 @@
     <div class="highContentNex">
         <div data-aos="zoom-out" class="NamePage">
             <div class="currentPage">
-                <div class="contentPage">DASHBOARD/
-                    <select id="empresasEscolha">
-                        <option value="">TIM</option>
-                        <option value="">OI</option>
-                        <option value="">VIVO</option>
-                        <option value="">CLARO</option>
-                    </select>
+                <div class="contentPage">DASHBOARD/Principal
                 </div>
-                <select id="tempoEscolha">
-                    <option value="">MENSAL</option>
-                    <option value="">TRIMESTRAL</option>
-                </select>
+                <div id="selectContainer"></div>
             </div>
 
             <div class="information">
@@ -148,7 +139,7 @@
             <div class="cardKpis">
                 <div class="containerKPItitulo">
                     <div class="titleKpi">Compensação Ambiental (Mês Atual)</div>
-                    <div class="insight"><img src="./assets/icon/Clip path group.png" alt="">140</div>
+                    <div class="insight compensacao"><img src="./assets/icon/Clip path group.png" alt=""></div>
                 </div>
             </div>
         </div>
@@ -351,7 +342,7 @@
                 <h2> Gerenciar Funcionários </h2>
             </div>
             <div class="funcionariosBox">
-                <h1 id="noFuncionariosMessage">Sem funcionários cadastrados</h1>
+                <h5 id="noFuncionariosMessage">Sem funcionários cadastrados</h5>
             </div>
             <div class="btnsActions">
                 <div class="btn excluir"> Excluir Funcionários </div>
@@ -559,11 +550,7 @@
                                 href="./assets/nexSystem/Politica de Privacidade - NexusEnergy.pdf"
                                 download="Politica de Privacidade - NexusEnergy.pdf">declara ter lido nossa Política
                                 de Privacidade</strong>.</a></h4>
-
                 </div>
-
-
-
             </div>
 
         </div>
@@ -577,3 +564,26 @@
     AOS.init();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+
+<script>
+    const CARGO_USER = Number(sessionStorage.getItem('CARGO_USER')); 
+
+    if (CARGO_USER === 0) {
+        const selectElement = `
+        <div style="display: flex; flex-direction: row; align-items: center;">
+            <select style="padding: 18px; margin-left: 20px; border-radius: 10px; cursor: pointer;" id="filialSelect">
+            </select>
+            <span class="btnPlotar" 'onclick="atualizarGraficos()">
+                <p>Plotar</p>
+                </span>
+        </div>
+        `;
+        document.getElementById('selectContainer').innerHTML = selectElement;
+    }
+
+    function atualizarGraficos(){
+        const idFilial = document.getElementById('filialSelect').value;
+
+        getConsumoMensal(idFilial);
+    }
+</script>

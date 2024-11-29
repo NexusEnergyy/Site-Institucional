@@ -46,8 +46,16 @@ function qtdFiliais(req, res) {
       });
 }
 
+function buscarFiliais(req, res){
+  empresaModel.buscarFiliais()
+  .then((resultado) => {
+    res.status(200).json(resultado);
+  });
+}
+
 module.exports = {
   buscarMatrizes,
   cadastrarEmpresa,
-  qtdFiliais
+  qtdFiliais,
+  buscarFiliais
 };

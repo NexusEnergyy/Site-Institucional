@@ -108,10 +108,6 @@ CREATE TABLE HistoricoIA (
 
 
     
-
-
-
-
 SHOW TABLES;
 
 SELECT * FROM ConsumoDados;

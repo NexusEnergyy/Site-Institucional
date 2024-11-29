@@ -139,22 +139,24 @@ function abrirModal() {
   modal.classList.remove('hide');
   modal.classList.add('show');
   modal.showModal()
+  modal.showModal();
 }
 
 function fecharModal() {
   const modal = document.getElementById('modal');
   modal.classList.remove('show');
   modal.classList.add('hide');
+  modal.addEventListener('transitionend', () => {
+    modal.close();
+  }, { once: true });
   modal.close();
 }
 
 
 // GRÁFICO CONSUMO MENSAL DE ENERGIA
 document.addEventListener('DOMContentLoaded', function () {
-  // Inicializa o gráfico dentro do elemento com ID 'consumoMensalChart'
   const consumoMensalChart = echarts.init(document.getElementById('consumoMensalChart'));
 
-  // Configurações do gráfico
   const option = {
     tooltip: {
       trigger: 'axis'
@@ -163,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function () {
       top: '5%',
       left: 'center',
       textStyle: {
-        color: '#FFFFFF' // Define a cor branca para a legenda
+        color: '#FFFFFF'
       }
     },
     xAxis: {
@@ -171,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
       boundaryGap: false,
       data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       axisLabel: {
-        color: '#FFFFFF' // Cor branca para os meses
+        color: '#FFFFFF'
       }
     },
     yAxis: {
@@ -180,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
       axisLine: {
         show: true,
         lineStyle: {
-          color: '#FFFFFF' // Cor branca para a linha do eixo Y
+          color: '#FFFFFF'
         }
       },
       axisLabel: {
@@ -191,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function () {
       {
         name: 'Consumo Mensal',
         type: 'line',
-        data: [120, 132, 101, 134, 90, 230, 210, 180, 150, 200, 170, 250], // Valores de exemplo
+        data: [],
         itemStyle: {
           color: 'rgba(75, 192, 192, 1)'
         },
@@ -209,13 +211,43 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   };
 
-  // Usa a configuração especificada e os dados para mostrar o gráfico
   consumoMensalChart.setOption(option);
 
-  // Responsividade para redimensionamento da janela
   window.addEventListener('resize', function () {
     consumoMensalChart.resize();
   });
+
+  function getConsumoMensal(idFilial) {
+
+    fetch(`/graficos/getConsumoMensal?fkFilial=${idFilial}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(function(resposta){
+        if(resposta.status === 200){
+            return resposta.json();
+        } else {
+            alert(`Erro ao buscar dados: ${resposta.status}`);
+        }
+    })
+    .then(data => {
+        console.log("Valor da Requisição: " + data);
+        const consumoMensal = new Array(12).fill(0);
+        data.forEach(item => {
+            const month = new Date(item.dataReferencia).getMonth();
+            consumoMensal[month] = item.consumoEnergia;
+        });
+        option.series[0].data = consumoMensal;
+        consumoMensalChart.setOption(option);
+    })
+    .catch(error => {
+        console.error('Erro ao buscar dados:', error);
+    });
+}
+
+getConsumoMensal(sessionStorage.getItem("FILIAL_USER"));
 });
 
 
@@ -413,62 +445,100 @@ document.addEventListener('DOMContentLoaded', function () {
   // Inicializa o gráfico dentro do elemento com ID 'emissaoCo2Chart'
   const emissaoCo2Chart = echarts.init(document.getElementById('emissaoCo2Chart'));
 
-  const option = {
+  // Função para gerar dados aleatórios com grande variação acima de 10.000
+  function generateRandomData() {
+    const data = [];
+    for (let i = 0; i < 12; i++) {
+      data.push(Math.floor(Math.random() * 9000) + 10000); // Gera valores entre 10.000 e 18.999
+    }
+    return data;
+  }
 
-    tooltip: {
-      trigger: 'axis'
-    },
-    legend: {
-      data: ['Esse Ano', 'Ano Passado'],
-      textStyle: {
-        color: '#FFFFFF' // Cor branca para a legenda
-      }
-    },
-    grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      containLabel: true
-    },
-    toolbox: {
-      feature: {
-        saveAsImage: {}
-      }
-    },
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: ['Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'], // Últimos 6 meses do ano
-      axisLabel: {
-        color: '#FFFFFF' // Cor branca para os meses
-      }
-    },
-    yAxis: {
-      type: 'value',
-      name: 'kg', // Unidade do eixo y
-      axisLabel: {
-        formatter: '{value} kg', // Formatação com "kg"
-        color: '#FFFFFF' // Cor branca para os valores
-      }
-    },
-    series: [
-      {
-        name: 'Esse Ano',
-        type: 'line',
-        stack: 'Total',
-        data: [150, 200, 180, 250, 300, 270] // Dados de exemplo para os últimos 6 meses
-      },
-      {
-        name: 'Ano Passado',
-        type: 'line',
-        stack: 'Total',
-        data: [100, 150, 130, 200, 220, 190] // Dados de exemplo para os últimos 6 meses
-      }
-    ]
-  };
+  // Dados aleatórios para o ano passado
+  const lastYearData = generateRandomData();
 
-  // Renderiza o gráfico
-  emissaoCo2Chart.setOption(option);
+  const idFilial = sessionStorage.getItem("FILIAL_USER");
+
+  fetch(`/graficos/getEmissaoCO2?fkFilial=${idFilial}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log("Dados recebidos:", data);
+
+      const thisYearData = new Array(12).fill(0);
+
+      if (Array.isArray(data.emissaoCO2)) {
+        data.emissaoCO2.forEach(item => {
+          const month = new Date(item.date).getMonth();
+          thisYearData[month] = item.value; 
+        });
+      } else {
+        console.error('Dados de emissaoCO2 não encontrados ou inválidos');
+      }
+
+      const option = {
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          data: ['Esse Ano', 'Ano Passado'],
+          textStyle: {
+            color: '#FFFFFF' // Cor branca para a legenda
+          }
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
+        toolbox: {
+          feature: {
+            saveAsImage: {}
+          }
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'], // Meses do ano
+          axisLabel: {
+            color: '#FFFFFF' // Cor branca para os meses
+          }
+        },
+        yAxis: {
+          type: 'value',
+          name: 'kg', // Unidade do eixo y
+          axisLabel: {
+            formatter: '{value} kg', // Formatação com "kg"
+            color: '#FFFFFF' // Cor branca para os valores
+          }
+        },
+        series: [
+          {
+            name: 'Esse Ano',
+            type: 'line',
+            stack: 'Total',
+            data: thisYearData // Dados recebidos para os últimos 12 meses
+          },
+          {
+            name: 'Ano Passado',
+            type: 'line',
+            stack: 'Total',
+            data: lastYearData // Dados aleatórios para os últimos 12 meses
+          }
+        ]
+      };
+
+      // Renderiza o gráfico
+      emissaoCo2Chart.setOption(option);
+    })
+    .catch(error => {
+      console.error('Erro ao obter os dados do gráfico:', error);
+    });
 
   // Responsividade para redimensionamento da janela
   window.addEventListener('resize', function () {
@@ -809,3 +879,157 @@ document.addEventListener("DOMContentLoaded", function () {
   qtdFiliais();
 });
 
+
+
+  
+  async function cadastrar_funcionario() {
+    const nome = document.querySelector('#input_nome_funcionario').value;
+    const email = document.querySelector('#input_email_funcionario').value;
+    const cpf = document.querySelector('#input_cpf_funcionario').value;
+    const telefone = document.querySelector('#input_telefone_funcionario').value;
+    const idFilial = sessionStorage.getItem('FILIAL_USER');
+
+    const funcionario = {
+        nomeServer: nome,
+        emailServer: email,
+        cpfServer: cpf,
+        telefoneServer: telefone,
+        fkFilialServer: idFilial 
+    };
+
+    try {
+        const response = await fetch('usuarios/cadastrarFuncionario', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(funcionario)
+        });
+
+        if (response.ok) {
+            await carregarFuncionarios(); // Aguarde a função carregarFuncionarios terminar
+            fecharModal();
+        } else {
+            console.error('Erro ao cadastrar funcionário');
+        }
+    } catch (error) {
+        console.error('Erro ao cadastrar funcionário:', error);
+    }
+}
+
+
+async function carregarFuncionarios() {
+  try {
+      const idFilial = sessionStorage.getItem('FILIAL_USER');
+
+      const response = await fetch(`usuarios/carregarFuncionarios?fkFilial=${idFilial}&fkCargo=2`, {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json'
+          }
+      });
+
+      if (response.ok) {
+          const funcionarios = await response.json();
+          const funcionariosBox = document.querySelector('.funcionariosBox');
+          const noFuncionariosMessage = document.getElementById('noFuncionariosMessage');
+
+          funcionariosBox.innerHTML = ''; 
+
+          if (funcionarios.length > 0) {
+              noFuncionariosMessage.style.display = 'none'; // Esconder a mensagem
+              funcionarios.forEach(funcionario => {
+                  const cardFuncionario = document.createElement('div');
+                  cardFuncionario.className = 'cardFuncionario';
+                  cardFuncionario.innerHTML = `
+                      <div class="imgFuncionario">
+                          <img id="imgFuncionario" src="https://picsum.photos/300/200">
+                      </div>
+                      <h2 id="nomeFuncionario">${funcionario.nome}</h2>
+                      <h1> Email:${funcionario.email} </h1>
+                  `;
+                  funcionariosBox.appendChild(cardFuncionario);
+              });
+          } else {
+              noFuncionariosMessage.style.display = 'block'; // Mostrar a mensagem
+          }
+      } else {
+          console.error('Erro ao carregar funcionários');
+      }
+  } catch (error) {
+      console.error('Erro ao carregar funcionários:', error);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  carregarFuncionarios();
+});
+
+
+
+function getCompensacaoAmbiental() {
+  const fkFilial = sessionStorage.getItem('FILIAL_USER');
+
+  return fetch(`/graficos/getCompensacaoAmbiental?fkFilial=${fkFilial}`, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  })
+  .then(function(resposta){
+      if(resposta.status === 200){
+          return resposta.json();
+      } else {
+          console.log(`Erro ao buscar dados: ${resposta.status}`);
+      }
+  })
+  .then(data => {
+    if (data.length > 0) {
+      console.log("Qntd árvores: " + data[0].qtdArvores);
+
+      const insightDiv = document.querySelector('.cardKpis .insight.compensacao');
+      if (insightDiv) {
+          insightDiv.innerHTML = `<img src="./assets/icon/Clip path group.png" alt="">${data[0].qtdArvores}`;
+      }
+  } else {
+      console.log("Nenhum dado encontrado");
+  }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  getCompensacaoAmbiental();
+});
+
+
+function buscarFiliais() {
+  fetch('/empresas/buscarFiliais', {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  })
+  .then(function(resposta){
+      if(resposta.status === 200){
+          return resposta.json();
+      } else {
+          console.log(`Erro ao buscar dados: ${resposta.status}`);
+      }
+  })
+  .then(data => {
+      const select = document.getElementById('filialSelect');
+      data.forEach(filial => {
+          const option = document.createElement('option');
+          option.value = filial.idFilial;
+          option.textContent = filial.nome;
+          select.appendChild(option);
+      });
+  })
+  .catch(error => {
+      console.error('Erro ao buscar dados:', error);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  buscarFiliais();
+});

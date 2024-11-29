@@ -146,12 +146,11 @@ function cadastrar_responsavel() {
   .then(function(resposta){
     if(resposta.status === 201){
       alert(`Responsável cadastrado com sucesso!`);
-      telaPlataforma();
+      telaLogin();
     } else {
       resposta_erro2.innerHTML = `Erro ao cadastrar responsável: ${resposta.status}`;
     }
   })
-  
 }
 
   
@@ -230,8 +229,8 @@ function telaHome() {
   window.location.href = "./index.html"
 }
 
-function telaPlataforma(){
-  window.location.href = "./NexSystem.html"
+function telaLogin(){
+  window.location.href = "./login.html"
 }
 
 

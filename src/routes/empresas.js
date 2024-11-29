@@ -13,6 +13,10 @@ router.post("/cadastrarEmpresa", function(req,res){
 
 router.get("/qtdFiliais", function (req, res) {
     empresaController.qtdFiliais(req, res);
-  })
+});
+
+router.get("/buscarFiliais", function(req,res){
+    empresaController.buscarFiliais(req,res);
+});
 
 module.exports = router;

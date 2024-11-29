@@ -1825,3 +1825,27 @@ body {
   opacity: 1;
   transition: opacity 0.5s ease;
 }
+
+.btnPlotar{
+  width: 100px; 
+  height:50px;
+  border-radius: 10px; 
+  background-color: #ffffff; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  margin-left: 10px;
+  transition: 0.4s;
+  cursor: pointer;
+  
+  p{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+  }
+}
+
+.btnPlotar:hover{
+  background-color: #a504a5;
+  scale: 1.1;
+  transition: 0.4s;
+}
