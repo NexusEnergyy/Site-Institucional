@@ -850,7 +850,7 @@ body {
     & .leftPerf {
       width: 100%;
       gap: 20px 0;
-      height: 95%;
+      height: 833.8px;
       display: grid;
       grid-template-rows: repeat(2, 48.6%);
 
@@ -894,6 +894,7 @@ body {
               display: block;
               width: 1150px;
               height: 271px;
+              margin-top: 35px;
               /* right: -100px; */
             }
 
@@ -959,23 +960,23 @@ body {
       justify-content: center;
       align-items: center;
       background-color: var(--boxGraphic);
-      height: 94.7%;
+      height: 830px;
 
       & .rankingPerf {
         height: 98%;
         width: 95%;
         gap: 10px;
         display: grid;
-        grid-template-rows: 5% 93%;
+        grid-template-rows: 9% 89%;
 
         & .titleRank {
           display: flex;
-          justify-content: start;
+          justify-content: center;
           align-items: center;
-          padding: 0 20px;
+          padding: 0 40px;
           text-align: center;
           color: var(--titulos);
-          font-size: 25px;
+          font-size: 22px;
           font-family: "Wix Madefor Display", system-ui;
           font-weight: 700;
         }
@@ -983,15 +984,20 @@ body {
         & .ranking {
           background-color: var(--boxGraphicContent);
           border-radius: 10px;
+          overflow-y: scroll;
+          overflow-x: hidden;
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
 
           & .contentRank {
             gap: 10px;
             width: 100%;
             height: 100%;
             border-radius: 10px;
-
             display: grid;
-            grid-template-rows: repeat(5, 18%);
+            grid-template-rows: repeat(500, 18%);
 
             & .rank1 {
               border-radius: 10px;
@@ -1023,6 +1029,8 @@ body {
                   border-radius: 50%;
                   background-color: var(--bcgIcone);
                 }
+
+                
 
 
               }
@@ -1071,6 +1079,10 @@ body {
       }
     }
   }
+}
+
+.highlight{
+  background-color: #2acddc;
 }
 
 .highContentNex3 {
@@ -1848,4 +1860,15 @@ body {
   background-color: #a504a5;
   scale: 1.1;
   transition: 0.4s;
+}
+
+.btnSub{
+  color: white;
+  font-weight: 700;
+  padding: 5px;
+  background-color: var(--bcgIcone);
+  border: none;
+  font-size: 15px;
+  margin-left: 20px;
+  border-radius: 10px;
 }

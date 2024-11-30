@@ -53,9 +53,69 @@ function buscarFiliais(req, res){
   });
 }
 
+function ranking(req, res) {
+  const filial = req.query.fkFilial;
+
+  empresaModel.ranking(filial)
+      .then(function (resultado) {
+          if (resultado.length > 0) {
+              const resposta = resultado.map(item => ({
+                  consumoEnergia: item.consumo_energia,
+                  nomeFilial: item.nome_filial,
+                  submercado: item.submercado
+              }));
+              res.status(200).json(resposta);
+          } else {
+              res.status(204).send("Nenhum resultado encontrado!");
+          }
+      })
+      .catch(function (erro) {
+          console.error(erro);
+          res.status(500).json(erro);
+      });
+}
+
+
+function buscarComparativo(req, res) {
+  const filial = req.query.fkFilial;
+
+  empresaModel.buscarComparativo(filial)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch((erro) => {
+      console.error("Erro ao buscar dados do comparativo:", erro);
+      res.status(500).json(erro);
+    });
+}
+
+function buscarTotalConsumo(req, res) {
+  const filialId = req.query.fkFilial; // Obtém o ID da filial via query string
+
+  empresaModel.buscarTotalConsumo(filialId)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado[0]); // Retorna o total de consumo
+      } else {
+        res.status(204).send("Nenhum dado encontrado!");
+      }
+    })
+    .catch((erro) => {
+      console.error("Erro ao buscar total de consumo:", erro);
+      res.status(500).json(erro);
+    });
+}
+
 module.exports = {
   buscarMatrizes,
   cadastrarEmpresa,
   qtdFiliais,
-  buscarFiliais
+  buscarFiliais,
+  ranking,
+  buscarComparativo,
+  buscarTotalConsumo
 };

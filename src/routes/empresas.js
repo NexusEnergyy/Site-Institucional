@@ -19,4 +19,15 @@ router.get("/buscarFiliais", function(req,res){
     empresaController.buscarFiliais(req,res);
 });
 
+router.get("/ranking", function(req,res){
+    empresaController.ranking(req,res);
+});
+
+router.get("/buscarComparativo", function(req,res){
+    empresaController.buscarComparativo(req,res);
+});
+
+router.get("/mediaDiaria", function(req,res){
+    empresaController.buscarTotalConsumo(req,res);
+});
 module.exports = router;

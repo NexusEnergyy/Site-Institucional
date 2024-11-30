@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   var partesNome = nomeCompleto.split(' ');
   var primeiroNome = partesNome[0];
   var sobrenome = partesNome.length > 1 ? partesNome[1] : '';
-  
+
   document.getElementById('nome1').innerText = primeiroNome;
   document.getElementById('sobrenome1').innerText = sobrenome;
 
@@ -220,34 +220,34 @@ document.addEventListener('DOMContentLoaded', function () {
   function getConsumoMensal(idFilial) {
 
     fetch(`/graficos/getConsumoMensal?fkFilial=${idFilial}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
-    .then(function(resposta){
-        if(resposta.status === 200){
-            return resposta.json();
+      .then(function (resposta) {
+        if (resposta.status === 200) {
+          return resposta.json();
         } else {
-            alert(`Erro ao buscar dados: ${resposta.status}`);
+          alert(`Erro ao buscar dados: ${resposta.status}`);
         }
-    })
-    .then(data => {
+      })
+      .then(data => {
         console.log("Valor da Requisição: " + data);
         const consumoMensal = new Array(12).fill(0);
         data.forEach(item => {
-            const month = new Date(item.dataReferencia).getMonth();
-            consumoMensal[month] = item.consumoEnergia;
+          const month = new Date(item.dataReferencia).getMonth();
+          consumoMensal[month] = item.consumoEnergia;
         });
         option.series[0].data = consumoMensal;
         consumoMensalChart.setOption(option);
-    })
-    .catch(error => {
+      })
+      .catch(error => {
         console.error('Erro ao buscar dados:', error);
-    });
-}
+      });
+  }
 
-getConsumoMensal(sessionStorage.getItem("FILIAL_USER"));
+  getConsumoMensal(sessionStorage.getItem("FILIAL_USER"));
 });
 
 
@@ -474,7 +474,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (Array.isArray(data.emissaoCO2)) {
         data.emissaoCO2.forEach(item => {
           const month = new Date(item.date).getMonth();
-          thisYearData[month] = item.value; 
+          thisYearData[month] = item.value;
         });
       } else {
         console.error('Dados de emissaoCO2 não encontrados ou inválidos');
@@ -546,54 +546,69 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-
-
-
 // GRÁFICO DE COMPARATIVO DE EMPRESAS
 document.addEventListener('DOMContentLoaded', function () {
   const comparativoMercado2 = echarts.init(document.getElementById('comparativoMercado2'));
 
-  const option = {
-    title: {
-      text: 'Consumo (MWh) Entre Empresas',
-      textStyle: { color: '#FFFFFF' },
-    },
-    tooltip: {
-      trigger: 'axis',
-      formatter: function (params) {
-        let content = `${params[0].axisValue}<br>`;
-        params.forEach(item => {
-          content += `${item.marker} ${item.seriesName}: ${item.data}<br>`;
-        });
-        return content;
+  // Função para buscar dados do comparativo
+  function fetchComparativo() {
+    const fkFilial = sessionStorage.getItem('FILIAL_USER');
+  
+    fetch(`/empresas/buscarComparativo?fkFilial=${fkFilial}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
       }
-    },
-    legend: {
-      data: ['Tim', 'OI', 'Vivo', 'Claro'],
-      textStyle: { color: '#FFFFFF' }
-    },
-    grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
-    toolbox: { feature: { saveAsImage: {} } },
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-      axisLabel: { textStyle: { color: '#FFFFFF' } }
-    },
-    yAxis: {
-      type: 'value',
-      axisLabel: { textStyle: { color: '#FFFFFF' } }
-    },
-    series: [
-      { name: 'Tim', type: 'line', stack: 'Total', data: [120, 132, 101, 134, 90, 230, 210], color: '#1f77b4' },
-      { name: 'OI', type: 'line', stack: 'Total', data: [220, 182, 191, 234, 290, 330, 310], color: '#ff7f0e' },
-      { name: 'Vivo', type: 'line', stack: 'Total', data: [150, 232, 201, 154, 190, 330, 410], color: '#2ca02c' },
-      { name: 'Claro', type: 'line', stack: 'Total', data: [320, 332, 301, 334, 390, 330, 320], color: '#9467bd' }
-    ]
-  };
-
-  comparativoMercado2.setOption(option);
-
+    })
+      .then(res => res.json())
+      .then(dados => {
+        if (!dados || dados.length === 0) {
+          console.log("Nenhum dado encontrado.");
+          return;
+        }
+  
+        // Extrai os meses e as empresas
+        const datas = [...new Set(dados.map(d => d.data))]; // Datas únicas
+        const empresas = [...new Set(dados.map(d => d.nome_filial))]; // Empresas únicas
+  
+        // Monta os consumos por empresa
+        const consumosPorEmpresa = empresas.map(empresa =>
+          datas.map(data => {
+            const dado = dados.find(d => d.nome_filial === empresa && d.data === data);
+            return dado ? dado.consumo_energia : null; // Retorna o consumo ou null
+          })
+        );
+  
+        // Atualiza o gráfico
+        const option = {
+          tooltip: {
+            trigger: 'axis',
+            formatter: params => {
+              let content = `${params[0].axisValue}<br>`;
+              params.forEach(p => {
+                content += `${p.marker} ${p.seriesName}: ${p.data} MWh<br>`;
+              });
+              return content;
+            }
+          },
+          legend: { data: empresas, textStyle: { color: '#FFFFFF' } },
+          xAxis: { type: 'category', data: datas, axisLabel: { textStyle: { color: '#FFFFFF' } } },
+          yAxis: { type: 'value', axisLabel: { textStyle: { color: '#FFFFFF' } } },
+          series: empresas.map((empresa, i) => ({
+            name: empresa,
+            type: 'line',
+            data: consumosPorEmpresa[i], // Dados de consumo da empresa
+            color: ['#1f77b4', '#ff7f0e', '#2ca02c', '#9467bd', '#d62728'][i % 5] // Cores pré-definidas
+          }))
+        };
+  
+        comparativoMercado2.setOption(option);
+      })
+      .catch(err => console.error("Erro ao buscar dados:", err));
+  }
+  
+  // Busca os dados ao carregar a página
+  fetchComparativo();
 
   // Redimensionamento automático
   window.addEventListener('resize', function () {
@@ -602,23 +617,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Função para trocar a cor da legenda
   window.changeLegendColor = function () {
-    const newColor = option.legend.textStyle.color === '#000' ? '#FFFFFF' : '#000';
-    option.legend.textStyle.color = newColor;
-    comparativoMercado2.setOption(option);
+    const currentColor = comparativoMercado2.getOption().legend[0].textStyle.color;
+    const newColor = currentColor === '#FFFFFF' ? '#000' : '#FFFFFF';
+    comparativoMercado2.setOption({
+      legend: { textStyle: { color: newColor } }
+    });
   };
+
   // Função para trocar a cor dos rótulos do eixo X
   window.changeXAxisLabelColor = function () {
-    const newColor = option.xAxis.axisLabel.textStyle.color === '#000' ? '#FFFFFF' : '#000';
-    option.xAxis.axisLabel.textStyle.color = newColor;
-    comparativoMercado2.setOption(option);
+    const currentColor = comparativoMercado2.getOption().xAxis[0].axisLabel.textStyle.color;
+    const newColor = currentColor === '#FFFFFF' ? '#000' : '#FFFFFF';
+    comparativoMercado2.setOption({
+      xAxis: { axisLabel: { textStyle: { color: newColor } } }
+    });
   };
+
   // Função para trocar a cor dos rótulos do eixo Y
   window.changeYAxisLabelColor = function () {
-    const newColor = option.yAxis.axisLabel.textStyle.color === '#000' ? '#FFFFFF' : '#000';
-    option.yAxis.axisLabel.textStyle.color = newColor;
-    comparativoMercado2.setOption(option);
+    const currentColor = comparativoMercado2.getOption().yAxis[0].axisLabel.textStyle.color;
+    const newColor = currentColor === '#FFFFFF' ? '#000' : '#FFFFFF';
+    comparativoMercado2.setOption({
+      yAxis: { axisLabel: { textStyle: { color: newColor } } }
+    });
   };
 });
+
 
 
 // Aguarda o carregamento do DOM
@@ -818,7 +842,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-function editPerfil(){
+function editPerfil() {
   var editNome = document.getElementById('editNome').value
   var editCpf = document.getElementById('editCpf').value
   var editSenha = document.getElementById('editSenha').value
@@ -838,40 +862,38 @@ function editPerfil(){
   }
   ).then(function (resposta) {
     if (resposta.ok) {
-            alert("Dados Atualizados com Sucesso")
-            atualizarNome()
+      alert("Dados Atualizados com Sucesso")
+      atualizarNome()
     } else {
-        throw ('Houve um erro na API!');
+      throw ('Houve um erro na API!');
     }
-}).catch(function (resposta) {
+  }).catch(function (resposta) {
     console.error(resposta);
-});
+  });
 }
 function qtdFiliais() {
   const idFilial = sessionStorage.FILIAL_USER;
-
-  // Adicionando o parâmetro na URL como query string
   const url = `/empresas/qtdFiliais?fkFilial=${idFilial}`;
 
   fetch(url, {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json'
-      }
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
   }).then(function (resposta) {
-      if (resposta.ok) {
-          if (resposta.status == 204) {
-              throw "Nenhum resultado encontrado!!";
-          }
-          resposta.json().then(function (resposta) {
-              console.log("Dados recebidos: ", JSON.stringify(resposta));
-              numeroFiliais.innerHTML = `${resposta.qtdFiliais}`;
-          });
-      } else {
-          throw ('Houve um erro na API!');
+    if (resposta.ok) {
+      if (resposta.status == 204) {
+        throw "Nenhum resultado encontrado!!";
       }
+      resposta.json().then(function (resposta) {
+        console.log("Dados recebidos: ", JSON.stringify(resposta));
+        numeroFiliais.innerHTML = `${resposta.qtdFiliais}`;
+      });
+    } else {
+      throw ('Houve um erro na API!');
+    }
   }).catch(function (resposta) {
-      console.error(resposta);
+    console.error(resposta);
   });
 }
 
@@ -881,83 +903,83 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-  
-  async function cadastrar_funcionario() {
-    const nome = document.querySelector('#input_nome_funcionario').value;
-    const email = document.querySelector('#input_email_funcionario').value;
-    const cpf = document.querySelector('#input_cpf_funcionario').value;
-    const telefone = document.querySelector('#input_telefone_funcionario').value;
-    const idFilial = sessionStorage.getItem('FILIAL_USER');
 
-    const funcionario = {
-        nomeServer: nome,
-        emailServer: email,
-        cpfServer: cpf,
-        telefoneServer: telefone,
-        fkFilialServer: idFilial 
-    };
+async function cadastrar_funcionario() {
+  const nome = document.querySelector('#input_nome_funcionario').value;
+  const email = document.querySelector('#input_email_funcionario').value;
+  const cpf = document.querySelector('#input_cpf_funcionario').value;
+  const telefone = document.querySelector('#input_telefone_funcionario').value;
+  const idFilial = sessionStorage.getItem('FILIAL_USER');
 
-    try {
-        const response = await fetch('usuarios/cadastrarFuncionario', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(funcionario)
-        });
+  const funcionario = {
+    nomeServer: nome,
+    emailServer: email,
+    cpfServer: cpf,
+    telefoneServer: telefone,
+    fkFilialServer: idFilial
+  };
 
-        if (response.ok) {
-            await carregarFuncionarios(); // Aguarde a função carregarFuncionarios terminar
-            fecharModal();
-        } else {
-            console.error('Erro ao cadastrar funcionário');
-        }
-    } catch (error) {
-        console.error('Erro ao cadastrar funcionário:', error);
+  try {
+    const response = await fetch('usuarios/cadastrarFuncionario', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(funcionario)
+    });
+
+    if (response.ok) {
+      await carregarFuncionarios(); // Aguarde a função carregarFuncionarios terminar
+      fecharModal();
+    } else {
+      console.error('Erro ao cadastrar funcionário');
     }
+  } catch (error) {
+    console.error('Erro ao cadastrar funcionário:', error);
+  }
 }
 
 
 async function carregarFuncionarios() {
   try {
-      const idFilial = sessionStorage.getItem('FILIAL_USER');
+    const idFilial = sessionStorage.getItem('FILIAL_USER');
 
-      const response = await fetch(`usuarios/carregarFuncionarios?fkFilial=${idFilial}&fkCargo=2`, {
-          method: 'GET',
-          headers: {
-              'Content-Type': 'application/json'
-          }
-      });
+    const response = await fetch(`usuarios/carregarFuncionarios?fkFilial=${idFilial}&fkCargo=2`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
 
-      if (response.ok) {
-          const funcionarios = await response.json();
-          const funcionariosBox = document.querySelector('.funcionariosBox');
-          const noFuncionariosMessage = document.getElementById('noFuncionariosMessage');
+    if (response.ok) {
+      const funcionarios = await response.json();
+      const funcionariosBox = document.querySelector('.funcionariosBox');
+      const noFuncionariosMessage = document.getElementById('noFuncionariosMessage');
 
-          funcionariosBox.innerHTML = ''; 
+      funcionariosBox.innerHTML = '';
 
-          if (funcionarios.length > 0) {
-              noFuncionariosMessage.style.display = 'none'; // Esconder a mensagem
-              funcionarios.forEach(funcionario => {
-                  const cardFuncionario = document.createElement('div');
-                  cardFuncionario.className = 'cardFuncionario';
-                  cardFuncionario.innerHTML = `
+      if (funcionarios.length > 0) {
+        noFuncionariosMessage.style.display = 'none'; // Esconder a mensagem
+        funcionarios.forEach(funcionario => {
+          const cardFuncionario = document.createElement('div');
+          cardFuncionario.className = 'cardFuncionario';
+          cardFuncionario.innerHTML = `
                       <div class="imgFuncionario">
                           <img id="imgFuncionario" src="https://picsum.photos/300/200">
                       </div>
                       <h2 id="nomeFuncionario">${funcionario.nome}</h2>
                       <h1> Email:${funcionario.email} </h1>
                   `;
-                  funcionariosBox.appendChild(cardFuncionario);
-              });
-          } else {
-              noFuncionariosMessage.style.display = 'block'; // Mostrar a mensagem
-          }
+          funcionariosBox.appendChild(cardFuncionario);
+        });
       } else {
-          console.error('Erro ao carregar funcionários');
+        noFuncionariosMessage.style.display = 'block'; // Mostrar a mensagem
       }
+    } else {
+      console.error('Erro ao carregar funcionários');
+    }
   } catch (error) {
-      console.error('Erro ao carregar funcionários:', error);
+    console.error('Erro ao carregar funcionários:', error);
   }
 }
 
@@ -971,30 +993,30 @@ function getCompensacaoAmbiental() {
   const fkFilial = sessionStorage.getItem('FILIAL_USER');
 
   return fetch(`/graficos/getCompensacaoAmbiental?fkFilial=${fkFilial}`, {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json'
-      }
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
   })
-  .then(function(resposta){
-      if(resposta.status === 200){
-          return resposta.json();
+    .then(function (resposta) {
+      if (resposta.status === 200) {
+        return resposta.json();
       } else {
-          console.log(`Erro ao buscar dados: ${resposta.status}`);
+        console.log(`Erro ao buscar dados: ${resposta.status}`);
       }
-  })
-  .then(data => {
-    if (data.length > 0) {
-      console.log("Qntd árvores: " + data[0].qtdArvores);
+    })
+    .then(data => {
+      if (data.length > 0) {
+        console.log("Qntd árvores: " + data[0].qtdArvores);
 
-      const insightDiv = document.querySelector('.cardKpis .insight.compensacao');
-      if (insightDiv) {
+        const insightDiv = document.querySelector('.cardKpis .insight.compensacao');
+        if (insightDiv) {
           insightDiv.innerHTML = `<img src="./assets/icon/Clip path group.png" alt="">${data[0].qtdArvores}`;
+        }
+      } else {
+        console.log("Nenhum dado encontrado");
       }
-  } else {
-      console.log("Nenhum dado encontrado");
-  }
-  });
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1004,32 +1026,222 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function buscarFiliais() {
   fetch('/empresas/buscarFiliais', {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json'
-      }
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
   })
-  .then(function(resposta){
-      if(resposta.status === 200){
-          return resposta.json();
+    .then(function (resposta) {
+      if (resposta.status === 200) {
+        return resposta.json();
       } else {
-          console.log(`Erro ao buscar dados: ${resposta.status}`);
+        console.log(`Erro ao buscar dados: ${resposta.status}`);
       }
-  })
-  .then(data => {
+    })
+    .then(data => {
       const select = document.getElementById('filialSelect');
       data.forEach(filial => {
-          const option = document.createElement('option');
-          option.value = filial.idFilial;
-          option.textContent = filial.nome;
-          select.appendChild(option);
+        const option = document.createElement('option');
+        option.value = filial.idFilial;
+        option.textContent = filial.nome;
+        select.appendChild(option);
       });
-  })
-  .catch(error => {
+    })
+    .catch(error => {
       console.error('Erro ao buscar dados:', error);
-  });
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   buscarFiliais();
 });
+let dadosRanking = [];
+
+function gerarRanking() {
+  const fkFilial = sessionStorage.getItem('FILIAL_USER'); 
+
+  fetch(`/empresas/ranking?fkFilial=${fkFilial}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((resposta) => {
+      if (resposta.status === 200) {
+        return resposta.json();
+      } else if (resposta.status === 204) {
+        console.log("Nenhum dado encontrado.");
+        return [];
+      } else {
+        console.error(`Erro ao buscar dados: ${resposta.status}`);
+        return [];
+      }
+    })
+    .then((dados) => {
+      dadosRanking = dados; 
+      exibirRanking(dadosRanking); 
+    })
+    .catch((erro) => {
+      console.error("Erro ao buscar dados:", erro);
+    });
+}
+
+function exibirRanking(dados) {
+  const rankingContainer = document.querySelector('.contentRank');
+
+  if (!rankingContainer) {
+    console.error("Elemento .contentRank não encontrado no DOM.");
+    return;
+  }
+
+  rankingContainer.innerHTML = ''; 
+
+  if (!dados || dados.length === 0) {
+    console.log("Nenhum dado encontrado.");
+    return;
+  }
+
+  dados.forEach((item, index) => {
+    const rankDiv = document.createElement('div');
+    rankDiv.classList.add('rank1');
+
+
+    const fkFilial = sessionStorage.getItem('FILIAL_USER');
+    if (String(item.idFilial) === fkFilial) {
+      rankDiv.classList.add('highlight');
+    }
+
+    const numLeftDiv = document.createElement('div');
+    numLeftDiv.classList.add('numLeftRank');
+
+    const numRankDiv = document.createElement('div');
+    numRankDiv.classList.add('numRank');
+    numRankDiv.textContent = index + 1;
+
+    const infoRightDiv = document.createElement('div');
+    infoRightDiv.classList.add('infoRightRank');
+
+    const titleInfoDiv = document.createElement('div');
+    titleInfoDiv.classList.add('titleInfoRank');
+    titleInfoDiv.textContent = item.nomeFilial;
+
+    const kmhInfoDiv = document.createElement('div');
+    kmhInfoDiv.classList.add('KMHInfoRank');
+    kmhInfoDiv.textContent = `${item.consumoEnergia} MWh`;
+
+    numLeftDiv.appendChild(numRankDiv);
+    infoRightDiv.appendChild(titleInfoDiv);
+    infoRightDiv.appendChild(kmhInfoDiv);
+    rankDiv.appendChild(numLeftDiv);
+    rankDiv.appendChild(infoRightDiv);
+
+    rankingContainer.appendChild(rankDiv);
+  });
+}
+
+function filtrarRanking() {
+  const input = document.getElementById('inputProcurar'); 
+  const filtro = input.value.toLowerCase(); 
+  const dadosFiltrados = dadosRanking.filter(item =>
+    item.nomeFilial.toLowerCase().includes(filtro)
+  );
+
+  exibirRanking(dadosFiltrados); 
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  gerarRanking(); 
+
+  const input = document.getElementById('inputProcurar');
+  if (input) {
+    input.addEventListener('keyup', filtrarRanking);
+  }
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const comparativoMercado3 = echarts.init(document.getElementById('comparativoMercado3'));
+
+  const option = {
+    title: {
+      text: 'Teste Gráfico',
+      textStyle: { color: '#FFFFFF' },
+    },
+    tooltip: {
+      trigger: 'axis',
+    },
+    xAxis: {
+      type: 'category',
+      data: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'],
+      axisLabel: { textStyle: { color: '#FFFFFF' } }
+    },
+    yAxis: {
+      type: 'value',
+      axisLabel: { textStyle: { color: '#FFFFFF' } }
+    },
+    series: [
+      {
+        name: 'Teste',
+        type: 'line',
+        data: [10, 20, 30, 40, 50, 60, 70],
+        color: '#ff7f0e'
+      }
+    ]
+  };
+
+  comparativoMercado3.setOption(option);
+});
+
+function atualizarMediaDiaria() {
+  const fkFilial = sessionStorage.getItem('FILIAL_USER');
+
+  fetch(`/empresas/mediaDiaria?fkFilial=${fkFilial}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((resposta) => {
+      if (resposta.status === 200) {
+        return resposta.json();
+      } else if (resposta.status === 204) {
+        console.log("Nenhum dado encontrado.");
+        return null;
+      } else {
+        console.error(`Erro ao buscar dados: ${resposta.status}`);
+        return null;
+      }
+    })
+    .then((dados) => {
+      console.log("Dados recebidos da API:", dados);
+
+      const mediaDiariaContainer = document.getElementById('mediaDiaria');
+
+      if (!mediaDiariaContainer) {
+        console.error("Elemento #mediaDiaria não encontrado no DOM.");
+        return;
+      }
+
+      if (!dados || !dados.total_consumo) {
+        mediaDiariaContainer.innerHTML = '<span style="color: red;">Dados indisponíveis</span>';
+        return;
+      }
+
+      const totalConsumo = parseFloat(dados.total_consumo);
+
+      if (!isNaN(totalConsumo) && totalConsumo > 0) {
+        const mediaDividida = (totalConsumo / 22).toFixed(2);
+        mediaDiariaContainer.innerHTML = `
+          ${mediaDividida} <span style="color: yellow;">MWh</span>
+        `;
+      } else {
+        mediaDiariaContainer.innerHTML = '<span style="color: red;">Dados inválidos</span>';
+      }
+    })
+    .catch((erro) => {
+      console.error("Erro ao buscar média diária:", erro);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', atualizarMediaDiaria);
+

@@ -126,8 +126,7 @@
             <div class="cardKpis">
                 <div class="containerKPItitulo">
                     <div class="titleKpi">Consumo Medio Diário (Mês Atual)</div>
-                    <div class="insight">2<span style="color: #0CBDD9; margin: 0;">M</span><span
-                            style="color: #FFBB00; margin: 0;">Wh</span></div>
+                    <div class="insight" id="mediaDiaria">2 <span style="color: yellow;">MWh</span></div>
                 </div>
             </div>
             <div class="cardKpis">
@@ -195,7 +194,7 @@
                 </div>
                 <div class="field">
                     <div class="search">
-                        <input type="text" placeholder="Procurar empresa" maxlength="25">
+                        <input type="text" placeholder="Procurar empresa" maxlength="25" onkeyup="filtrarEmpresa()" id="inputProcurar">
                         <i class="fa-solid fa-magnifying-glass" style="color: var(--titulos);"></i>
                     </div>
                 </div>
@@ -208,7 +207,7 @@
             <div class="leftPerf">
                 <div class="graphicsPerf">
                     <div class="comparativoMercado">
-                        <div class="titleMercado">Comparativo do consumo de energia</div>
+                        <div class="titleMercado">Comparativo do consumo de energia (MWh) entre Empresas</div>
                         <div class="contentMercado">
                             <span id="comparativoMercado2"></span>
                         </div>
@@ -226,9 +225,10 @@
                                     </div>
                                 </div>
                                 <div class="mediaConsuFiliais">
-                                    <div class="titleMediaConsuFiliais"> Comparativo do consumo(Mhw) entre as filiais</div>
+                                    <div class="titleMediaConsuFiliais"> Comparativo do consumo (MHw) entre filiais
+                                    </div>
                                     <div class="contentMediaConsuFiliais">
-                                        <img id="graficoMockado" src="image.png" alt="">
+                                        <span id="comparativoMercado3"></span>
                                     </div>
                                 </div>
                             </div>
@@ -238,7 +238,15 @@
             </div>
             <div class="rightPerf">
                 <div class="rankingPerf">
-                    <div class="titleRank">Ranking de Consumo Ultimo Mês</div>
+                    <div class="titleRank">Ranking de Consumo Mês Atual
+                        <!-- <select name="" class="btnSub">
+                            <option value="#">Todos Submercados</option>
+                            <option value="SUDESTE">Sudeste</option>
+                            <option value="SUL">Sul</option>
+                            <option value="NORDESTE">Nordeste</option>
+                            <option value="NORTE">Norte</option>
+                        </select> -->
+                    </div>
                     <div class="ranking">
                         <div class="contentRank">
                             <div class="rank1">
@@ -250,38 +258,12 @@
                                     <div class="KMHInfoRank">200 GWh</div>
                                 </div>
                             </div>
-                            <div class="rank1">
-                                <div class="numLeftRank">
-                                    <div class="numRank">2</div>
-                                </div>
-                                <div class="infoRightRank">
-                                    <div class="titleInfoRank">TIM</div>
-                                    <div class="KMHInfoRank">170 GWh</div>
-                                </div>
-                            </div>
-                            <div class="rank1">
-                                <div class="numLeftRank">
-                                    <div class="numRank">3</div>
-                                </div>
-                                <div class="infoRightRank">
-                                    <div class="titleInfoRank">Claro</div>
-                                    <div class="KMHInfoRank"> 180 GWh</div>
-                                </div>
-                            </div>
-                            <div class="rank1">
-                                <div class="numLeftRank">
-                                    <div class="numRank">4</div>
-                                </div>
-                                <div class="infoRightRank">
-                                    <div class="titleInfoRank">OI</div>
-                                    <div class="KMHInfoRank">150 GWh</div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 
@@ -566,7 +548,7 @@
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
 
 <script>
-    const CARGO_USER = Number(sessionStorage.getItem('CARGO_USER')); 
+    const CARGO_USER = Number(sessionStorage.getItem('CARGO_USER'));
 
     if (CARGO_USER === 0) {
         const selectElement = `
@@ -581,7 +563,7 @@
         document.getElementById('selectContainer').innerHTML = selectElement;
     }
 
-    function atualizarGraficos(){
+    function atualizarGraficos() {
         const idFilial = document.getElementById('filialSelect').value;
 
         getConsumoMensal(idFilial);
