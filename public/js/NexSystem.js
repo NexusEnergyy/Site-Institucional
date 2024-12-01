@@ -115,7 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('boltItem').addEventListener('click', () => {
     toggleDisplay(boltContent);
   });
-
   document.getElementById('temaItem').addEventListener('click', () => lightColor());
 
   document.getElementById('saida').addEventListener('click', () => sair());
@@ -132,7 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = "./index.html"
   }
 });
-
 
 function abrirModal() {
   const modal = document.getElementById('modal');
@@ -153,9 +151,9 @@ function fecharModal() {
 }
 
 
-// GRÁFICO CONSUMO MENSAL DE ENERGIA
+// GRÁFICO HISTÓRICO DE ENERGIA
 document.addEventListener('DOMContentLoaded', function () {
-  const consumoMensalChart = echarts.init(document.getElementById('consumoMensalChart'));
+  const historicoConsumoChart = echarts.init(document.getElementById('historicoConsumoChart'));
 
   const option = {
     tooltip: {
@@ -211,10 +209,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   };
 
-  consumoMensalChart.setOption(option);
+  historicoConsumoChart.setOption(option);
 
   window.addEventListener('resize', function () {
-    consumoMensalChart.resize();
+    historicoConsumoChart.resize();
   });
 
   function getConsumoMensal(idFilial) {
@@ -240,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function () {
           consumoMensal[month] = item.consumoEnergia;
         });
         option.series[0].data = consumoMensal;
-        consumoMensalChart.setOption(option);
+        historicoConsumoChart.setOption(option);
       })
       .catch(error => {
         console.error('Erro ao buscar dados:', error);
@@ -249,9 +247,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   getConsumoMensal(sessionStorage.getItem("FILIAL_USER"));
 });
-
-
-
 
 // GRÁFICO PREVISÃO MENSAL DE ENERGIA
 document.addEventListener('DOMContentLoaded', function () {
@@ -352,25 +347,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-
-option = {
-  xAxis: {
-    type: 'category',
-    data: ['Jan', 'Fev', 'Mar', 'Abr', 'Jun', 'JUl', 'Ago'],
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      data: [120, 200, 150, 80, 70, 110, 130],
-      type: 'bar'
-    }
-  ]
-};
-
-
-
 // GRÁFICO CONSUMO HORÁRIO DE ENERGIA
 document.addEventListener('DOMContentLoaded', function () {
   // Inicializa o gráfico dentro do elemento com ID 'consumoHorarioChart'
@@ -436,9 +412,6 @@ document.addEventListener('DOMContentLoaded', function () {
     consumoHorarioChart.resize();
   });
 });
-
-
-
 
 // GRÁFICO DE EMISSAO DE CO2
 document.addEventListener('DOMContentLoaded', function () {
@@ -643,202 +616,181 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 });
 
-
-
-// Aguarda o carregamento do DOM
+// GRÁFICO DE CONSUMO MENSAL
 document.addEventListener('DOMContentLoaded', function () {
-  // Inicializa o gráfico dentro do elemento com ID 'historicoChart'
-  const historicoChart = echarts.init(document.getElementById('historicoChart'));
+  // Inicializa o gráfico dentro do elemento com ID 'consumoMensalChart'
+  const consumoMensalChart = echarts.init(document.getElementById('consumoMensalChart'));
 
   // Configurações do gráfico
-  const colors = ['#5470C6', '#91CC75', '#EE6666'];
   const option = {
-    color: colors,
     tooltip: {
-      trigger: 'axis',
-      axisPointer: {
-        type: 'cross'
-      }
+      formatter: '{a} <br/>{b} : {c} MWh'
     },
-    grid: {
-      right: '20%'
-    },
-    toolbox: {
-      feature: {
-        dataView: { show: true, readOnly: false },
-        restore: { show: true },
-        saveAsImage: { show: true }
-      }
-    },
-    legend: {
-      data: ['Consumo'],
-      textStyle: {
-        color: '#FFFFFF' // Cor branca para a legenda
-      }
-    },
-    xAxis: [
-      {
-        type: 'category',
-        axisTick: {
-          alignWithLabel: true
-        },
-        data: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-        axisLabel: {
-          color: '#FFFFFF' // Cor branca para os nomes dos meses
-        }
-      }
-    ],
-    yAxis: [
-      {
-        type: 'value',
-        name: 'kWh',
-        position: 'left',
-        alignTicks: true,
-        axisLine: {
-          show: true,
-          lineStyle: {
-            color: '#FFFFFF' // Cor branca para a linha do eixo Y
-          }
-        },
-        axisLabel: {
-          formatter: '{value}'
-        }
-      }
-    ],
     series: [
       {
-        name: 'kWh',
-        type: 'bar',
-        data: [100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650] // Exemplo de dados em kWh
+        name: 'Consumo Mensal',
+        type: 'gauge',
+        progress: {
+          show: true
+        },
+        detail: {
+          valueAnimation: true,
+          formatter: '{value} MWh',
+          color: '#FFFFFF',
+          fontSize: 20 
+        },
+        data: [
+          {
+            value: 0,
+            name: 'ENERGIA',
+            title: {
+              color: '#FFFFFF'
+            }
+          }
+        ],
+        radius: '100%' 
       }
     ]
   };
 
+  async function getConsumoMesAtual(idFilial) {
+    try {
+      const response = await fetch(`/graficos/getConsumoMensal?fkFilial=${idFilial}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const mesAtual = new Date().getMonth();
+        const consumoMesAtual = data.find(item => new Date(item.dataReferencia).getMonth() === mesAtual);
+
+        if (consumoMesAtual) {
+          consumoMensalChart.setOption({
+            series: [{
+              data: [{ value: consumoMesAtual.consumoEnergia, name: 'SCORE' }]
+            }]
+          });
+        } else {
+          console.log('Nenhum dado encontrado para o mês atual.');
+        }
+      } else {
+        console.error(`Erro ao buscar dados: ${response.status}`);
+      }
+    } catch (error) {
+      console.error('Erro ao buscar dados:', error);
+    }
+  }
+
+  getConsumoMesAtual(sessionStorage.getItem("FILIAL_USER"));
+
   // Renderiza o gráfico
-  historicoChart.setOption(option);
+  consumoMensalChart.setOption(option);
 
   // Responsividade para redimensionamento da janela
   window.addEventListener('resize', function () {
-    historicoChart.resize();
+    consumoMensalChart.resize();
   });
 });
 
-
-
-// GRÁFICO DO NÍVEL DE SUSTENTABILIDADE
+// GRÁFICO DO NÍVEL DE COMPARATIVO FILIAIS
 document.addEventListener('DOMContentLoaded', function () {
-  // Inicializa o gráfico dentro do elemento com ID 'nivelSustentabilidadeChart'
-  const TreeGraphic = echarts.init(document.getElementById('TreeGraphic'));;
-  var option;
+  const comparativoFiliaisChart = echarts.init(document.getElementById('comparativoFiliaisChart'));
 
-  const treeDataURI =
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAA2CAYAAADUOvnEAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA5tJREFUeNrcWE1oE0EUnp0kbWyUpCiNYEpCFSpIMdpLRTD15s2ePHixnj00N4/GoyfTg2fbiwdvvagHC1UQ66GQUIQKKgn1UAqSSFua38b3prPJZDs7s5ufKn0w7CaZ2W/fe9/73kyMRqNB3Nrj1zdn4RJ6du9T2u1a2iHYSxjP4d41oOHGQwAIwSUHIyh8/RA8XeiXh0kLGFoaXiTecw/hoTG4ZCSAaFkY0+BpsZceLtiAoV2FkepZSDk5EpppczBvpuuQCqx0YnkYcVVoqQYMyeCG+lFdaGkXeVOFNu4aEBalOBk6sbQrQF7gSdK5JXjuHXuYVIVyr0TZ0FjKDeCs6km7JYMUdrWAUVmZUBtmRnVPK+x6nIR2xomH06R35ggwJPeofWphr/W5UjPIxq8B2bKgE8C4HVHWvg+2gZjXj19PkdFztY7bk9TDCH/g6oafDPpaoMvZIRI5WyMB/0Hv++HkpTKE0kM+A+h20cPAfN4GuRyp9G+LMTW+z8rCLI8b46XO9zRcYZTde/j0AZm8WGb3Y2F9KLlE2nqYkjFLJAsDOl/lea0q55mqxXcL7YBc++bsCPMe8mUyU2ZIpnCoblca6TZA/ga2Co8PGg7UGUlEDd0ueptglbrRZLLE7poti6pCaWUo2pu1oaYI1CF9b9cCZPO3F8ikJQ/rPpQT5YETht26ss+uCIL2Y8vHwJGpA96GI5mjOlaKhowUy6BcNcgIhDviTGWCGFaqEuufWz4pgcbCh+w0gEOyOjTlTtYYlIWPYWKEsLDzOs+nhzaO1KEpd+MXpOoTUgKiNyhdy5aSMPNVqxtSsJFgza5EWA4zKtCJ2OGbLn0JSLu8+SL4G86p1Fpr7ABXdGFF/UTD4rfmFYFw4G9VAJ9SM3aF8l3yok4/J6IV9sDVb36ynmtJ2M5+CwxTYBdKNMBaocKGV2nYgkz6r+cHBP30MzAfi4Sy+BebSoPIOi8PW1PpCCvr/KOD4k9Zu0WSH0Y0+SxJ2awp/nlwKtcGyHOJ8vNHtRJzhPlsHr8MogtlVtwUU0tSM1x58upSKbfJnSKUR07GVMKkDNfXpzpv0RTHy3nZMVx5IOWdZIaPabGFvfpwpjnvfmJHXLaEvZUTseu/TeLc+xgAPhEAb/PbjO6PBaOTf6LQRh/dERde23zxLtOXbaKNhfq2L/1fAOPHDUhOpIf5485h7l+GNHHiSYPKE3Myz9sFxoJuAyazvwIMAItferha5LTqAAAAAElFTkSuQmCC';
-  const beginPercentage = 0;
-  const endPercentage = 100;
-  const lineCount = 7;
-
-  option = {
-    color: ['#e54035'],
-    xAxis: {
-      axisLine: { show: false },
-      axisLabel: { show: false },
-      axisTick: { show: false },
-      splitLine: { show: false },
-      name: beginPercentage + '%',
-      nameLocation: 'middle',
-      nameGap: 20,
-      nameTextStyle: {
-        color: 'white',
-        fontWeight: 900,
-        fontSize: 30,
-        fontFamily: 'Wix Madefor Display, system-ui'
-      },
-      min: -2800,
-      max: 2800
-    },
-    yAxis: {
-      data: makeCategoryData(),
-      show: false
-    },
-    grid: {
-      top: 'center',
-      height: 280
-    },
-    series: [
-      {
-        name: 'all',
-        type: 'pictorialBar',
-        symbol: 'image://' + treeDataURI,
-        symbolSize: [20, 35],
-        symbolRepeat: true,
-        data: makeSeriesData(beginPercentage),
-        animationEasing: 'elasticOut'
-      },
-      {
-        name: 'all',
-        type: 'pictorialBar',
-        symbol: 'image://' + treeDataURI,
-        symbolSize: [20, 35],
-        symbolRepeat: true,
-        data: makeSeriesData(beginPercentage, true),
-        animationEasing: 'elasticOut'
+  // Função para buscar dados do comparativo
+  function fetchComparativo() {
+    const fkFilial = sessionStorage.getItem('FILIAL_USER');
+  
+    fetch(`/empresas/buscarComparativo?fkFilial=${fkFilial}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
       }
-    ]
+    })
+      .then(res => res.json())
+      .then(dados => {
+        if (!dados || dados.length === 0) {
+          console.log("Nenhum dado encontrado.");
+          return;
+        }
+  
+        // Extrai os meses e as empresas
+        const datas = [...new Set(dados.map(d => d.data))]; // Datas únicas
+        const empresas = [...new Set(dados.map(d => d.nome_filial))]; // Empresas únicas
+  
+        // Monta os consumos por empresa
+        const consumosPorEmpresa = empresas.map(empresa =>
+          datas.map(data => {
+            const dado = dados.find(d => d.nome_filial === empresa && d.data === data);
+            return dado ? dado.consumo_energia : null; // Retorna o consumo ou null
+          })
+        );
+  
+        // Atualiza o gráfico
+        const option = {
+          tooltip: {
+            trigger: 'axis',
+            formatter: params => {
+              let content = `${params[0].axisValue}<br>`;
+              params.forEach(p => {
+                content += `${p.marker} ${p.seriesName}: ${p.data} MWh<br>`;
+              });
+              return content;
+            }
+          },
+          legend: { data: empresas, textStyle: { color: '#FFFFFF' } },
+          xAxis: { type: 'category', data: datas, axisLabel: { textStyle: { color: '#FFFFFF' } } },
+          yAxis: { type: 'value', axisLabel: { textStyle: { color: '#FFFFFF' } } },
+          series: empresas.map((empresa, i) => ({
+            name: empresa,
+            type: 'line',
+            data: consumosPorEmpresa[i], // Dados de consumo da empresa
+            color: ['#1f77b4', '#ff7f0e', '#2ca02c', '#9467bd', '#d62728'][i % 5] // Cores pré-definidas
+          }))
+        };
+  
+        comparativoFiliaisChart.setOption(option);
+        comparativoFiliaisChart.resize(); // Força o redimensionamento do gráfico
+      })
+      .catch(err => console.error("Erro ao buscar dados:", err));
+  }
+  
+  // Busca os dados ao carregar a página
+  fetchComparativo();
+
+  // Redimensionamento automático
+  window.addEventListener('resize', function () {
+    comparativoFiliaisChart.resize();
+  });
+
+  // Função para trocar a cor da legenda
+  window.changeLegendColor = function () {
+    const currentColor = comparativoFiliaisChart.getOption().legend[0].textStyle.color;
+    const newColor = currentColor === '#FFFFFF' ? '#000' : '#FFFFFF';
+    comparativoFiliaisChart.setOption({
+      legend: { textStyle: { color: newColor } }
+    });
   };
 
-  function makeCategoryData() {
-    var categoryData = [];
-    for (var i = 0; i < lineCount; i++) {
-      categoryData.push(i + 'a');
-    }
-    return categoryData;
-  }
-
-  function makeSeriesData(percentage, negative) {
-    const r = (percentage - beginPercentage + 1) * 10;
-    const seriesData = [];
-    for (let i = 0; i < lineCount; i++) {
-      let sign = negative ? -1 * (i % 3 ? 0.9 : 1) : 1 * ((i + 1) % 3 ? 0.9 : 1);
-      seriesData.push({
-        value:
-          sign *
-          (percentage <= beginPercentage + 1
-            ? Math.abs(i - lineCount / 2 + 0.5) < lineCount / 5
-              ? 5
-              : 0
-            : (lineCount - Math.abs(i - lineCount / 2 + 0.5)) * r),
-        symbolOffset: i % 2 ? ['50%', 0] : undefined
-      });
-    }
-    return seriesData;
-  }
-
-  var currentPercentage = beginPercentage;
-  setInterval(function () {
-    currentPercentage += 25;
-    if (currentPercentage > endPercentage) {
-      currentPercentage = beginPercentage;
-    }
-    TreeGraphic.setOption({
-      xAxis: {
-        name: currentPercentage + '%'
-      },
-      series: [
-        {
-          data: makeSeriesData(currentPercentage)
-        },
-        {
-          data: makeSeriesData(currentPercentage, true)
-        }
-      ]
+  // Função para trocar a cor dos rótulos do eixo X
+  window.changeXAxisLabelColor = function () {
+    const currentColor = comparativoFiliaisChart.getOption().xAxis[0].axisLabel.textStyle.color;
+    const newColor = currentColor === '#FFFFFF' ? '#000' : '#FFFFFF';
+    comparativoFiliaisChart.setOption({
+      xAxis: { axisLabel: { textStyle: { color: newColor } } }
     });
-  }, 800);
+  };
 
-  option && TreeGraphic.setOption(option);
-  // Responsividade para redimensionamento da janela
-  window.addEventListener('resize', function () {
-    TreeGraphic.resize();
-  });
+  // Função para trocar a cor dos rótulos do eixo Y
+  window.changeYAxisLabelColor = function () {
+    const currentColor = comparativoFiliaisChart.getOption().yAxis[0].axisLabel.textStyle.color;
+    const newColor = currentColor === '#FFFFFF' ? '#000' : '#FFFFFF';
+    comparativoFiliaisChart.setOption({
+      yAxis: { axisLabel: { textStyle: { color: newColor } } }
+    });
+  };
 });
 
 
@@ -988,7 +940,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
 function getCompensacaoAmbiental() {
   const fkFilial = sessionStorage.getItem('FILIAL_USER');
 
@@ -1024,37 +975,85 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-function buscarFiliais() {
-  fetch('/empresas/buscarFiliais', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(function (resposta) {
-      if (resposta.status === 200) {
-        return resposta.json();
-      } else {
-        console.log(`Erro ao buscar dados: ${resposta.status}`);
-      }
-    })
-    .then(data => {
-      const select = document.getElementById('filialSelect');
-      data.forEach(filial => {
-        const option = document.createElement('option');
-        option.value = filial.idFilial;
-        option.textContent = filial.nome;
-        select.appendChild(option);
-      });
-    })
-    .catch(error => {
-      console.error('Erro ao buscar dados:', error);
-    });
-}
 
 document.addEventListener('DOMContentLoaded', () => {
-  buscarFiliais();
+  getCompensacaoAmbiental();
+  getNivelSustentabilidade();
 });
+
+function calcularPorcentagemSustentabilidade(consumoMensal) {
+  const CO2_POR_MWH = 0.081; // Emissões de CO2 em toneladas por MWh
+  const CO2_POR_ARVORE = 100; // Quantidade de CO2 que uma árvore pode compensar por ano em kg
+
+  const emissaoCO2 = (consumoMensal * 1000) * CO2_POR_MWH; // Emissões de CO2 em kg
+  const qtdArvores = emissaoCO2 / 200; // Quantidade de árvores necessárias para compensar a emissão
+  const compensacaoCO2 = qtdArvores * CO2_POR_ARVORE; // Compensação de CO2 em kg
+
+  const porcentagem = (compensacaoCO2 / emissaoCO2) * 100;
+  return Math.min(porcentagem, 100); // Limita a porcentagem a no máximo 100%
+}
+
+async function getNivelSustentabilidade() {
+  const fkFilial = sessionStorage.getItem('FILIAL_USER');
+  const respostaConsumo = await fetch(`/graficos/getConsumoMensal?fkFilial=${fkFilial}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (respostaConsumo.status === 200) {
+    const consumoData = await respostaConsumo.json();
+    if (consumoData.length === 0) {
+      console.log("Nenhum dado de consumo encontrado");
+      return;
+    }
+
+    // Calcule o nível de sustentabilidade
+    const consumoMensal = consumoData[0].consumoEnergia;
+    console.log("Consumo Mensal: " + consumoMensal);  
+    const nivelSustentabilidade = calcularPorcentagemSustentabilidade(consumoMensal);
+    console.log("Nivel de Sustentabilidade: " + nivelSustentabilidade)
+
+    // Renderize o gráfico de sustentabilidade
+    const chartDom = document.getElementById('sustentabilidadeGraphic');
+    const myChart = echarts.init(chartDom);
+    const option = {
+      xAxis: {
+        type: 'category',
+        data: ['Nível de Sustentabilidade'],
+      },
+      yAxis: {
+        type: 'value',
+        max: 100
+      },
+      series: [
+        {
+          data: [100], // Série de fundo representando 100%
+          type: 'bar',
+          barGap: '-100%', // Sobrepõe as barras
+          itemStyle: {
+            color: 'rgba(180, 180, 180, 0.2)'
+          }
+        },
+        {
+          data: [nivelSustentabilidade], // Série real representando o nível de sustentabilidade
+          type: 'bar',
+          itemStyle: {
+            color: '#4CAF50' // Cor da barra real
+          }
+        }
+      ]
+    };
+    myChart.setOption(option);
+  } else {
+    console.log(`Erro ao buscar dados: ${respostaConsumo.status}`);
+  }
+}
+
+
+
+
 let dadosRanking = [];
 
 function gerarRanking() {
@@ -1156,40 +1155,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (input) {
     input.addEventListener('keyup', filtrarRanking);
   }
-});
-
-
-document.addEventListener('DOMContentLoaded', function () {
-  const comparativoMercado3 = echarts.init(document.getElementById('comparativoMercado3'));
-
-  const option = {
-    title: {
-      text: 'Teste Gráfico',
-      textStyle: { color: '#FFFFFF' },
-    },
-    tooltip: {
-      trigger: 'axis',
-    },
-    xAxis: {
-      type: 'category',
-      data: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'],
-      axisLabel: { textStyle: { color: '#FFFFFF' } }
-    },
-    yAxis: {
-      type: 'value',
-      axisLabel: { textStyle: { color: '#FFFFFF' } }
-    },
-    series: [
-      {
-        name: 'Teste',
-        type: 'line',
-        data: [10, 20, 30, 40, 50, 60, 70],
-        color: '#ff7f0e'
-      }
-    ]
-  };
-
-  comparativoMercado3.setOption(option);
 });
 
 function atualizarMediaDiaria() {
