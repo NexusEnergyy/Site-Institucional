@@ -6,6 +6,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuItems2 = document.getElementById('menuItens2');
   const html = document.documentElement
 
+  var btnPerformance = document.getElementById('performanceItem')
+  var btnEmpresa = document.getElementById('empresasItem')
+  var filialNome = document.getElementById('contentPage2')
+
+  if (sessionStorage.CARGO_USER == 0) {
+    btnPerformance.style.display = "none";
+    filialNome.style.display = "none";
+  }
+
+  if (sessionStorage.CARGO_USER == 2) {
+    btnEmpresa.style.display = "none";
+  }
+
 
   editNome.value = sessionStorage.NOME_USER
   editCpf.value = sessionStorage.CPF_USER
@@ -84,9 +97,12 @@ document.addEventListener('DOMContentLoaded', () => {
     IA.style.display = configNex.style.display === 'none' ? 'none' : 'flex';
   }
 
+
+
   function rotateGear() {
     gearIcon.classList.toggle('rotate');
   }
+
 
 
   button.addEventListener('click', toggleMenu);
@@ -526,7 +542,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Função para buscar dados do comparativo
   function fetchComparativo() {
     const fkFilial = sessionStorage.getItem('FILIAL_USER');
-  
+
     fetch(`/empresas/buscarComparativo?fkFilial=${fkFilial}`, {
       method: 'GET',
       headers: {
@@ -539,19 +555,23 @@ document.addEventListener('DOMContentLoaded', function () {
           console.log("Nenhum dado encontrado.");
           return;
         }
-  
+
         // Extrai os meses e as empresas
-        const datas = [...new Set(dados.map(d => d.data))]; // Datas únicas
+        const datas = [...new Set(dados.map(d => {
+          // Formata a data antes de adicionar ao array
+          const dataFormatada = d.data.split('T')[0];
+          return dataFormatada;
+        }))]; // Datas únicas
         const empresas = [...new Set(dados.map(d => d.nome_filial))]; // Empresas únicas
-  
+
         // Monta os consumos por empresa
         const consumosPorEmpresa = empresas.map(empresa =>
           datas.map(data => {
-            const dado = dados.find(d => d.nome_filial === empresa && d.data === data);
+            const dado = dados.find(d => d.nome_filial === empresa && d.data.split('T')[0] === data);
             return dado ? dado.consumo_energia : null; // Retorna o consumo ou null
           })
         );
-  
+
         // Atualiza o gráfico
         const option = {
           tooltip: {
@@ -574,12 +594,12 @@ document.addEventListener('DOMContentLoaded', function () {
             color: ['#1f77b4', '#ff7f0e', '#2ca02c', '#9467bd', '#d62728'][i % 5] // Cores pré-definidas
           }))
         };
-  
+
         comparativoMercado2.setOption(option);
       })
       .catch(err => console.error("Erro ao buscar dados:", err));
   }
-  
+
   // Busca os dados ao carregar a página
   fetchComparativo();
 
@@ -637,7 +657,7 @@ document.addEventListener('DOMContentLoaded', function () {
           valueAnimation: true,
           formatter: '{value} MWh',
           color: '#FFFFFF',
-          fontSize: 20 
+          fontSize: 20
         },
         data: [
           {
@@ -648,7 +668,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
           }
         ],
-        radius: '100%' 
+        radius: '100%'
       }
     ]
   };
@@ -700,10 +720,10 @@ document.addEventListener('DOMContentLoaded', function () {
   const comparativoFiliaisChart = echarts.init(document.getElementById('comparativoFiliaisChart'));
 
   // Função para buscar dados do comparativo
-  function fetchComparativo() {
+  function fetchComparativoFilial() {
     const fkFilial = sessionStorage.getItem('FILIAL_USER');
-  
-    fetch(`/empresas/buscarComparativo?fkFilial=${fkFilial}`, {
+
+    fetch(`/empresas/buscarComparativoFilial?fkFilial=${fkFilial}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -715,19 +735,24 @@ document.addEventListener('DOMContentLoaded', function () {
           console.log("Nenhum dado encontrado.");
           return;
         }
-  
+
         // Extrai os meses e as empresas
-        const datas = [...new Set(dados.map(d => d.data))]; // Datas únicas
+        const datas = [...new Set(dados.map(d => {
+          // Formata a data antes de adicionar ao array
+          const dataFormatada = d.data.split('T')[0];
+          return dataFormatada;
+        }))];
+
         const empresas = [...new Set(dados.map(d => d.nome_filial))]; // Empresas únicas
-  
+
         // Monta os consumos por empresa
         const consumosPorEmpresa = empresas.map(empresa =>
           datas.map(data => {
-            const dado = dados.find(d => d.nome_filial === empresa && d.data === data);
+            const dado = dados.find(d => d.nome_filial === empresa && d.data.split('T')[0] === data);
             return dado ? dado.consumo_energia : null; // Retorna o consumo ou null
           })
         );
-  
+
         // Atualiza o gráfico
         const option = {
           tooltip: {
@@ -750,15 +775,14 @@ document.addEventListener('DOMContentLoaded', function () {
             color: ['#1f77b4', '#ff7f0e', '#2ca02c', '#9467bd', '#d62728'][i % 5] // Cores pré-definidas
           }))
         };
-  
+
         comparativoFiliaisChart.setOption(option);
         comparativoFiliaisChart.resize(); // Força o redimensionamento do gráfico
       })
       .catch(err => console.error("Erro ao buscar dados:", err));
   }
-  
-  // Busca os dados ao carregar a página
-  fetchComparativo();
+
+  fetchComparativoFilial();
 
   // Redimensionamento automático
   window.addEventListener('resize', function () {
@@ -1011,7 +1035,7 @@ async function getNivelSustentabilidade() {
 
     // Calcule o nível de sustentabilidade
     const consumoMensal = consumoData[0].consumoEnergia;
-    console.log("Consumo Mensal: " + consumoMensal);  
+    console.log("Consumo Mensal: " + consumoMensal);
     const nivelSustentabilidade = calcularPorcentagemSustentabilidade(consumoMensal);
     console.log("Nivel de Sustentabilidade: " + nivelSustentabilidade)
 
@@ -1057,7 +1081,7 @@ async function getNivelSustentabilidade() {
 let dadosRanking = [];
 
 function gerarRanking() {
-  const fkFilial = sessionStorage.getItem('FILIAL_USER'); 
+  const fkFilial = sessionStorage.getItem('FILIAL_USER');
 
   fetch(`/empresas/ranking?fkFilial=${fkFilial}`, {
     method: 'GET',
@@ -1077,8 +1101,8 @@ function gerarRanking() {
       }
     })
     .then((dados) => {
-      dadosRanking = dados; 
-      exibirRanking(dadosRanking); 
+      dadosRanking = dados;
+      exibirRanking(dadosRanking);
     })
     .catch((erro) => {
       console.error("Erro ao buscar dados:", erro);
@@ -1093,7 +1117,7 @@ function exibirRanking(dados) {
     return;
   }
 
-  rankingContainer.innerHTML = ''; 
+  rankingContainer.innerHTML = '';
 
   if (!dados || dados.length === 0) {
     console.log("Nenhum dado encontrado.");
@@ -1139,17 +1163,17 @@ function exibirRanking(dados) {
 }
 
 function filtrarRanking() {
-  const input = document.getElementById('inputProcurar'); 
-  const filtro = input.value.toLowerCase(); 
+  const input = document.getElementById('inputProcurar');
+  const filtro = input.value.toLowerCase();
   const dadosFiltrados = dadosRanking.filter(item =>
     item.nomeFilial.toLowerCase().includes(filtro)
   );
 
-  exibirRanking(dadosFiltrados); 
+  exibirRanking(dadosFiltrados);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  gerarRanking(); 
+  gerarRanking();
 
   const input = document.getElementById('inputProcurar');
   if (input) {
@@ -1210,3 +1234,73 @@ function atualizarMediaDiaria() {
 
 document.addEventListener('DOMContentLoaded', atualizarMediaDiaria);
 
+
+function buscarFiliais() {
+  fetch('/empresas/buscarFiliais', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(function (resposta) {
+      if (resposta.status === 200) {
+        return resposta.json();
+      } else {
+        console.log(`Erro ao buscar dados: ${resposta.status}`);
+      }
+    })
+    .then(data => {
+      const select = document.getElementById('filialSelect');
+      data.forEach(filial => {
+        const option = document.createElement('option');
+        option.value = filial.idFilial;
+        option.textContent = filial.nome;
+        select.appendChild(option);
+      });
+    })
+    .catch(error => {
+      console.error('Erro ao buscar dados:', error);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  buscarFiliais();
+});
+
+
+function nomeFilial() {
+  const fkFilial = sessionStorage.getItem('FILIAL_USER');
+  var filialNome = document.getElementById('contentPage2');
+  var filialNome2 = document.getElementById('contentPage3');
+
+  fetch(`/empresas/nomeFilial?fkFilial=${fkFilial}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(function (resposta) {
+      if (resposta.status === 200) {
+        return resposta.json();
+      } else {
+        console.log(`Erro ao buscar dados: ${resposta.status}`);
+        return null;
+      }
+    })
+    .then(function (dados) {
+      if (dados && dados.length > 0) {
+        filialNome.innerHTML = dados[0].nome;
+        filialNome2.innerHTML = dados[0].nome;
+      } else {
+        filialNome.innerHTML = "Nome não encontrado.";
+        filialNome2.innerHTML = "Nome não encontrado.";
+      }
+    })
+    .catch(error => {
+      console.error('Erro ao buscar dados:', error);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  nomeFilial();
+});

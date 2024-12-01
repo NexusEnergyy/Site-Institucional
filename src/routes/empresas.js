@@ -27,6 +27,15 @@ router.get("/buscarComparativo", function(req,res){
     empresaController.buscarComparativo(req,res);
 });
 
+router.get("/buscarComparativoFilial", function(req,res){
+    empresaController.buscarComparativoFilial(req,res);
+});
+
+router.get("/nomeFilial", function(req,res){
+    empresaController.nomeFilial(req,res);
+});
+
+
 router.get("/mediaDiaria", function(req,res){
     empresaController.buscarTotalConsumo(req,res);
 });

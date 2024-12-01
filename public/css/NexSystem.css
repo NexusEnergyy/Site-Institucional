@@ -448,13 +448,25 @@ body {
     align-items: center;
 
     & .currentPage {
-      width: 32.5%;
+      width: 44%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       height: 90%;
 
+      
+
       & .contentPage {
+        background-color: var(--boxGraphic);
+        color: var(--titulos);
+        border-radius: 10px;
+        padding: 20px;
+        font-size: 25px;
+        font-family: "Wix Madefor Display", system-ui;
+        font-weight: 700;
+      }
+
+      & .contentPage2 {
         background-color: var(--boxGraphic);
         color: var(--titulos);
         border-radius: 10px;
@@ -895,7 +907,6 @@ body {
               width: 1150px;
               height: 271px;
               margin-top: 35px;
-              /* right: -100px; */
             }
 
             & .containerContentGDP{
@@ -906,7 +917,7 @@ body {
               border-radius: 10px; 
               height: 100%;
               background-color: var(--boxGraphicContent);
-              grid-template-columns: 32% 66%;
+              grid-template-columns: 23% 71%;
 
               & .numFiliais, .mediaConsuFiliais, .compFiliais{
                 height: 95%;
@@ -940,9 +951,10 @@ body {
                   overflow: hidden;
                   border-radius: 15px;
 
-                  & #graficoMockado{
-                    width: 100%;
-                    height: 100%;
+                  & #comparativoFiliaisChart{
+                    display: block;
+                    width: 930px;
+                    height: 271px;
                   }
                 }
               }
@@ -1116,6 +1128,7 @@ body {
       height: 70%;
       border-radius: 10px;
       display: flex;
+      color: white;
       flex-direction: row;
       align-items: center;
       justify-content: center;
@@ -1844,13 +1857,14 @@ body {
   width: 100px; 
   height:50px;
   border-radius: 10px; 
-  background-color: #ffffff; 
+  background-color: var(--bcgIcone);
   display: flex; 
   justify-content: center; 
   align-items: center;
   margin-left: 10px;
   transition: 0.4s;
   cursor: pointer;
+  color: var(--titulos);
   
   p{
     font-family: 'Montserrat', sans-serif;
@@ -1859,7 +1873,7 @@ body {
 }
 
 .btnPlotar:hover{
-  background-color: #a504a5;
+  background-color: var(--hoverColor);
   scale: 1.1;
   transition: 0.4s;
 }

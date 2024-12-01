@@ -120,5 +120,57 @@ function buscarTotalConsumo(filialId) {
   return database.executar(instrucaoSql);
 }
 
+function buscarComparativoFilial(filial) {
+    var instrucaoSql = `
+          
+WITH FiliaisSelecionadas AS (
+    SELECT 
+        F.idFilial, 
+        F.nome AS nome_filial
+    FROM 
+        Filial AS F
+    JOIN 
+        ConsumoDados AS CD ON F.idFilial = CD.fkFilial
+    WHERE 
+        F.fkMatriz = (
+            SELECT 
+                fkMatriz
+            FROM 
+                Filial
+            WHERE 
+                idFilial = ${filial}
+        )
+    GROUP BY 
+        F.idFilial, F.nome
+    ORDER BY 
+        SUM(CD.consumoEnergia) DESC
+    LIMIT 5
+)
+SELECT 
+    CD.dataReferencia AS data,
+    DATE_FORMAT(CD.dataReferencia, '%Y-%m') AS mes,
+    FS.nome_filial,
+    CD.consumoEnergia AS consumo_energia
+FROM 
+    ConsumoDados AS CD
+JOIN 
+    FiliaisSelecionadas AS FS ON CD.fkFilial = FS.idFilial
+ORDER BY 
+    mes ASC, FS.nome_filial ASC, data ASC;
+`;
+  
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+  }
 
-module.exports = { buscarMatrizes, cadastrarEmpresa, qtdFiliais, buscarFiliais, ranking, buscarComparativo, buscarTotalConsumo };
+  function nomeFilial(filial) {
+    var instrucaoSql = `
+          SELECT nome FROM Filial WHERE idFilial = ${filial};
+`;
+  
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+  }
+
+
+module.exports = { buscarMatrizes, cadastrarEmpresa, qtdFiliais, buscarFiliais, ranking, buscarComparativo, buscarTotalConsumo, buscarComparativoFilial, nomeFilial };

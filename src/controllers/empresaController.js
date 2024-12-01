@@ -53,6 +53,20 @@ function buscarFiliais(req, res){
   });
 }
 
+function nomeFilial(req, res) {
+  const filial = req.query.fkFilial;
+
+  empresaModel.nomeFilial(filial)
+    .then((resultado) => {
+      console.log('Resultado no Controller:', resultado); // Log para verificar
+      res.status(200).json(resultado); // Certifique-se que `resultado` é um objeto ou string
+    })
+    .catch((erro) => {
+      console.error('Erro ao buscar dados:', erro);
+      res.status(500).send(erro);
+    });
+}
+
 function ranking(req, res) {
   const filial = req.query.fkFilial;
 
@@ -93,6 +107,23 @@ function buscarComparativo(req, res) {
     });
 }
 
+function buscarComparativoFilial(req, res) {
+  const filial = req.query.fkFilial;
+
+  empresaModel.buscarComparativoFilial(filial)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch((erro) => {
+      console.error("Erro ao buscar dados do comparativo:", erro);
+      res.status(500).json(erro);
+    });
+}
+
 function buscarTotalConsumo(req, res) {
   const filialId = req.query.fkFilial; // Obtém o ID da filial via query string
 
@@ -117,5 +148,7 @@ module.exports = {
   buscarFiliais,
   ranking,
   buscarComparativo,
-  buscarTotalConsumo
+  buscarTotalConsumo,
+  buscarComparativoFilial,
+  nomeFilial
 };
