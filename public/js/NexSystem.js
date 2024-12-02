@@ -592,13 +592,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (response.ok) {
         const data = await response.json();
-        const mesAtual = new Date().getMonth();
-        const consumoMesAtual = data.find(item => new Date(item.dataReferencia).getMonth() === mesAtual);
+        const consumoMesAtual = data[0].consumoEnergia;
 
         if (consumoMesAtual) {
           consumoMensalChart.setOption({
             series: [{
-              data: [{ value: consumoMesAtual.consumoEnergia, name: 'SCORE' }]
+              data: [{ value: consumoMesAtual, name: 'ENERGIA' }]
             }]
           });
         } else {
