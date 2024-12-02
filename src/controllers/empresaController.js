@@ -141,6 +141,23 @@ function buscarTotalConsumo(req, res) {
     });
 }
 
+function previsaoConsumo(req, res) {
+  const filialId = req.query.fkFilial;
+
+  empresaModel.previsaoConsumo(filialId)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado[0]);
+      } else {
+        res.status(204).send("Nenhum dado encontrado!");
+      }
+    })
+    .catch((erro) => {
+      console.error("Erro ao buscar previsão de consumo:", erro);
+      res.status(500).json(erro);
+    });
+}
+
 module.exports = {
   buscarMatrizes,
   cadastrarEmpresa,
@@ -150,5 +167,6 @@ module.exports = {
   buscarComparativo,
   buscarTotalConsumo,
   buscarComparativoFilial,
-  nomeFilial
+  nomeFilial,
+  previsaoConsumo
 };

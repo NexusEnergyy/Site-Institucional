@@ -108,12 +108,13 @@ ORDER BY
 function buscarTotalConsumo(filialId) {
   const instrucaoSql = `
   SELECT 
-        SUM(consumoEnergia) AS total_consumo
-    FROM 
-        ConsumoDados
-    WHERE 
-        fkFilial = ${filialId}
-        AND dataReferencia = "2024-06-01";
+    consumoEnergia as total_consumo
+FROM 
+    ConsumoDados
+WHERE 
+    fkFilial = ${filialId}
+ORDER BY dataReferencia DESC
+LIMIT 1; 
   `;
 
   console.log("Executando a instrução SQL:\n", instrucaoSql);
@@ -172,5 +173,12 @@ ORDER BY
     return database.executar(instrucaoSql);
   }
 
+  function previsaoConsumo(filialId) {
+    const instrucaoSql = ` `;
+  
+    console.log("Executando a instrução SQL:\n", instrucaoSql);
+    return database.executar(instrucaoSql);
+  }
 
-module.exports = { buscarMatrizes, cadastrarEmpresa, qtdFiliais, buscarFiliais, ranking, buscarComparativo, buscarTotalConsumo, buscarComparativoFilial, nomeFilial };
+
+module.exports = { buscarMatrizes, cadastrarEmpresa, qtdFiliais, buscarFiliais, ranking, buscarComparativo, buscarTotalConsumo, buscarComparativoFilial, nomeFilial, previsaoConsumo };

@@ -264,105 +264,6 @@ document.addEventListener('DOMContentLoaded', function () {
   getConsumoMensal(sessionStorage.getItem("FILIAL_USER"));
 });
 
-// GRÁFICO PREVISÃO MENSAL DE ENERGIA
-document.addEventListener('DOMContentLoaded', function () {
-  // Inicializa o gráfico dentro do elemento com ID 'previsaoConsumoChart'
-  const previsaoConsumoChart = echarts.init(document.getElementById('previsaoConsumoChart'));
-
-  // Configurações do gráfico
-  const colors = ['#5470C6', '#EE6666'];
-  const option = {
-    color: colors,
-    tooltip: {
-      trigger: 'axis',
-      axisPointer: {
-        type: 'cross'
-      }
-    },
-    grid: {
-      right: '20%'
-    },
-    toolbox: {
-      feature: {
-        dataView: { show: true, readOnly: false },
-        restore: { show: true },
-        saveAsImage: { show: true }
-      }
-    },
-    legend: {
-      data: ['Consumo', 'Gasto'],
-      textStyle: {
-        color: '#FFFFFF' // Cor branca para a legenda
-      }
-    },
-    xAxis: [
-      {
-        type: 'category',
-        axisTick: {
-          alignWithLabel: true
-        },
-        data: ['Nov', 'Dez', 'Jan', 'Mar', 'Abr', 'Mai'],
-        axisLabel: {
-          color: '#FFFFFF' // Cor branca para os nomes dos meses
-        }
-      }
-    ],
-    yAxis: [
-      {
-        type: 'value',
-        name: 'Consumo',
-        position: 'right',
-        alignTicks: true,
-        axisLine: {
-          show: true,
-          lineStyle: {
-            color: colors[0]
-          }
-        },
-        axisLabel: {
-          formatter: '{value} kWh'
-        }
-      },
-      {
-        type: 'value',
-        name: 'Gasto',
-        position: 'left',
-        alignTicks: true,
-        axisLine: {
-          show: true,
-          lineStyle: {
-            color: colors[1]
-          }
-        },
-        axisLabel: {
-          formatter: '{value} $'
-        }
-      }
-    ],
-    series: [
-      {
-        name: 'Consumo',
-        type: 'bar',
-        data: [120, 130, 150, 180, 210, 230]
-      },
-      {
-        name: 'Gasto',
-        type: 'line',
-        yAxisIndex: 1,
-        data: [50, 55, 60, 70, 80, 85]
-      }
-    ]
-  };
-
-  // Renderiza o gráfico
-  previsaoConsumoChart.setOption(option);
-
-  // Responsividade para redimensionamento da janela
-  window.addEventListener('resize', function () {
-    previsaoConsumoChart.resize();
-  });
-});
-
 // GRÁFICO CONSUMO HORÁRIO DE ENERGIA
 document.addEventListener('DOMContentLoaded', function () {
   // Inicializa o gráfico dentro do elemento com ID 'consumoHorarioChart'
@@ -382,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     xAxis: {
       type: 'category',
-      data: ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00'],
+      data: ['00:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00', '23:00'],
       axisLabel: {
         color: '#FFFFFF' // Cor branca para os horários
       }
@@ -390,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function () {
     yAxis: [
       {
         type: 'value',
-        name: 'kWh',
+        name: 'MWh',
         position: 'left',
         alignTicks: true,
         axisLine: {
@@ -407,7 +308,7 @@ document.addEventListener('DOMContentLoaded', function () {
     series: [
       {
         name: 'Consumo Horário',
-        data: [70, 85, 95, 110, 130, 150, 165, 120], // Exemplo de consumo para cada horário
+        data: [0.17, 0.2, 0.49, 0.39, 0.40, 0.62, 0.51, 0.21], // Exemplo de consumo para cada horário
         type: 'bar'
       }
     ],
@@ -696,6 +597,21 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
           console.log('Nenhum dado encontrado para o mês atual.');
         }
+
+        const consumoMesJunho = data.find(item => new Date(item.dataReferencia).getMonth() === 5);
+        if (consumoMesJunho) {
+          const valorMultiplicado = consumoMesJunho.consumoEnergia * 600;
+          const insightsDiv = document.getElementById('previsaoReais');
+          if (insightsDiv) {
+            const valorFormatado = valorMultiplicado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            const simbolo = valorFormatado.substring(0, 2);
+            const valor = valorFormatado.substring(2);
+            
+            insightsDiv.innerHTML = `<span style="color: rgb(196, 52, 52); margin: 0;">${simbolo}</span>${valor}`;
+          }                      
+        } else {
+          console.log('Nenhum dado encontrado para o mês de junho.');
+        }
       } else {
         console.error(`Erro ao buscar dados: ${response.status}`);
       }
@@ -714,6 +630,7 @@ document.addEventListener('DOMContentLoaded', function () {
     consumoMensalChart.resize();
   });
 });
+
 
 // GRÁFICO DO NÍVEL DE COMPARATIVO FILIAIS
 document.addEventListener('DOMContentLoaded', function () {
@@ -915,7 +832,6 @@ async function cadastrar_funcionario() {
   }
 }
 
-
 async function carregarFuncionarios() {
   try {
     const idFilial = sessionStorage.getItem('FILIAL_USER');
@@ -998,8 +914,6 @@ document.addEventListener('DOMContentLoaded', () => {
   getCompensacaoAmbiental();
 });
 
-
-
 document.addEventListener('DOMContentLoaded', () => {
   getCompensacaoAmbiental();
   getNivelSustentabilidade();
@@ -1009,7 +923,7 @@ function calcularPorcentagemSustentabilidade(consumoMensal) {
   const CO2_POR_MWH = 0.081; // Emissões de CO2 em toneladas por MWh
   const CO2_POR_ARVORE = 100; // Quantidade de CO2 que uma árvore pode compensar por ano em kg
 
-  const emissaoCO2 = (consumoMensal * 1000) * CO2_POR_MWH; // Emissões de CO2 em kg
+  const emissaoCO2 = (150 * 1000) * CO2_POR_MWH; // Emissões de CO2 em kg
   const qtdArvores = emissaoCO2 / 200; // Quantidade de árvores necessárias para compensar a emissão
   const compensacaoCO2 = qtdArvores * CO2_POR_ARVORE; // Compensação de CO2 em kg
 
@@ -1074,9 +988,6 @@ async function getNivelSustentabilidade() {
     console.log(`Erro ao buscar dados: ${respostaConsumo.status}`);
   }
 }
-
-
-
 
 let dadosRanking = [];
 
@@ -1219,7 +1130,9 @@ function atualizarMediaDiaria() {
       const totalConsumo = parseFloat(dados.total_consumo);
 
       if (!isNaN(totalConsumo) && totalConsumo > 0) {
-        const mediaDividida = (totalConsumo / 22).toFixed(2);
+        const hoje = new Date();
+        const numeroDoDia = hoje.getDate();
+        const mediaDividida = (totalConsumo / numeroDoDia).toFixed(2);
         mediaDiariaContainer.innerHTML = `
           ${mediaDividida} <span style="color: yellow;">MWh</span>
         `;
@@ -1233,7 +1146,6 @@ function atualizarMediaDiaria() {
 }
 
 document.addEventListener('DOMContentLoaded', atualizarMediaDiaria);
-
 
 function buscarFiliais() {
   fetch('/empresas/buscarFiliais', {
@@ -1266,7 +1178,6 @@ function buscarFiliais() {
 document.addEventListener('DOMContentLoaded', () => {
   buscarFiliais();
 });
-
 
 function nomeFilial() {
   const fkFilial = sessionStorage.getItem('FILIAL_USER');
@@ -1303,4 +1214,103 @@ function nomeFilial() {
 
 document.addEventListener('DOMContentLoaded', () => {
   nomeFilial();
+});
+
+// GRÁFICO PREVISÃO MENSAL DE ENERGIA
+document.addEventListener('DOMContentLoaded', function () {
+  // Inicializa o gráfico dentro do elemento com ID 'previsaoConsumoChart'
+  const previsaoConsumoChart = echarts.init(document.getElementById('previsaoConsumoChart'));
+
+  // Configurações do gráfico
+  const colors = ['#5470C6', '#EE6666'];
+  const option = {
+    color: colors,
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'cross'
+      }
+    },
+    grid: {
+      right: '20%'
+    },
+    toolbox: {
+      feature: {
+        dataView: { show: true, readOnly: false },
+        restore: { show: true },
+        saveAsImage: { show: true }
+      }
+    },
+    legend: {
+      data: ['Consumo', 'Gasto'],
+      textStyle: {
+        color: '#FFFFFF' // Cor branca para a legenda
+      }
+    },
+    xAxis: [
+      {
+        type: 'category',
+        axisTick: {
+          alignWithLabel: true
+        },
+        data: ['Nov', 'Dez', 'Jan', 'Mar', 'Abr', 'Mai'],
+        axisLabel: {
+          color: '#FFFFFF' // Cor branca para os nomes dos meses
+        }
+      }
+    ],
+    yAxis: [
+      {
+        type: 'value',
+        name: 'Consumo',
+        position: 'right',
+        alignTicks: true,
+        axisLine: {
+          show: true,
+          lineStyle: {
+            color: colors[0]
+          }
+        },
+        axisLabel: {
+          formatter: '{value} MWh'
+        }
+      },
+      {
+        type: 'value',
+        name: 'Gasto',
+        position: 'left',
+        alignTicks: true,
+        axisLine: {
+          show: true,
+          lineStyle: {
+            color: colors[1]
+          }
+        },
+        axisLabel: {
+          formatter: '{value} R$'
+        }
+      }
+    ],
+    series: [
+      {
+        name: 'Consumo',
+        type: 'bar',
+        data: [120, 130, 150, 180, 210, 230]
+      },
+      {
+        name: 'Gasto',
+        type: 'line',
+        yAxisIndex: 1,
+        data: [50, 55, 60, 70, 80, 85]
+      }
+    ]
+  };
+
+  // Renderiza o gráfico
+  previsaoConsumoChart.setOption(option);
+
+  // Responsividade para redimensionamento da janela
+  window.addEventListener('resize', function () {
+    previsaoConsumoChart.resize();
+  });
 });

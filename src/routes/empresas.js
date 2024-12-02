@@ -39,4 +39,8 @@ router.get("/nomeFilial", function(req,res){
 router.get("/mediaDiaria", function(req,res){
     empresaController.buscarTotalConsumo(req,res);
 });
+
+router.get("/previsaoConsumo", function(req,res){
+    empresaController.previsaoConsumo(req,res);
+});
 module.exports = router;
