@@ -20,17 +20,18 @@ services:
     networks:
       - nexusnetwork
 
-   nexusenergy-mysql:
+  nexusenergy-mysql:
     image: mysql:8.0.39
-    ports: "3306:3306"
+    ports:
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: senhaROOT@123
     volumes:
-      ./arquivos_sql/tabelas.sql:/docker-entrypoint-initdb.d/tabelas.sql
-    command: 
+      - ./arquivos_sql/tabelas.sql:/docker-entrypoint-initdb.d/tabelas.sql
+    command:
       --init-file /docker-entrypoint-initdb.d/tabelas.sql
     networks:
-      nexusnetwork
+      - nexusnetwork
 
   nexusenergy_java:
     build:
