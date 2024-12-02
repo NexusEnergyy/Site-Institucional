@@ -12,7 +12,7 @@ CREATE TABLE Matriz (
 
 CREATE TABLE Parametros (
 	idParametro INT PRIMARY KEY AUTO_INCREMENT,
-    porte CHAR(5),
+    porte VARCHAR(5),
     ativoMin DECIMAL(12,2),
     ativoMax DECIMAL(12,2)
 );
