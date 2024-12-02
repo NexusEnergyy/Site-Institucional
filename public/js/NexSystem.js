@@ -604,21 +604,6 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
           console.log('Nenhum dado encontrado para o mês atual.');
         }
-
-        const consumoMesJunho = data.find(item => new Date(item.dataReferencia).getMonth() === 5);
-        if (consumoMesJunho) {
-          const valorMultiplicado = consumoMesJunho.consumoEnergia * 600;
-          const insightsDiv = document.getElementById('previsaoReais');
-          if (insightsDiv) {
-            const valorFormatado = valorMultiplicado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-            const simbolo = valorFormatado.substring(0, 2);
-            const valor = valorFormatado.substring(2);
-            
-            insightsDiv.innerHTML = `<span style="color: rgb(196, 52, 52); margin: 0;">${simbolo}</span>${valor}`;
-          }                      
-        } else {
-          console.log('Nenhum dado encontrado para o mês de junho.');
-        }
       } else {
         console.error(`Erro ao buscar dados: ${response.status}`);
       }
@@ -1325,7 +1310,7 @@ document.addEventListener('DOMContentLoaded', function () {
       .then(data => {
         const xAxisData = data.map(item => item.dataReferencia.split('T')[0]);
         const consumoData = data.map(item => parseFloat(item.consumoPrevisto));
-        const gastoData = consumoData.map(consumo => (consumo * 600).toFixed(2));
+        const gastoData = consumoData.map(consumo => (consumo * 150).toFixed(2));
 
 
         
