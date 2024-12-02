@@ -560,7 +560,7 @@
         <div style="display: flex; flex-direction: row; align-items: center;">
             <select style="padding: 18px; margin-left: 20px; border-radius: 10px; cursor: pointer;" id="filialSelect">
             </select>
-            <span class="btnPlotar" 'onclick="atualizarGraficos()">
+            <span class="btnPlotar" onclick="atualizarGraficos()">
                 <p>Plotar</p>
                 </span>
         </div>
@@ -569,8 +569,6 @@
     }
 
     function atualizarGraficos() {
-        const idFilial = document.getElementById('filialSelect').value;
-
-        getConsumoMensal(idFilial);
+  window.location.href = "NexSystem.html"
     }
 </script>

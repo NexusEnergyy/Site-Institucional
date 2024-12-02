@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   var btnEmpresa = document.getElementById('empresasItem')
   var filialNome = document.getElementById('contentPage2')
 
+  
+
   if (sessionStorage.CARGO_USER == 0) {
     btnPerformance.style.display = "none";
     filialNome.style.display = "none";
@@ -19,6 +21,25 @@ document.addEventListener('DOMContentLoaded', () => {
     btnEmpresa.style.display = "none";
   }
 
+  const filialSelect = document.getElementById("filialSelect");
+
+  // Adiciona o evento "change" para capturar mudanças no <select>
+  filialSelect.addEventListener("change", (event) => {
+    // Obtém o valor selecionado
+    const selectedValue = event.target.value;
+
+    // Atualiza o sessionStorage com o valor selecionado
+    sessionStorage.setItem("FILIAL_USER", selectedValue);
+
+    // Log opcional para ver o valor atualizado
+    console.log(`FILIAL_USER atualizado no sessionStorage: ${sessionStorage.getItem("FILIAL_USER")}`);
+  });
+
+  // Recupera o valor armazenado no sessionStorage ao carregar a página e seleciona no dropdown
+  const storedValue = sessionStorage.getItem("FILIAL_USER");
+  if (storedValue) {
+    filialSelect.value = storedValue;
+  }
 
   editNome.value = sessionStorage.NOME_USER
   editCpf.value = sessionStorage.CPF_USER
@@ -74,8 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
       activeSection.classList.add('visible');
     }, 50);
   }
-
-
+  
   document.addEventListener('DOMContentLoaded', () => {
     toggleDisplay(dashboardContent);
   });
@@ -233,6 +253,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function getConsumoMensal(idFilial) {
 
+  
+
     fetch(`/graficos/getConsumoMensal?fkFilial=${idFilial}`, {
       method: 'GET',
       headers: {
@@ -250,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("Valor da Requisição: " + data);
         const consumoMensal = new Array(12).fill(0);
         data.forEach(item => {
-          const month = new Date(item.dataReferencia).getMonth();
+          const month = new Date(item.dataReferencia).getMonth() + 1;
           consumoMensal[month] = item.consumoEnergia;
         });
         option.series[0].data = consumoMensal;
@@ -326,7 +348,7 @@ document.addEventListener('DOMContentLoaded', function () {
       tooltipContent += `${param.seriesName}: ${param.data} MWh<br>`;
     });
     return tooltipContent;
-  };  
+  };
 
   // Renderiza o gráfico
   consumoHorarioChart.setOption(option);
@@ -581,7 +603,9 @@ document.addEventListener('DOMContentLoaded', function () {
     ]
   };
 
-  async function getConsumoMesAtual(idFilial) {
+  async function getConsumoMesAtual() {
+
+   const idFilial = sessionStorage.getItem("FILIAL_USER");
     try {
       const response = await fetch(`/graficos/getConsumoMensal?fkFilial=${idFilial}`, {
         method: 'GET',
@@ -1246,10 +1270,10 @@ document.addEventListener('DOMContentLoaded', function () {
         axisLabel: {
           color: '#FFFFFF'
         }
-            }
-          ],
-          yAxis: [
-            {
+      }
+    ],
+    yAxis: [
+      {
         type: 'value',
         name: 'Consumo MWh',
         position: 'right',
@@ -1265,8 +1289,8 @@ document.addEventListener('DOMContentLoaded', function () {
             return value >= 1000 ? (value / 1000) + "K" : value + "K";
           }
         }
-            },
-            {
+      },
+      {
         type: 'value',
         name: 'Gasto R$',
         position: 'left',
@@ -1282,10 +1306,10 @@ document.addEventListener('DOMContentLoaded', function () {
             return value >= 1000 ? (value / 1000) + 'K' : value;
           }
         }
-            }
-          ],
-          series: [
-            {
+      }
+    ],
+    series: [
+      {
         name: 'Consumo',
         type: 'bar',
         data: [] // Será preenchido com os dados do fetch
@@ -1312,13 +1336,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const gastoData = consumoData.map(consumo => (consumo * 150).toFixed(2));
 
 
-        
+
         const gastoDataFormatado = parseFloat(gastoData[0]).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
         const insightsDiv = document.getElementById('previsaoReais');
         const simbolo = gastoDataFormatado.substring(0, 2);
         const valor = gastoDataFormatado.substring(2);
-            
+
         insightsDiv.innerHTML = `<span style="color: rgb(196, 52, 52); margin: 0;">${simbolo}</span>${valor}`;
 
         previsaoConsumoChart.setOption({
