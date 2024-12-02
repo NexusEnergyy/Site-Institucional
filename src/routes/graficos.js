@@ -15,4 +15,8 @@ router.get("/getCompensacaoAmbiental", function (req, res) {
     graficoController.getCompensacaoAmbiental(req, res);
 })
 
+router.get("/getPrevisaoConsumo", function (req, res) {
+    graficoController.getPrevisaoConsumo(req, res);
+})
+
 module.exports = router;

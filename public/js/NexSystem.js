@@ -320,6 +320,13 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   };
+  option.tooltip.formatter = function (params) {
+    let tooltipContent = '';
+    params.forEach(param => {
+      tooltipContent += `${param.seriesName}: ${param.data} MWh<br>`;
+    });
+    return tooltipContent;
+  };  c
 
   // Renderiza o gráfico
   consumoHorarioChart.setOption(option);

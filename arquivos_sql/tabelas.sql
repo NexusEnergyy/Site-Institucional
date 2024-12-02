@@ -22,7 +22,6 @@ INSERT INTO Parametros VALUES
     (default,"Médio",2000000.01,30000000.00),
     (default,"Alto",30000000.01,NULL);
 
-
 CREATE TABLE Filial (
 	idFilial INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(250),
@@ -62,7 +61,6 @@ CREATE TABLE Usuario (
         REFERENCES Cargo(idCargo)
 );
 
-
 INSERT INTO Usuario VALUES
 	('13187293867','Diogo Polastrine','diogo.silva@nexuseng.com','3716d5937ebfe1c6f527c6ba560519820bb7d89f76fd3f5d1dc1609517e83ac3',null, null, 0),
     ('81238123813','Carolina Timóteo','carol.camargo@nexuseng.com','3716d5937ebfe1c6f527c6ba560519820bb7d89f76fd3f5d1dc1609517e83ac3',null, null, 0),
@@ -82,39 +80,24 @@ CREATE TABLE ConsumoDados (
 		REFERENCES Filial(idFilial)
 );
 
-CREATE TABLE DadosManipulados (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE DadosPrevistos (
+    idPrevisao INT PRIMARY KEY AUTO_INCREMENT,
     dataReferencia DATE,
-    consumoPrevisto DOUBLE,
-    consumoHorario JSON
+    consumoPrevisto FLOAT,
+    fkFilial INT,
+	FOREIGN KEY (fkFilial)
+		REFERENCES Filial(idFilial)
 );
 
-CREATE TABLE Insights (
-	idInsight INT PRIMARY KEY AUTO_INCREMENT,
-    titulo VARCHAR(45),
-    descricao VARCHAR(1000),
-    dataEnvio DATETIME,
+CREATE TABLE DadosHorario (
+    idDadoHorario INT PRIMARY KEY AUTO_INCREMENT,
+    dataReferencia DATE,
+    hora TIME,
+    consumoHorario DECIMAL(10,2),
     fkFilial INT,
     FOREIGN KEY (fkFilial)
 		REFERENCES Filial(idFilial)
 );
 
-CREATE TABLE HistoricoIA (
-	idHistorico INT PRIMARY KEY AUTO_INCREMENT,
-    pergunta VARCHAR(1000),
-    resposta VARCHAR(1000),
-    dataResposta DATETIME
-);
 
 
-    
-SHOW TABLES;
-
-SELECT * FROM ConsumoDados;
-SELECT * FROM Filial;	
-SELECT * FROM Matriz;
-SELECT * FROM Usuario;
-SELECT * FROM Cargo;
-SELECT * FROM Insights;
-SELECT * FROM HistoricoIA;
-SELECT * FROM Parametros;

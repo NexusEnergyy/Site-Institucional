@@ -1,4 +1,5 @@
 var graficoModel = require("../models/graficoModel");
+const { get } = require("../routes/graficos");
 
 function getConsumoMensal(req, res) {
   var fkFilial = req.query.fkFilial;
@@ -47,10 +48,28 @@ function getCompensacaoAmbiental(req, res) {
   });
 }
 
+function getPrevisaoConsumo(req, res) {
+  var fkFilial = req.query.fkFilial;
+
+  graficoModel.getPrevisaoConsumo(fkFilial)
+  .then((resultado) => {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(404).json({ mensagem: "Nenhum dado encontrado" });
+    }
+  })
+  .catch((erro) => {
+    console.log(erro);
+    res.status(500).json(erro.sqlMessage);
+  });
+}
+
 
 
 module.exports = {
   getConsumoMensal,
   getEmissaoCO2,
-  getCompensacaoAmbiental
+  getCompensacaoAmbiental,
+  getPrevisaoConsumo
 };

@@ -28,8 +28,17 @@ function getCompensacaoAmbiental(fkFilial) {
     return database.executar(instrucaoSql);
 }
 
+function getPrevisaoConsumo(fkFilial) {
+    var instrucaoSql = `
+        SELECT dataReferencia, consumoPrevisto FROM DadosPrevistos WHERE fkFilial = ${fkFilial};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     getConsumoMensal,
     getEmissaoCO2,
-    getCompensacaoAmbiental
+    getCompensacaoAmbiental,
+    getPrevisaoConsumo
 };
