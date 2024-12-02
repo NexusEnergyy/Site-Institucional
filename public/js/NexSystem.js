@@ -1332,8 +1332,8 @@ document.addEventListener('DOMContentLoaded', function () {
       .then(response => response.json())
       .then(data => {
         const xAxisData = data.map(item => item.dataReferencia.split('T')[0]);
-        const consumoData = data.map(item => parseFloat(item.consumoPrevisto));
-        const gastoData = consumoData.map(consumo => (consumo * 150).toFixed(2));
+        const consumoData = data.map(item => parseFloat((item.consumoPrevisto)/5).toFixed(2)); // Consumo em MWh
+        const gastoData = consumoData.map(consumo => (consumo * 75)); // Consumo * Valor da Energia em Mwh
 
 
 
