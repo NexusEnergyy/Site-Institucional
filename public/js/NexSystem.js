@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', function () {
       tooltipContent += `${param.seriesName}: ${param.data} MWh<br>`;
     });
     return tooltipContent;
-  };  c
+  };  
 
   // Renderiza o gráfico
   consumoHorarioChart.setOption(option);
@@ -1225,10 +1225,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // GRÁFICO PREVISÃO MENSAL DE ENERGIA
 document.addEventListener('DOMContentLoaded', function () {
-  // Inicializa o gráfico dentro do elemento com ID 'previsaoConsumoChart'
   const previsaoConsumoChart = echarts.init(document.getElementById('previsaoConsumoChart'));
 
-  // Configurações do gráfico
   const colors = ['#5470C6', '#EE6666'];
   const option = {
     color: colors,
@@ -1251,7 +1249,7 @@ document.addEventListener('DOMContentLoaded', function () {
     legend: {
       data: ['Consumo', 'Gasto'],
       textStyle: {
-        color: '#FFFFFF' // Cor branca para a legenda
+        color: '#FFFFFF'
       }
     },
     xAxis: [
@@ -1260,16 +1258,16 @@ document.addEventListener('DOMContentLoaded', function () {
         axisTick: {
           alignWithLabel: true
         },
-        data: ['Nov', 'Dez', 'Jan', 'Mar', 'Abr', 'Mai'],
+        data: [], // Será preenchido com os dados do fetch
         axisLabel: {
-          color: '#FFFFFF' // Cor branca para os nomes dos meses
+          color: '#FFFFFF'
         }
-      }
-    ],
-    yAxis: [
-      {
+            }
+          ],
+          yAxis: [
+            {
         type: 'value',
-        name: 'Consumo',
+        name: 'Consumo MWh',
         position: 'right',
         alignTicks: true,
         axisLine: {
@@ -1279,12 +1277,14 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         },
         axisLabel: {
-          formatter: '{value} MWh'
+          formatter: function (value) {
+            return value >= 1000 ? (value / 1000) + "K" : value + "K";
+          }
         }
-      },
-      {
+            },
+            {
         type: 'value',
-        name: 'Gasto',
+        name: 'Gasto R$',
         position: 'left',
         alignTicks: true,
         axisLine: {
@@ -1294,30 +1294,75 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         },
         axisLabel: {
-          formatter: '{value} R$'
+          formatter: function (value) {
+            return value >= 1000 ? (value / 1000) + 'K' : value;
+          }
         }
-      }
-    ],
-    series: [
-      {
+            }
+          ],
+          series: [
+            {
         name: 'Consumo',
         type: 'bar',
-        data: [120, 130, 150, 180, 210, 230]
+        data: [] // Será preenchido com os dados do fetch
       },
       {
         name: 'Gasto',
         type: 'line',
         yAxisIndex: 1,
-        data: [50, 55, 60, 70, 80, 85]
+        data: [] // Será preenchido com os dados do fetch
       }
     ]
   };
 
-  // Renderiza o gráfico
   previsaoConsumoChart.setOption(option);
 
-  // Responsividade para redimensionamento da janela
+  function getPrevisaoConsumo() {
+    var idFilial = sessionStorage.getItem("FILIAL_USER");
+
+    fetch(`graficos/getPrevisaoConsumo?fkFilial=${idFilial}`)
+      .then(response => response.json())
+      .then(data => {
+        const xAxisData = data.map(item => item.dataReferencia.split('T')[0]);
+        const consumoData = data.map(item => parseFloat(item.consumoPrevisto));
+        const gastoData = consumoData.map(consumo => (consumo * 600).toFixed(2));
+
+
+        
+        const gastoDataFormatado = parseFloat(gastoData[0]).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+        const insightsDiv = document.getElementById('previsaoReais');
+        const simbolo = gastoDataFormatado.substring(0, 2);
+        const valor = gastoDataFormatado.substring(2);
+            
+        insightsDiv.innerHTML = `<span style="color: rgb(196, 52, 52); margin: 0;">${simbolo}</span>${valor}`;
+
+        previsaoConsumoChart.setOption({
+          xAxis: {
+            data: xAxisData
+          },
+          series: [
+            {
+              name: 'Consumo',
+              data: consumoData
+            },
+            {
+              name: 'Gasto',
+              data: gastoData
+            }
+          ]
+        });
+      })
+      .catch(error => console.error('Erro ao buscar dados:', error));
+  }
+
+  getPrevisaoConsumo();
+
   window.addEventListener('resize', function () {
     previsaoConsumoChart.resize();
   });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  getPrevisaoConsumo();
 });
