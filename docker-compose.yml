@@ -27,9 +27,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: senhaROOT@123
     volumes:
-      - ./arquivos_sql/tabelas.sql:/docker-entrypoint-initdb.d/tabelas.sql
-    command:
-      --init-file /docker-entrypoint-initdb.d/tabelas.sql
+      - ./arquivos_sql:/docker-entrypoint-initdb.d
     networks:
       - nexusnetwork
 
