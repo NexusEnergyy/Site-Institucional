@@ -12,14 +12,14 @@ CREATE TABLE Matriz (
 
 CREATE TABLE Parametros (
 	idParametro INT PRIMARY KEY AUTO_INCREMENT,
-    porte VARCHAR(5),
+    porte CHAR(900),
     ativoMin DECIMAL(12,2),
     ativoMax DECIMAL(12,2)
 );
 
 INSERT INTO Parametros VALUES
 	(default,"Baixo",0,2000000.00),
-    (default,"Médio",2000000.01,30000000.00),
+    (default,"Medio",2000000.01,30000000.00),
     (default,"Alto",30000000.01,NULL);
 
 CREATE TABLE Filial (
